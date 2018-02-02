@@ -61,10 +61,9 @@ public abstract class Actor extends Entity {
         }
     }
 	
-	public void switchColor(Graphics2D g, Ellipse2D.Double body, int bodyColor) {
-		int x = randomInt();
-		if(starCollision(body, bodyColor))
-			setColor(g, x);
+	public void switchColor(Graphics2D g) {
+		int x = randomInt() * 4;
+		System.out.println(x);
 	}
 	
 	public void setColor(Graphics2D g, int c) {

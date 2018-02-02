@@ -3,12 +3,14 @@ package fyp.colorswitch.ui;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import fyp.colorswitch.Handler;
+
 public class UITitle extends UIObject {
 
 	private BufferedImage[] images;
 	
-	public UITitle(float x, float y, int width, int height, BufferedImage[] images) {
-		super(x, y, width, height);
+	public UITitle(Handler handler, float y, int width, int height, BufferedImage[] images) {
+		super(handler, y, width, height);
 		this.images = images;
 	}
 

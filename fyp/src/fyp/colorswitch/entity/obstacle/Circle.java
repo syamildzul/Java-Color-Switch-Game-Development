@@ -1,7 +1,9 @@
 package fyp.colorswitch.entity.obstacle;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Ellipse2D.Double;
 
 import fyp.colorswitch.Handler;

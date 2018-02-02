@@ -4,14 +4,18 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 
+import fyp.colorswitch.Handler;
+
 public abstract class UIObject {
 	protected float x, y;
 	protected int width, height;
 	protected Rectangle bounds;
 	protected boolean hovering = false;
+	private Handler handler;
 	
-	public UIObject(float x, float y, int width, int height) {
-		this.x = x;
+	public UIObject(Handler handler, float y, int width, int height) {
+		this.handler = handler;
+		this.x = handler.getWidth() / 2 - width / 2;
 		this.y = y;
 		this.width = width;
 		this.height = height;

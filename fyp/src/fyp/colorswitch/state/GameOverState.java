@@ -20,7 +20,7 @@ public class GameOverState extends State {
 		e = new EntityManager(handler);
 		u = new UIManager(handler);
 		
-		u.addObject(new UIImageButton(midWidth - 50, midHeight - 50, 100, 100, Assets.replay, new ClickListener() {
+		u.addObject(new UIImageButton(handler, midHeight - 50, 100, 100, Assets.replay, new ClickListener() {
 
 			@Override
 			public void onClick() {

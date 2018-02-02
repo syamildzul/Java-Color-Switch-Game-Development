@@ -1,7 +1,10 @@
 package fyp.colorswitch.state;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
 
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.EntityManager;
@@ -27,9 +30,9 @@ public class MenuState extends State {
 		entities.addEntity(new Circle(handler, midHeight - 75, 150, 1));
 		entities.addEntity(new Circle(handler, midHeight - 50, 100, 2));
 		
-		uiManager.addObject(new UITitle(midWidth - 150, 70, 300, 150, Assets.title));
+		uiManager.addObject(new UITitle(handler, 70, 300, 150, Assets.title));
 		
-		uiManager.addObject(new UIImageButton(midWidth - 35, midHeight - 35, 70, 70, Assets.btn_start, new ClickListener() {
+		uiManager.addObject(new UIImageButton(handler, midHeight - 35, 70, 70, Assets.btn_start, new ClickListener() {
 
 			@Override
 			public void onClick() {
@@ -49,6 +52,9 @@ public class MenuState extends State {
 	@Override
 	public void render(Graphics2D g) {
 		entities.render(g);
+		g.setStroke(new BasicStroke(20));
+		g.setColor(Color.white);
+		g.draw(new Ellipse2D.Double(100, 100, 300, 300));
 		Graphics gd = (Graphics) g;
 		uiManager.render(gd);
 	}

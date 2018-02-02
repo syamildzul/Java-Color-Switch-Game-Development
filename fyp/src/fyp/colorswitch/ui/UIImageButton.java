@@ -3,13 +3,15 @@ package fyp.colorswitch.ui;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import fyp.colorswitch.Handler;
+
 public class UIImageButton extends UIObject {
 	
 	private BufferedImage[] images;
 	private ClickListener clicker;
 	
-	public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clicker) {
-		super(x, y, width, height);
+	public UIImageButton(Handler handler, float y, int width, int height, BufferedImage[] images, ClickListener clicker) {
+		super(handler, y, width, height);
 		this.images = images;
 		this.clicker = clicker;
 	}

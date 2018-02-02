@@ -35,8 +35,8 @@ public class GameState extends State {
 		// add entities
 		e.addEntity(new Circle(handler, 100, 200, 3));
 		e.addEntity(new Circle(handler, 315, 100, 2));
-		e.addEntity(new Rectangle(handler, 300));
-		e.addEntity(new Cross(handler, 350));
+		//e.addEntity(new Rectangle(handler, 300));
+		//e.addEntity(new Cross(handler, 350));
 		// test 
 		e.addEntity(new ScoreStar(handler, midPos, 10, 20));
 		e.addEntity(new Switcher(handler, midPos));

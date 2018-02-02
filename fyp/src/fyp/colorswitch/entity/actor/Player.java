@@ -51,6 +51,7 @@ public class Player extends Actor {
 		move();
 		fall();
 		System.out.println(yPosition);
+		
 	}
 	
 	@Override
@@ -70,6 +71,7 @@ public class Player extends Actor {
 			g.setStroke(new BasicStroke((float) 100));
 			g.drawString("Click to start", xPos - 25, handler.getHeight() - 50);
 		}
+		switchColor(g);
 	}
 	
 }
