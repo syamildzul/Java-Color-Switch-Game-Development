@@ -59,11 +59,12 @@ public class Player extends Actor {
 		
 		int xPos = (int) x - DEFAULT_DIAMETER / 2;
 		int yPos = (int) yPosition;
-		g.setColor(Entity.colors[1]);
+		switchColor(g);
 		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 0, 90);
 		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 90, 90);
 		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 180, 90);
 		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 270, 90);
+		
 		
 		if(!start) {
 			g.setColor(Color.WHITE);
@@ -71,7 +72,7 @@ public class Player extends Actor {
 			g.setStroke(new BasicStroke((float) 100));
 			g.drawString("Click to start", xPos - 25, handler.getHeight() - 50);
 		}
-		switchColor(g);
+		
 	}
 	
 }

@@ -62,8 +62,8 @@ public abstract class Actor extends Entity {
     }
 	
 	public void switchColor(Graphics2D g) {
-		int x = randomInt() * 4;
-		System.out.println(x);
+		int x = randomInt();
+		setColor(g, x);
 	}
 	
 	public void setColor(Graphics2D g, int c) {
@@ -77,7 +77,7 @@ public abstract class Actor extends Entity {
 	
 	public int randomInt() {
 		Random ran = new Random();
-		int x = ran.nextInt(1);
+		int x = ran.nextInt(4);
 		return x;
 	}
 	
@@ -108,7 +108,7 @@ public abstract class Actor extends Entity {
     }
 	
 	@Override
-	public boolean collidesWith(Double body, int bodyColor) {
+	public boolean collidesWith(Ellipse2D.Double body, int bodyColor) {
 		return false;
 	}
 

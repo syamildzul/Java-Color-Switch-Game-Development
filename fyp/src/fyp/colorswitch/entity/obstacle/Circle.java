@@ -18,6 +18,9 @@ public class Circle extends Obstacle {
 	private int angularSpeed = DEFAULT_CIRCLE_ANGULARSPEED;
 	private int thickness;
 	private double currentAngle;
+	private int color;
+	
+	private Arc arc1, arc2, arc3, arc4;
 	
 	public Circle(Handler handler, float y, int diameter, int angularSpeed) {
 		super(handler, y);
@@ -26,6 +29,11 @@ public class Circle extends Obstacle {
 		this.thickness = DEFAULT_CIRCLE_THICKNESS;
 		this.currentAngle = 0;
 		this.angularSpeed = angularSpeed;
+		
+		arc1 = new Arc(handler, y, diameter, currentAngle, 0);
+		arc2 = new Arc(handler, y, diameter, currentAngle + 90, 1);
+		arc3 = new Arc(handler, y, diameter, currentAngle + 180, 2);
+		arc4 = new Arc(handler, y, diameter, currentAngle + 270, 3);
 	}
 	
 	public void updateAngle() {
@@ -42,6 +50,13 @@ public class Circle extends Obstacle {
 		int xPos = (int) x;//( (handler.getWidth() / 2) - (diameter / 2) );
 		int yPos = (int) yPosition;//( (handler.getHeight() / 2) - diameter );
 		g.setStroke(new BasicStroke((float) thickness));
+		
+		/*
+		arc1.render(g);
+		arc2.render(g);
+		arc3.render(g);
+		arc4.render(g);
+		*/
 		g.setColor(Obstacle.colors[0]);
 		g.drawArc(xPos, yPos, diameter, diameter, (int) currentAngle, 90);
 		g.setColor(Obstacle.colors[1]);
