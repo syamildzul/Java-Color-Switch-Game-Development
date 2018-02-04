@@ -13,19 +13,21 @@ import fyp.colorswitch.ui.UIManager;
 public class GameOverState extends State {
 
 	private EntityManager e;
-	private UIManager u;
+	private UIManager ui;
 	
 	public GameOverState(Handler handler) {
 		super(handler);
 		e = new EntityManager(handler);
-		u = new UIManager(handler);
+		ui = new UIManager(handler);
+		//if(handler.getMouseManager() == null)
+			//handler.getMouseManager().setUIManager(ui);
 		
-		u.addObject(new UIImageButton(handler, midHeight - 50, 100, 100, Assets.replay, new ClickListener() {
+		ui.addObject(new UIImageButton(handler, midHeight - 35, 70, 70, Assets.replay, new ClickListener() {
 
 			@Override
 			public void onClick() {
 				handler.getMouseManager().setUIManager(null);
-				State.setState(handler.getGame().gameState);
+				//State.setState(handler.getGame().gameState);
 			}
 			
 		}));
@@ -34,13 +36,13 @@ public class GameOverState extends State {
 
 	@Override
 	public void tick() {
-		u.tick();
+		ui.tick();
 	}
 
 	@Override
 	public void render(Graphics2D g) {
 		Graphics gd = (Graphics) g;
-		u.render(gd);
+		ui.render(gd);
 	}
 
 }

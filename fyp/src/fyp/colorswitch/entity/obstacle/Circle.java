@@ -23,7 +23,7 @@ public class Circle extends Obstacle {
 	private Arc arc1, arc2, arc3, arc4;
 	
 	public Circle(Handler handler, float y, int diameter, int angularSpeed) {
-		super(handler, y);
+		super(handler, y - diameter / 2);
 		x = midPos - diameter / 2;
 		this.diameter = diameter;
 		this.thickness = DEFAULT_CIRCLE_THICKNESS;

@@ -25,12 +25,13 @@ public class MenuState extends State {
 		super(handler);
 		e = new EntityManager(handler);
 		ui = new UIManager(handler);
-		handler.getMouseManager().setUIManager(ui);
+		//if(handler.getMouseManager() == null)
+			handler.getMouseManager().setUIManager(ui);
 		// add entities
-		e.addEntity(new Circle(handler, midHeight - 100, 200, 3));
-		e.addEntity(new Circle(handler, midHeight - 75, 150, 1));
-		e.addEntity(new Circle(handler, midHeight - 50, 100, 2));
-		e.addEntity(new Arc(handler, midHeight + 200, 200, 0, 1));
+		e.addEntity(new Circle(handler, midHeight, 200, 3));
+		e.addEntity(new Circle(handler, midHeight, 150, 1));
+		e.addEntity(new Circle(handler, midHeight, 100, 2));
+		e.addEntity(new Arc(handler, midHeight, 200, 0, 1));
 		
 		ui.addObject(new UITitle(handler, 70, 300, 150, Assets.title));
 		

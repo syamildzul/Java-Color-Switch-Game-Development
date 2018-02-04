@@ -33,8 +33,8 @@ public class GameState extends State {
 		score = new Score(handler, 50);
 		e = new EntityManager(handler);
 		// add entities
-		e.addEntity(new Circle(handler, 100, 200, 3));
-		e.addEntity(new Circle(handler, 315, 100, 2));
+		e.addEntity(new Circle(handler, midHeight, 200, 3));
+		//e.addEntity(new Circle(handler, midHeight, 100, 2));
 		//e.addEntity(new Rectangle(handler, 300));
 		//e.addEntity(new Cross(handler, 350));
 		// test 
@@ -50,7 +50,7 @@ public class GameState extends State {
 	public void tick() {
 		e.tick();
 		if(isGameOver())
-			State.setState(handler.getGame().gameOverState);
+			State.setState(handler.getGame().menuState);
 			
 	}
 

@@ -29,9 +29,8 @@ public class Game implements Runnable{
 	private Handler handler;
 	
 	// State
-	public State gameState;
 	public State menuState;
-	public State gameOverState;
+	public State gameState;
 	
 	// Input
 	private KeyManager keyManager;
@@ -60,9 +59,8 @@ public class Game implements Runnable{
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0); // Camera not funtional yet
 		
-		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
-		gameOverState = new GameOverState(handler);
+		gameState = new GameState(handler);
 		State.setState(menuState);
 	}
 	
