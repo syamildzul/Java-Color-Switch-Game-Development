@@ -38,7 +38,7 @@ public class GameState extends State {
 		//e.addEntity(new Rectangle(handler, 300));
 		//e.addEntity(new Cross(handler, 350));
 		// test 
-		e.addEntity(new ScoreStar(handler, midPos, 10, 20));
+		e.addEntity(new ScoreStar(handler, midHeight, 10, 20));
 		e.addEntity(new Switcher(handler, midPos));
 		
 		// add player last to render it in front of other entities

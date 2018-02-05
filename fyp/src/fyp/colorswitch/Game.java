@@ -57,7 +57,7 @@ public class Game implements Runnable{
 		Assets.init(); // for images
 		
 		handler = new Handler(this);
-		gameCamera = new GameCamera(handler, 0); // Camera not funtional yet
+		gameCamera = new GameCamera(handler, this.height); // Camera not funtional yet
 		
 		menuState = new MenuState(handler);
 		gameState = new GameState(handler);

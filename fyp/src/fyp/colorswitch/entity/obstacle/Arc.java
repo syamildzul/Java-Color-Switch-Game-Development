@@ -27,6 +27,7 @@ public class Arc extends Obstacle {
 		
 	}
 	
+	
 
 	@Override
 	public void render(Graphics2D g) {

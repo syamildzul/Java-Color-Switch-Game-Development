@@ -9,6 +9,7 @@ public class Score extends Actor {
 
 	public Score(Handler handler, float yPosition) {
 		super(handler, yPosition);
+		x = 100;
 		// TODO Auto-generated constructor stub
 	}
 

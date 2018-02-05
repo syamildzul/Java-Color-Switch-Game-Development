@@ -29,11 +29,6 @@ public class Circle extends Obstacle {
 		this.thickness = DEFAULT_CIRCLE_THICKNESS;
 		this.currentAngle = 0;
 		this.angularSpeed = angularSpeed;
-		
-		arc1 = new Arc(handler, y, diameter, currentAngle, 0);
-		arc2 = new Arc(handler, y, diameter, currentAngle + 90, 1);
-		arc3 = new Arc(handler, y, diameter, currentAngle + 180, 2);
-		arc4 = new Arc(handler, y, diameter, currentAngle + 270, 3);
 	}
 	
 	public void updateAngle() {
@@ -50,8 +45,13 @@ public class Circle extends Obstacle {
 		int xPos = (int) x;//( (handler.getWidth() / 2) - (diameter / 2) );
 		int yPos = (int) yPosition;//( (handler.getHeight() / 2) - diameter );
 		g.setStroke(new BasicStroke((float) thickness));
-		
 		/*
+		arc1 = new Arc(handler, yPos, diameter, currentAngle, 0);
+		arc2 = new Arc(handler, yPos, diameter, currentAngle + 90, 1);
+		arc3 = new Arc(handler, yPos, diameter, currentAngle + 180, 2);
+		arc4 = new Arc(handler, yPos, diameter, currentAngle + 270, 3);
+	
+		
 		arc1.render(g);
 		arc2.render(g);
 		arc3.render(g);
