@@ -25,8 +25,7 @@ public class MenuState extends State {
 		super(handler);
 		e = new EntityManager(handler);
 		ui = new UIManager(handler);
-		//if(handler.getMouseManager() == null)
-			handler.getMouseManager().setUIManager(ui);
+		handler.getMouseManager().setUIManager(ui);
 		// add entities
 		e.addEntity(new Circle(handler, midHeight, 200, 3));
 		e.addEntity(new Circle(handler, midHeight, 150, 1));

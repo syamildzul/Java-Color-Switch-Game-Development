@@ -50,6 +50,7 @@ public class Player extends Actor {
 		getInput();
 		move();
 		fall();
+		handler.getGameCamera().playerCamera(this);
 		System.out.println(yPosition);
 		
 	}
@@ -58,13 +59,12 @@ public class Player extends Actor {
 	public void render(Graphics2D g) {
 		
 		int xPos = (int) x - DEFAULT_DIAMETER / 2;
-		int yPos = (int) yPosition;
+		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
 		switchColor(g);
 		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 0, 90);
 		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 90, 90);
 		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 180, 90);
 		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 270, 90);
-		
 		
 		if(!start) {
 			g.setColor(Color.WHITE);
