@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Ellipse2D.Double;
 
 import fyp.colorswitch.Handler;
@@ -50,7 +51,7 @@ public class Player extends Actor {
 		getInput();
 		move();
 		fall();
-		handler.getGameCamera().playerCamera(this);
+		//handler.getGameCamera().playerCamera(this);
 		System.out.println(yPosition);
 		
 	}
@@ -61,10 +62,7 @@ public class Player extends Actor {
 		int xPos = (int) x - DEFAULT_DIAMETER / 2;
 		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
 		switchColor(g);
-		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 0, 90);
-		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 90, 90);
-		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 180, 90);
-		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 270, 90);
+		g.fill(new Ellipse2D.Double(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER));
 		
 		if(!start) {
 			g.setColor(Color.WHITE);
