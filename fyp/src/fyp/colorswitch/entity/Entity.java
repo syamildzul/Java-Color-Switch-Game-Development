@@ -31,14 +31,26 @@ public abstract class Entity {
 		
 	}
 	
+	public void updateyPosition() {
+		yPosition += handler.getGameCamera().getyOffset();
+	}
+	
 	// Abstract functions
 	
 	public abstract void tick();
 	public abstract void render(Graphics2D g);
 	public abstract boolean collidesWith(Ellipse2D.Double body, int bodyColor);
-	
+
 	// Getters & Setters
 	
+	public Handler getHandler() {
+		return handler;
+	}
+
+	public void setHandler(Handler handler) {
+		this.handler = handler;
+	}
+
 	public float getX() {
 		return x;
 	}
@@ -47,12 +59,43 @@ public abstract class Entity {
 		this.x = x;
 	}
 
-	public float getY() {
+	public float getyPosition() {
 		return yPosition;
 	}
 
-	public void setY(float y) {
-		this.yPosition = y;
+	public void setyPosition(float yPosition) {
+		this.yPosition = yPosition;
 	}
+
+	public Rectangle getBounds() {
+		return bounds;
+	}
+
+	public void setBounds(Rectangle bounds) {
+		this.bounds = bounds;
+	}
+
+	public float getMidPos() {
+		return midPos;
+	}
+
+	public void setMidPos(float midPos) {
+		this.midPos = midPos;
+	}
+
+	public float getPosition() {
+		return position;
+	}
+
+	public void setPosition(float position) {
+		this.position = position;
+	}
+
+	public static Color[] getColors() {
+		return colors;
+	}
+
+	
+	
 
 }

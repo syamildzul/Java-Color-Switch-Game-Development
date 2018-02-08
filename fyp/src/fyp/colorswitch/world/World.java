@@ -3,6 +3,7 @@ package fyp.colorswitch.world;
 import java.awt.Graphics2D;
 
 import fyp.colorswitch.Handler;
+import fyp.colorswitch.entity.Entity;
 import fyp.colorswitch.entity.EntityManager;
 import fyp.colorswitch.entity.actor.Player;
 import fyp.colorswitch.entity.actor.ScoreStar;
@@ -50,15 +51,18 @@ public class World {
 	}
 	
 	public void render(Graphics2D g) {
+		em.updateyPosition();
 		em.render(g);
 	}
 	
 	public boolean isGameOver() {
 		// to add : bodycollisions with colors
-		if(player.getY() >= 680)
+		if(player.getyPosition() >= 680)
 			return true;
 		else 
 			return false;
 	}
+	
+	
 	
 }

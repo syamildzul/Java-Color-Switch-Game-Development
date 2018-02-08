@@ -38,6 +38,7 @@ public class Circle extends Obstacle {
 	@Override
 	public void tick() {
 		updateAngle();
+		updateyPosition();
 	}
 	
 	@Override
@@ -105,6 +106,5 @@ public class Circle extends Obstacle {
 	public boolean collidesWith(Double body, int bodyColor) {
 		return false;
 	}
-
 	
 }

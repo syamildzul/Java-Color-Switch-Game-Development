@@ -13,7 +13,7 @@ public class KeyManager implements KeyListener {
 	}
 	
 	public void tick() {
-		jump = keys[KeyEvent.VK_SPACE];
+		//jump = keys[KeyEvent.VK_SPACE];
 	}
 
 	@Override

@@ -13,8 +13,8 @@ public class GameCamera {
 		this.yOffset = yOffset;
 	}
 
-	public void playerCamera(Entity e) {
-		yOffset = e.getY() - handler.getGame().getHeight() / 2;
+	public void centerOnEntity(Entity e) {
+			yOffset = e.getyPosition() - handler.getHeight() / 2;
 	}
 	
 	public void move(float yAmt) {

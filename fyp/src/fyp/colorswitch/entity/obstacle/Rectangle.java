@@ -18,8 +18,7 @@ public class Rectangle extends Obstacle {
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		
+		updateyPosition();
 	}
 
 	@Override

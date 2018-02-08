@@ -43,8 +43,7 @@ public class ScoreStar extends Actor {
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		
+		updateyPosition();
 	}
 
 	@Override

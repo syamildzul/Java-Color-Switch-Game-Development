@@ -18,8 +18,7 @@ public class Cross extends Obstacle {
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		
+		updateyPosition();
 	}
 	
 	int i = 0;
@@ -64,5 +63,6 @@ public class Cross extends Obstacle {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }
