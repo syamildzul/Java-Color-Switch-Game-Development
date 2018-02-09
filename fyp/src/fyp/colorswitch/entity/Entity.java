@@ -31,10 +31,6 @@ public abstract class Entity {
 		
 	}
 	
-	public void updateyPosition() {
-		yPosition += handler.getGameCamera().getyOffset();
-	}
-	
 	// Abstract functions
 	
 	public abstract void tick();

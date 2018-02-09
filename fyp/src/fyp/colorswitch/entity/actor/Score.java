@@ -15,7 +15,7 @@ public class Score extends Actor {
 
 	@Override
 	public void tick() {
-		updateyPosition();
+		//updateyPosition();
 	}
 
 	@Override

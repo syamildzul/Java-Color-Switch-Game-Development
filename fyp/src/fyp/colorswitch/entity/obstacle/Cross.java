@@ -18,7 +18,7 @@ public class Cross extends Obstacle {
 
 	@Override
 	public void tick() {
-		updateyPosition();
+		
 	}
 	
 	int i = 0;

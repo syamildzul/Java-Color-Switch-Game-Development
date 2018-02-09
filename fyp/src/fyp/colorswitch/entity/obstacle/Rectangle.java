@@ -18,7 +18,7 @@ public class Rectangle extends Obstacle {
 
 	@Override
 	public void tick() {
-		updateyPosition();
+		//updateyPosition();
 	}
 
 	@Override

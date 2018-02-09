@@ -24,7 +24,7 @@ public class Arc extends Obstacle {
 
 	@Override
 	public void tick() {
-		updateyPosition();
+		//updateyPosition();
 	}
 	
 	

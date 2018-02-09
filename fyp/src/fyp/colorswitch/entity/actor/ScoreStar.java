@@ -43,7 +43,7 @@ public class ScoreStar extends Actor {
 
 	@Override
 	public void tick() {
-		updateyPosition();
+		//updateyPosition();
 	}
 
 	@Override

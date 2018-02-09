@@ -44,6 +44,8 @@ public class World {
 	}
 	
 	public void tick() {
+		if(player.isStarted())
+			em.updateyPosition();
 		em.tick();
 		if(isGameOver()) {
 			State.setState(handler.getGame().menuState);
@@ -51,7 +53,7 @@ public class World {
 	}
 	
 	public void render(Graphics2D g) {
-		em.updateyPosition();
+		
 		em.render(g);
 	}
 	

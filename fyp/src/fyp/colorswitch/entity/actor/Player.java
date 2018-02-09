@@ -52,7 +52,7 @@ public class Player extends Actor {
 		move();
 		fall();
 		handler.getGameCamera().centerOnEntity(this);
-		System.out.println(yPosition);
+		System.out.println(handler.getGameCamera().getyOffset());
 		
 	}
 	
@@ -61,7 +61,7 @@ public class Player extends Actor {
 		
 		switchColor(g);
 		g.fill(new Ellipse2D.Double((int) x - DEFAULT_DIAMETER / 2,
-				(int) (yPosition - handler.getGameCamera().getyOffset()),
+				(int) (yPosition),
 				DEFAULT_DIAMETER, DEFAULT_DIAMETER));
 		
 		if(!start) {
@@ -71,6 +71,10 @@ public class Player extends Actor {
 			g.drawString("Click to start", (int) (x - DEFAULT_DIAMETER / 2 - 25), handler.getHeight() - 50);
 		}
 		
+	}
+	
+	public boolean isStarted() {
+		return start;
 	}
 
 }
