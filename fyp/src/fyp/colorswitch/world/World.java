@@ -10,6 +10,7 @@ import fyp.colorswitch.entity.actor.ScoreStar;
 import fyp.colorswitch.entity.actor.Switcher;
 import fyp.colorswitch.entity.obstacle.Circle;
 import fyp.colorswitch.entity.obstacle.Cross;
+import fyp.colorswitch.entity.obstacle.Rectangle;
 import fyp.colorswitch.state.State;
 
 public class World {
@@ -29,7 +30,7 @@ public class World {
 		// add entities
 		em.addEntity(new Circle(handler, midHeight, 200, 3));
 		//e.addEntity(new Circle(handler, midHeight, 100, 2));
-		//e.addEntity(new Rectangle(handler, 300));
+		em.addEntity(new Rectangle(handler, 300));
 		em.addEntity(new Cross(handler, 350));
 		// test 
 		em.addEntity(new ScoreStar(handler, midHeight, 10, 20));

@@ -10,31 +10,58 @@ import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
 
 public class Rectangle extends Obstacle {
-
+	
+	private int ha1, ha2, ha3, ha4;
+	private int hb1, hb2, hb3, hb4;
+	
 	public Rectangle(Handler handler, float yPosition) {
 		super(handler, yPosition);
-		// TODO Auto-generated constructor stub
+		ha1 = 100; hb1 = 100;
+		ha2 = 100; hb2 = 250;
+		ha3 = 250; hb3 = 250;
+		ha4 = 100; hb4 = 250;
 	}
 
 	@Override
 	public void tick() {
-		//updateyPosition();
+		
 	}
 
 	@Override
 	public void render(Graphics2D g) {
-		int xPos = (int) x; //( (handler.getWidth() / 2) - (diameter / 2) );
-		int yPos = (int) yPosition;//( (handler.getHeight() / 2) - diameter );
+
 		g.setStroke(new BasicStroke((float) 20)); // midW 250 midH 350
 		// (startX, startY, endX, endY)
-		g.setColor(Entity.colors[0]);
-		g.drawLine(150, 100, 300, 100);
-		g.setColor(Entity.colors[1]);
-		g.drawLine(150, 100, 150, 250);
-		g.setColor(Entity.colors[2]);
-		g.drawLine(150, 250, 300, 250);
-		g.setColor(Entity.colors[3]);
-		g.drawLine(300, 100, 300, 250);
+		rotateLine(g);
+	}
+	
+	int i = 0;
+	public void rotateLine(Graphics2D g) {
+		
+		Line2D line = new Line2D.Double(150, ha1 - handler.getGameCamera().getyOffset(), 300, hb1 - handler.getGameCamera().getyOffset());
+		Line2D line2 = new Line2D.Double(150, ha2 - handler.getGameCamera().getyOffset(), 150, hb2 - handler.getGameCamera().getyOffset());
+		Line2D line3 = new Line2D.Double(150, ha3 - handler.getGameCamera().getyOffset(), 300, hb3 - handler.getGameCamera().getyOffset());
+		Line2D line4 = new Line2D.Double(300, ha4 - handler.getGameCamera().getyOffset(), 300, hb4 - handler.getGameCamera().getyOffset());
+		
+	    AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(i), 
+	    		line.getX2(), line.getY2());
+	    AffineTransform at2 = AffineTransform.getRotateInstance(Math.toRadians(i), 
+	    		line2.getX1(), line2.getY1());
+	    AffineTransform at3 = AffineTransform.getRotateInstance(Math.toRadians(i),
+	    		line3.getX1(), line3.getY1());
+	    AffineTransform at4 = AffineTransform.getRotateInstance(Math.toRadians(i),
+	    		line4.getX2(), line4.getY2());
+
+	    // Draw the rotated line
+	    g.setColor(Entity.colors[0]);
+	    g.draw(at.createTransformedShape(line));
+	    g.setColor(Entity.colors[1]);
+	    g.draw(at2.createTransformedShape(line2));
+	    g.setColor(Entity.colors[2]);
+	    g.draw(at3.createTransformedShape(line3));
+	    g.setColor(Entity.colors[3]);
+	    g.draw(at4.createTransformedShape(line4));
+	    i++;
 	}
 
 	@Override

@@ -11,7 +11,6 @@ public abstract class Entity {
 
 	protected Handler handler;
 	protected float x, yPosition;
-	protected Rectangle bounds;
 	protected float midPos;
 	protected float position;
 	
@@ -24,7 +23,6 @@ public abstract class Entity {
 		this.yPosition = yPosition;
 		this.midPos = handler.getWidth() / 2;
 		this.x = midPos;
-		//bounds = new Rectangle(0, 0, width, height);
 	}
 	
 	// Abstract functions
@@ -57,14 +55,6 @@ public abstract class Entity {
 
 	public void setyPosition(float yPosition) {
 		this.yPosition = yPosition;
-	}
-
-	public Rectangle getBounds() {
-		return bounds;
-	}
-
-	public void setBounds(Rectangle bounds) {
-		this.bounds = bounds;
 	}
 
 	public float getMidPos() {
