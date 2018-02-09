@@ -27,10 +27,6 @@ public abstract class Entity {
 		//bounds = new Rectangle(0, 0, width, height);
 	}
 	
-	public void renderCamera(Graphics2D g, int yOffset) {
-		
-	}
-	
 	// Abstract functions
 	
 	public abstract void tick();

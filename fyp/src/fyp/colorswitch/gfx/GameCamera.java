@@ -13,7 +13,7 @@ public class GameCamera {
 		this.yOffset = yOffset;
 	}
 
-	public void centerOnEntity(Entity e) {
+	public void updateView(Entity e) {
 			yOffset = e.getyPosition() - handler.getHeight() / 2;
 	}
 	

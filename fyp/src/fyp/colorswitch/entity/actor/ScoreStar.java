@@ -70,10 +70,10 @@ public class ScoreStar extends Actor {
             //code to define vertices of star
             if (i % 2 == 0) {
                 xList[i] = (int) (midPos + size * Math.cos(Math.toRadians(angle)));
-                yList[i] = (int) (midPos + size * Math.sin(Math.toRadians(angle)));
+                yList[i] = (int) (midPos - handler.getGameCamera().getyOffset() + size * Math.sin(Math.toRadians(angle)));
             } else {
                 xList[i] = (int) (midPos + 0.5 * size * Math.cos(Math.toRadians(angle)));
-                yList[i] = (int) (midPos + 0.5 * size * Math.sin(Math.toRadians(angle)));
+                yList[i] = (int) (midPos - handler.getGameCamera().getyOffset() + 0.5 * size * Math.sin(Math.toRadians(angle)));
             }
         }
         star = new Polygon(xList, yList, edges);
@@ -82,7 +82,8 @@ public class ScoreStar extends Actor {
 		int yPoints[] = {0, 36, 36, 54, 96, 72, 96, 54, 36, 36};
 		*/
 		g.setColor(Color.WHITE);
-		g.fillPolygon(xList, yList, edges);
+		g.fill(star);
+		//g.fillPolygon(xList, yList, edges);
 		
 	}
 

@@ -23,7 +23,7 @@ public class Switcher extends Actor {
 	public void render(Graphics2D g) {
 		
 		int xPos = (int) midPos - DEFAULT_DIAMETER/2;
-		int yPos = (int) yPosition + 100; // test
+		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset() + 100); // test
 		g.setColor(Entity.colors[0]);
 		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 0, 90);
 		g.setColor(Entity.colors[1]);

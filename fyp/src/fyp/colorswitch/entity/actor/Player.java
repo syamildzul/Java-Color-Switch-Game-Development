@@ -51,17 +51,16 @@ public class Player extends Actor {
 		getInput();
 		move();
 		fall();
-		handler.getGameCamera().centerOnEntity(this);
-		System.out.println(handler.getGameCamera().getyOffset());
+		handler.getGameCamera().updateView(this);
 		
 	}
 	
 	@Override
-	public void render(Graphics2D g) {
+	public void render(Graphics2D g) { 
 		
 		switchColor(g);
 		g.fill(new Ellipse2D.Double((int) x - DEFAULT_DIAMETER / 2,
-				(int) (yPosition),
+				(int) (yPosition - handler.getGameCamera().getyOffset()),
 				DEFAULT_DIAMETER, DEFAULT_DIAMETER));
 		
 		if(!start) {

@@ -9,6 +9,7 @@ import fyp.colorswitch.entity.actor.Player;
 import fyp.colorswitch.entity.actor.ScoreStar;
 import fyp.colorswitch.entity.actor.Switcher;
 import fyp.colorswitch.entity.obstacle.Circle;
+import fyp.colorswitch.entity.obstacle.Cross;
 import fyp.colorswitch.state.State;
 
 public class World {
@@ -29,7 +30,7 @@ public class World {
 		em.addEntity(new Circle(handler, midHeight, 200, 3));
 		//e.addEntity(new Circle(handler, midHeight, 100, 2));
 		//e.addEntity(new Rectangle(handler, 300));
-		//e.addEntity(new Cross(handler, 350));
+		em.addEntity(new Cross(handler, 350));
 		// test 
 		em.addEntity(new ScoreStar(handler, midHeight, 10, 20));
 		em.addEntity(new Switcher(handler, midWidth));
@@ -44,12 +45,11 @@ public class World {
 	}
 	
 	public void tick() {
-		if(player.isStarted())
-			em.updateyPosition();
 		em.tick();
+		System.out.println(handler.getHeight());
 		if(isGameOver()) {
 			State.setState(handler.getGame().menuState);
-		}
+		}	
 	}
 	
 	public void render(Graphics2D g) {

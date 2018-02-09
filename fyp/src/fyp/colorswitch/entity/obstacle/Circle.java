@@ -45,7 +45,7 @@ public class Circle extends Obstacle {
 	@Override
 	public void render(Graphics2D g) {
 		int xPos = (int) x;//( (handler.getWidth() / 2) - (diameter / 2) );
-		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());//( (handler.getHeight() / 2) - diameter );
+		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
 		g.setStroke(new BasicStroke((float) thickness));
 		/*
 		arc1 = new Arc(handler, yPos, diameter, currentAngle, 0);
