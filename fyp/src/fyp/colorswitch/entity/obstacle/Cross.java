@@ -27,32 +27,14 @@ public class Cross extends Obstacle {
 		
 	}
 	
-	public void updatePosition() {
-		ha1 = (int) (ha1 - handler.getGameCamera().getyOffset());
-		ha2 = (int) (ha2 - handler.getGameCamera().getyOffset());
-		ha3 = (int) (ha3 - handler.getGameCamera().getyOffset());
-		ha4 = (int) (ha4 - handler.getGameCamera().getyOffset());
-		hb1 = (int) (hb1 - handler.getGameCamera().getyOffset());
-		hb2 = (int) (hb2 - handler.getGameCamera().getyOffset());
-		hb3 = (int) (hb3 - handler.getGameCamera().getyOffset());
-		hb4 = (int) (hb4 - handler.getGameCamera().getyOffset());
-	}
-	
 	int i = 0;
 	public void rotateLine(Graphics2D g) {
 		
-		Line2D line = new Line2D.Double(250, 200, 250, 350);
-		Line2D line2 = new Line2D.Double(250, 350, 400, 350);
-		Line2D line3 = new Line2D.Double(250, 350, 250, 500);
-		Line2D line4 = new Line2D.Double(100, 350, 250, 350);
+		Line2D line = new Line2D.Double(250, ha1 - handler.getGameCamera().getyOffset(), 250, hb1 - handler.getGameCamera().getyOffset());
+		Line2D line2 = new Line2D.Double(250, ha2 - handler.getGameCamera().getyOffset(), 400, hb2 - handler.getGameCamera().getyOffset());
+		Line2D line3 = new Line2D.Double(250, ha3 - handler.getGameCamera().getyOffset(), 250, hb3 - handler.getGameCamera().getyOffset());
+		Line2D line4 = new Line2D.Double(100, ha4 - handler.getGameCamera().getyOffset(), 250, hb4 - handler.getGameCamera().getyOffset());
 		
-		/*updatePosition();
-		
-		Line2D line = new Line2D.Double(250, ha1, 250, hb1);
-		Line2D line2 = new Line2D.Double(250, ha2, 400, hb2);
-		Line2D line3 = new Line2D.Double(250, ha3, 250, hb3);
-		Line2D line4 = new Line2D.Double(100, ha4, 250, hb4);
-		*/
 	    AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(i), 
 	    		line.getX2(), line.getY2());
 	    AffineTransform at2 = AffineTransform.getRotateInstance(Math.toRadians(i), 
