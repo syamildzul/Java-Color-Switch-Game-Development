@@ -13,9 +13,15 @@ public class Rectangle extends Obstacle {
 	
 	private int ha1, ha2, ha3, ha4;
 	private int hb1, hb2, hb3, hb4;
+	private Line line, line2, line3, line4;
 	
 	public Rectangle(Handler handler, float yPosition) {
 		super(handler, yPosition);
+		line = new Line(150, 100, 300, 100, 0);
+		line2 = new Line(150, 100, 300, 100, 0);
+		line3 = new Line(150, 100, 300, 100, 0);
+		line4 = new Line(150, 100, 300, 100, 0);
+		
 		ha1 = 100; hb1 = 100;
 		ha2 = 100; hb2 = 250;
 		ha3 = 250; hb3 = 250;
