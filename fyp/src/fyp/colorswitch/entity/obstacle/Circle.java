@@ -38,8 +38,6 @@ public class Circle extends Obstacle {
 	@Override
 	public void tick() {
 		updateAngle();
-		//updateyPosition();
-		//System.out.println(yPosition);
 	}
 	
 	@Override

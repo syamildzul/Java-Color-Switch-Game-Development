@@ -18,10 +18,11 @@ public class Player extends Actor {
 	private static final int DEFAULT_DIAMETER = 20;
 	
 	private boolean start = false;
-	private int i = 0;
+	private int i = 0, color;
 	
-	public Player(Handler handler, float yPosition) {
+	public Player(Handler handler, float yPosition, int color) {
 		super(handler, yPosition);
+		this.color = color;
 	}
 
 	public void getInput() {
@@ -57,7 +58,7 @@ public class Player extends Actor {
 	
 	@Override
 	public void render(Graphics2D g) { 
-		
+		//if(this.collidesWith(switcher, color))
 		switchColor(g);
 		g.fill(new Ellipse2D.Double((int) x - DEFAULT_DIAMETER / 2,
 				(int) (yPosition - handler.getGameCamera().getyOffset()),

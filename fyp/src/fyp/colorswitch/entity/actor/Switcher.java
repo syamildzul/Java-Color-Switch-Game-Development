@@ -16,7 +16,7 @@ public class Switcher extends Actor {
 
 	@Override
 	public void tick() {
-		//updateyPosition();
+		
 	}
 
 	@Override
