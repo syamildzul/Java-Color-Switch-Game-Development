@@ -7,9 +7,9 @@ import fyp.colorswitch.Handler;
 
 public class Line {
 	
-	
 	private int color;
 	private float xStart, xEnd, yStart, yEnd;
+	private int i = 0;
 	
 	public Line(float xStart, float yStart, float xEnd, float yEnd, int color) {
 		this.xStart = xStart;
