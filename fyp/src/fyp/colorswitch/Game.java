@@ -60,8 +60,8 @@ public class Game implements Runnable{
 		gameCamera = new GameCamera(handler, 0); // Camera not funtional yet
 		
 		menuState = new MenuState(handler);
-		//gameState = new GameState(handler);
-		State.setState(menuState);
+		gameState = new GameState(handler);
+		State.setState(gameState);
 	}
 	
 	public void tick() {

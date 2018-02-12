@@ -29,15 +29,15 @@ public class World {
 		
 		// add entities
 		em.addEntity(new Circle(handler, midHeight, 200, 3));
-		//e.addEntity(new Circle(handler, midHeight, 100, 2));
-		em.addEntity(new Rectangle(handler, 300));
+		//em.addEntity(new Circle(handler, midHeight, 100, 2));
+		//em.addEntity(new Rectangle(handler, 300));
 		//em.addEntity(new Cross(handler, 350));
 		// test 
 		em.addEntity(new ScoreStar(handler, midHeight, 10, 20));
 		em.addEntity(new Switcher(handler, midWidth));
 				
 		// add player last to render it in front of other entities
-		player = new Player(handler, handler.getHeight() - 100);
+		player = new Player(handler, handler.getHeight() - 100, 0);
 		em.addEntity(player);
 	}
 	

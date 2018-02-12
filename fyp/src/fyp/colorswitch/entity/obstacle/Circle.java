@@ -3,6 +3,9 @@ package fyp.colorswitch.entity.obstacle;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.Arc2D;
+import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Ellipse2D.Double;
 
@@ -18,9 +21,9 @@ public class Circle extends Obstacle {
 	private int angularSpeed = DEFAULT_CIRCLE_ANGULARSPEED;
 	private int thickness;
 	private double currentAngle;
-	private int color;
+	private int c1, c2, c3, c4;
 	
-	private Arc arc1, arc2, arc3, arc4;
+	private Arc2D a1, a2, a3, a4;
 	
 	public Circle(Handler handler, float y, int diameter, int angularSpeed) {
 		super(handler, y - diameter / 2);
@@ -29,6 +32,10 @@ public class Circle extends Obstacle {
 		this.thickness = DEFAULT_CIRCLE_THICKNESS;
 		this.currentAngle = 0;
 		this.angularSpeed = angularSpeed;
+		this.c1 = 0;
+		this.c2 = 0;
+		this.c3 = 0;
+		this.c4 = 0;
 	}
 	
 	public void updateAngle() {
@@ -42,29 +49,30 @@ public class Circle extends Obstacle {
 	
 	@Override
 	public void render(Graphics2D g) {
-		int xPos = (int) x;//( (handler.getWidth() / 2) - (diameter / 2) );
+		int xPos = (int) x;
 		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
 		g.setStroke(new BasicStroke((float) thickness));
-		/*
-		arc1 = new Arc(handler, yPos, diameter, currentAngle, 0);
-		arc2 = new Arc(handler, yPos, diameter, currentAngle + 90, 1);
-		arc3 = new Arc(handler, yPos, diameter, currentAngle + 180, 2);
-		arc4 = new Arc(handler, yPos, diameter, currentAngle + 270, 3);
-	
 		
-		arc1.render(g);
-		arc2.render(g);
-		arc3.render(g);
-		arc4.render(g);
-		*/
 		g.setColor(Obstacle.colors[0]);
-		g.drawArc(xPos, yPos, diameter, diameter, (int) currentAngle, 90);
+		c1 = 0;
+		a1 = new Arc2D.Double(xPos, yPos, diameter, diameter , (int) currentAngle, 90, 0);
+		g.draw(a1);
+		
 		g.setColor(Obstacle.colors[1]);
-		g.drawArc(xPos, yPos, diameter, diameter, (int) currentAngle + 90, 90);
+		c2 = 1;
+		a2 = new Arc2D.Double(xPos, yPos, diameter, diameter , (int) currentAngle + 90, 90, 0);
+		g.draw(a2);
+		
 		g.setColor(Obstacle.colors[2]);
-		g.drawArc(xPos, yPos, diameter, diameter, (int) currentAngle + 180, 90);
+		c3 = 2;
+		a3 = new Arc2D.Double(xPos, yPos, diameter, diameter , (int) currentAngle + 180, 90, 0);
+		g.draw(a3);
+		
 		g.setColor(Obstacle.colors[3]);
-		g.drawArc(xPos, yPos, diameter, diameter, (int) currentAngle + 270, 90);
+		c4 = 3;
+		a4 = new Arc2D.Double(xPos, yPos, diameter, diameter , (int) currentAngle + 270, 90, 0);
+		g.draw(a4);
+		
 		g.setStroke(new BasicStroke(1));
 		
 	}
