@@ -106,11 +106,6 @@ public abstract class Actor extends Entity {
         }
         return false;
     }
-	
-	@Override
-	public boolean collidesWith(Ellipse2D.Double body, int bodyColor) {
-		return false;
-	}
 
 	// Getters & Setters 
 	

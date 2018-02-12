@@ -38,10 +38,4 @@ public class Arc extends Obstacle {
 		g.draw(arc);
 	}
 
-	@Override
-	public boolean collidesWith(Ellipse2D.Double body, int bodyColor) {
-		
-		return false;
-	}
-
 }

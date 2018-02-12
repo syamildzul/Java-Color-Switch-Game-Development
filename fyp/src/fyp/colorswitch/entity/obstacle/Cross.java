@@ -67,12 +67,6 @@ public class Cross extends Obstacle {
 		
 		rotateLine(g);
 	}
-
-	@Override
-	public boolean collidesWith(Double body, int bodyColor) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
 	public boolean collides(Line2D.Float body, int color) {
 		if(body.intersectsLine(line)  )

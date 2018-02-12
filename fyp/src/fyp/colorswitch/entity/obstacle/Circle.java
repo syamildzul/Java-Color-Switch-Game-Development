@@ -108,10 +108,5 @@ public class Circle extends Obstacle {
 	public void setCurrentAngle(double currentAngle) {
 		this.currentAngle = currentAngle;
 	}
-
-	@Override
-	public boolean collidesWith(Double body, int bodyColor) {
-		return false;
-	}
 	
 }
