@@ -38,4 +38,12 @@ public class Arc extends Obstacle {
 		g.draw(arc);
 	}
 
+	public int getColorType() {
+		return colorType;
+	}
+
+	public void setColorType(int colorType) {
+		this.colorType = colorType;
+	}
+
 }
