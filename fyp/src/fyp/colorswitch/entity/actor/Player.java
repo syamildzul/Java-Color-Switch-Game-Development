@@ -25,10 +25,10 @@ public class Player extends Actor {
 	public Player(Handler handler, float yPosition, int color) {
 		super(handler, yPosition);
 		this.color = color;
-		bounds.x = (int) x;
-		bounds.y = (int) yPosition;
-		bounds.width = 5;
-		bounds.height = 5;
+		bounds.x = (int) -10;
+		bounds.y = (int) 0;
+		bounds.width = 20;
+		bounds.height = 20;
 	}
 
 	public void getInput() {
@@ -67,15 +67,15 @@ public class Player extends Actor {
 		//if(this.collidesWith(switcher, color))
 		//switchColor(g);
 		
-		g.setColor(Color.white);
-		g.fillRect((int) (x + bounds.x), 
-				(int) (yPosition + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
 		
 		g.setColor(Color.blue);
 		g.fill(new Ellipse2D.Double((int) x - DEFAULT_DIAMETER / 2,
 				(int) (yPosition - handler.getGameCamera().getyOffset()),
 				DEFAULT_DIAMETER, DEFAULT_DIAMETER));
 			
+		g.setColor(Color.white);
+		g.fillRect((int) (x + bounds.x), 
+				(int) (yPosition + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
 		
 		if(!start) {
 			g.setColor(Color.WHITE);
