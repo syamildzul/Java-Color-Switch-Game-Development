@@ -8,8 +8,10 @@ import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Ellipse2D.Double;
+import java.util.ArrayList;
 
 import fyp.colorswitch.Handler;
+import fyp.colorswitch.entity.obstacle.frames.Arc;
 
 public class Circle extends Obstacle {
 
@@ -22,7 +24,8 @@ public class Circle extends Obstacle {
 	private int thickness;
 	private double currentAngle;
 	
-	private Arc2D a1, a2, a3, a4;
+	private ArrayList<Arc> lesArc;
+	private Arc a1, a2, a3, a4;
 	
 	public Circle(Handler handler, float y, int diameter, int angularSpeed) {
 		super(handler, y - diameter / 2);
@@ -31,6 +34,18 @@ public class Circle extends Obstacle {
 		this.thickness = DEFAULT_CIRCLE_THICKNESS;
 		this.currentAngle = 0;
 		this.angularSpeed = angularSpeed;
+	}
+	
+	public void init() {
+		a1 = new Arc(handler, yPosition, diameter, currentAngle, 0);
+		a2 = new Arc(handler, yPosition, diameter, currentAngle + 90, 1);
+		a3 = new Arc(handler, yPosition, diameter, currentAngle + 180, 2);
+		a4 = new Arc(handler, yPosition, diameter, currentAngle + 270, 3);
+		lesArc = new ArrayList<Arc>();
+		lesArc.add(a1);
+		lesArc.add(a2);
+		lesArc.add(a3);
+		lesArc.add(a4);
 	}
 	
 	public void updateAngle() {
@@ -44,7 +59,45 @@ public class Circle extends Obstacle {
 	
 	@Override
 	public void render(Graphics2D g) {
-		int xPos = (int) x;
+		init();
+		for (Arc a : lesArc) {
+			a.render(g);
+		}
+	}
+
+	public boolean collidesWith(Ellipse2D.Double player, int color) {
+		for (Arc a : lesArc) {
+		//	if(a.)
+		}
+		
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	// Getters and Setters
+	
+	public int getAngularSpeed() {
+		return angularSpeed;
+	}
+
+	public void setAngularSpeed(int angularSpeed) {
+		this.angularSpeed = angularSpeed;
+	}
+
+	public double getCurrentAngle() {
+		return currentAngle;
+	}
+
+	public void setCurrentAngle(double currentAngle) {
+		this.currentAngle = currentAngle;
+	}
+	
+	/*
+	 * int xPos = (int) x;
 		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
 		g.setStroke(new BasicStroke((float) thickness));
 		
@@ -65,23 +118,6 @@ public class Circle extends Obstacle {
 		g.draw(a4);
 		
 		g.setStroke(new BasicStroke(1));
-		
-	}
-
-	public int getAngularSpeed() {
-		return angularSpeed;
-	}
-
-	public void setAngularSpeed(int angularSpeed) {
-		this.angularSpeed = angularSpeed;
-	}
-
-	public double getCurrentAngle() {
-		return currentAngle;
-	}
-
-	public void setCurrentAngle(double currentAngle) {
-		this.currentAngle = currentAngle;
-	}
-	
+		*/
+	 
 }

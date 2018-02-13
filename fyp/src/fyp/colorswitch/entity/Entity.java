@@ -13,6 +13,7 @@ public abstract class Entity {
 	protected float x, yPosition;
 	protected float midPos;
 	protected float position;
+	protected Rectangle bounds;
 	
 	// Turquoise, Vivid Yellow, Electric Violet, Bright Pink
     public static final Color colors[] = {new Color(50, 226, 241),
@@ -23,6 +24,7 @@ public abstract class Entity {
 		this.yPosition = yPosition;
 		this.midPos = handler.getWidth() / 2;
 		this.x = midPos;
+		bounds = new Rectangle(0, 0, 0, 0);
 	}
 	
 	// Abstract functions

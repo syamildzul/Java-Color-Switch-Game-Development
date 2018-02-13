@@ -8,8 +8,8 @@ import java.awt.geom.Ellipse2D;
 
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.EntityManager;
-import fyp.colorswitch.entity.obstacle.Arc;
 import fyp.colorswitch.entity.obstacle.Circle;
+import fyp.colorswitch.entity.obstacle.frames.Arc;
 import fyp.colorswitch.gfx.Assets;
 import fyp.colorswitch.ui.ClickListener;
 import fyp.colorswitch.ui.UIImageButton;

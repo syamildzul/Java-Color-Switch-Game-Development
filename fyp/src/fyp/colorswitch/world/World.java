@@ -41,7 +41,7 @@ public class World {
 		em.addEntity(player);
 	}
 	
-	public EntityManager getEntityManger() {
+	public EntityManager getEntityManager() {
 		return this.em;
 	}
 	

@@ -90,7 +90,7 @@ public abstract class Actor extends Entity {
             switcher.update(moveDownDistance);
         }
     }
-	
+	/*
 	public boolean starCollision(Ellipse2D.Double body, int bodyColor) {
         if (star != null && star.collidesWith(body, bodyColor)) {
             star = null;
@@ -106,7 +106,7 @@ public abstract class Actor extends Entity {
         }
         return false;
     }
-
+	*/
 	// Getters & Setters 
 	
 	public float getxMove() {

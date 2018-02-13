@@ -1,4 +1,4 @@
-package fyp.colorswitch.entity.obstacle;
+package fyp.colorswitch.entity.obstacle.frames;
 
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D.Double;

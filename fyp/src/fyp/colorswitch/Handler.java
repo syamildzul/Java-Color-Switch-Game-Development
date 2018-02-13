@@ -5,10 +5,12 @@ import fyp.colorswitch.entity.obstacle.Obstacle;
 import fyp.colorswitch.gfx.GameCamera;
 import fyp.colorswitch.input.KeyManager;
 import fyp.colorswitch.input.MouseManager;
+import fyp.colorswitch.world.World;
 
 public class Handler {
 
 	private Game game;
+	private World world;
 	
 	public Handler(Game game) {
 		this.game = game;
@@ -41,4 +43,13 @@ public class Handler {
 	public GameCamera getGameCamera() {
 		return game.getGameCamera();
 	}
+
+	public World getWorld() {
+		return world;
+	}
+
+	public void setWorld(World world) {
+		this.world = world;
+	}
+	
 }

@@ -8,6 +8,7 @@ import java.awt.geom.Line2D;
 
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
+import fyp.colorswitch.entity.obstacle.frames.Line;
 
 public class Rectangle extends Obstacle {
 	
