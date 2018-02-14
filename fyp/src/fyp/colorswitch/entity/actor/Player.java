@@ -22,9 +22,12 @@ public class Player extends Actor {
 	private boolean start = false;
 	private int i = 0, color;
 	
+	private Ellipse2D.Double p;
+	
 	public Player(Handler handler, float yPosition, int color) {
 		super(handler, yPosition);
 		this.color = color;
+		p = new Ellipse2D.Double(x - DEFAULT_DIAMETER / 2, yPosition , DEFAULT_DIAMETER, DEFAULT_DIAMETER);
 		bounds.x = (int) -10;
 		bounds.y = (int) 0;
 		bounds.width = 20;
@@ -66,17 +69,18 @@ public class Player extends Actor {
 	public void render(Graphics2D g) { 
 		//if(this.collidesWith(switcher, color))
 		//switchColor(g);
+		int xPos = (int) (x - DEFAULT_DIAMETER / 2);
+		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
 		
-		
-		g.setColor(Color.blue);
-		g.fill(new Ellipse2D.Double((int) x - DEFAULT_DIAMETER / 2,
-				(int) (yPosition - handler.getGameCamera().getyOffset()),
-				DEFAULT_DIAMETER, DEFAULT_DIAMETER));
-			
+		g.setColor(Color.white);
+		// switchColor(g);
+		p.setFrame(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER);
+		g.fill(p);
+		/*
 		g.setColor(Color.white);
 		g.fillRect((int) (x + bounds.x), 
 				(int) (yPosition + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
-		
+		*/
 		if(!start) {
 			g.setColor(Color.WHITE);
 			//g.setFont(Font.ROMAN_BASELINE);
