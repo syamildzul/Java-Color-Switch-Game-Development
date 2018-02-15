@@ -22,7 +22,7 @@ public class Player extends Actor {
 	private boolean start = false;
 	private int i = 0, color;
 	
-	private Ellipse2D.Double p;
+	private Ellipse2D.Double p, playerbounds;
 	
 	public Player(Handler handler, float yPosition, int color) {
 		super(handler, yPosition);
@@ -76,7 +76,7 @@ public class Player extends Actor {
 		// switchColor(g);
 		p.setFrame(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER);
 		g.fill(p);
-		
+		playerbounds = new Ellipse2D.Double();
 		g.setColor(Color.white);
 		//g.fillRect((int) (xPos + bounds.x),
 		//		(int) (yPosition + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);

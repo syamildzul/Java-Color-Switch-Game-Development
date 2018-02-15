@@ -40,12 +40,6 @@ public class Arc extends Obstacle {
 		g.setColor(Entity.colors[colorType]);
 		g.draw(arc);
 	}
-
-	public boolean collidesWith(Player player, int color) {
-		if(arc.intersects(player.getBounds()))
-				return true;
-		else return false;
-	}
 	
 	
 	// Getters and Setters
