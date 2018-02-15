@@ -28,9 +28,9 @@ public class Player extends Actor {
 		super(handler, yPosition);
 		this.color = color;
 		p = new Ellipse2D.Double(x - DEFAULT_DIAMETER / 2, yPosition , DEFAULT_DIAMETER, DEFAULT_DIAMETER);
-		bounds.x = (int) -10;
+		bounds.x = (int) 10;
 		bounds.y = (int) 0;
-		bounds.width = 20;
+		bounds.width = 5;
 		bounds.height = 20;
 	}
 
@@ -72,15 +72,15 @@ public class Player extends Actor {
 		int xPos = (int) (x - DEFAULT_DIAMETER / 2);
 		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
 		
-		g.setColor(Color.white);
+		g.setColor(Color.blue);
 		// switchColor(g);
 		p.setFrame(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER);
 		g.fill(p);
-		/*
+		
 		g.setColor(Color.white);
-		g.fillRect((int) (x + bounds.x), 
-				(int) (yPosition + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
-		*/
+		//g.fillRect((int) (xPos + bounds.x),
+		//		(int) (yPosition + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
+		g.fill(bounds);
 		if(!start) {
 			g.setColor(Color.WHITE);
 			//g.setFont(Font.ROMAN_BASELINE);
