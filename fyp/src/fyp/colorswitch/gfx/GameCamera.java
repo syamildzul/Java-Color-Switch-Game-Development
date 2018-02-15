@@ -6,21 +6,30 @@ import fyp.colorswitch.entity.Entity;
 public class GameCamera {
 	
 	private Handler handler;
-	private float yOffset;
+	private float yOffset, obsyOffset;
 	
 	public GameCamera(Handler handler, float yOffset) {
 		this.handler = handler;
 		this.yOffset = yOffset;
+		this.obsyOffset = yOffset;
 	}
 
 	public void updateView(Entity e) {
-			yOffset = e.getyPosition() - handler.getHeight() / 2;
+		yOffset = e.getyPosition() - handler.getHeight() / 2;
 	}
 	
-	public void move(float yAmt) {
-		yOffset -= yAmt;
+	public void updateObstacleView(Entity e) {
+		obsyOffset = yOffset;
 	}
 	
+	public float getObsyOffset() {
+		return obsyOffset;
+	}
+
+	public void setObsyOffset(float obsyOffset) {
+		this.obsyOffset = obsyOffset;
+	}
+
 	public float getyOffset() {
 		return yOffset;
 	}
