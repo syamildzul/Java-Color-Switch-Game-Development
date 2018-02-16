@@ -7,11 +7,13 @@ public class GameCamera {
 	
 	private Handler handler;
 	private float yOffset, obsyOffset;
+	private float lowerCheck;
 	
 	public GameCamera(Handler handler, float yOffset) {
 		this.handler = handler;
 		this.yOffset = yOffset;
 		this.obsyOffset = yOffset;
+		lowerCheck = handler.getHeight() - 300;
 	}
 
 	public void updateView(Entity e) {

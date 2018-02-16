@@ -20,7 +20,7 @@ public class Player extends Actor {
 	private static final int DEFAULT_DIAMETER = 20;
 	
 	private boolean start = false;
-	private int i = 0, color;
+	private int i = 0, color, distance = 0;
 	
 	private Ellipse2D.Double p;
 	
@@ -87,6 +87,13 @@ public class Player extends Actor {
 			g.drawString("Click to start", (int) (x - DEFAULT_DIAMETER / 2 - 25), handler.getHeight() - 50);
 		}
 		
+		distance = yPos;
+	}
+	
+	public boolean stopObstacleTranslation() {
+		if(p.getY() >= handler.getHeight() / 2)
+			return true;
+		return false;
 	}
 	
 	public boolean isStarted() {
