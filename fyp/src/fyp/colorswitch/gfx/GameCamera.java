@@ -15,11 +15,13 @@ public class GameCamera {
 	}
 
 	public void updateView(Entity e) {
-		yOffset = e.getyPosition() - handler.getHeight() / 2;
-	}
-	
-	public void updateObstacleView(Entity e) {
-		obsyOffset = yOffset;
+		
+		if(e.getyPosition() >= handler.getHeight() / 2) {
+			yOffset = e.getyPosition() - handler.getHeight() / 2;
+		}
+		if(e.getyPosition() <= handler.getHeight() / 2) {
+			
+		}
 	}
 	
 	public float getObsyOffset() {

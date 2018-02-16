@@ -46,8 +46,7 @@ public class World {
 	}
 	
 	public void tick() {
-		em.tick();
-		System.out.println(handler.getHeight());
+		em.tick();	
 		if(isGameOver()) {
 			State.setState(handler.getGame().menuState);
 		}	

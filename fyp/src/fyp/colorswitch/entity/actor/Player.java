@@ -22,14 +22,14 @@ public class Player extends Actor {
 	private boolean start = false;
 	private int i = 0, color;
 	
-	private Ellipse2D.Double p, playerbounds;
+	private Ellipse2D.Double p;
 	
 	public Player(Handler handler, float yPosition, int color) {
 		super(handler, yPosition);
 		this.color = color;
 		p = new Ellipse2D.Double(x - DEFAULT_DIAMETER / 2, yPosition , DEFAULT_DIAMETER, DEFAULT_DIAMETER);
-		bounds.x = (int) 10;
-		bounds.y = (int) 0;
+		bounds.x = (int) x + 10;
+		bounds.y = (int) yPosition;
 		bounds.width = 5;
 		bounds.height = 20;
 	}
@@ -62,7 +62,6 @@ public class Player extends Actor {
 		move();
 		fall();
 		handler.getGameCamera().updateView(this);
-		
 	}
 	
 	@Override
@@ -76,10 +75,10 @@ public class Player extends Actor {
 		// switchColor(g);
 		p.setFrame(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER);
 		g.fill(p);
-		playerbounds = new Ellipse2D.Double();
 		g.setColor(Color.white);
 		//g.fillRect((int) (xPos + bounds.x),
 		//		(int) (yPosition + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
+		bounds.setBounds(xPos + 8, yPos, bounds.width, bounds.height);
 		g.fill(bounds);
 		if(!start) {
 			g.setColor(Color.WHITE);
