@@ -78,7 +78,7 @@ public class Player extends Actor {
 		g.setColor(Color.white);
 		//g.fillRect((int) (xPos + bounds.x),
 		//		(int) (yPosition + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
-		bounds.setBounds(xPos + 8, yPos, bounds.width, bounds.height);
+		bounds.setBounds(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER);
 		g.fill(bounds);
 		if(!start) {
 			g.setColor(Color.WHITE);
