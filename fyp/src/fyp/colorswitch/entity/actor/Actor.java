@@ -98,7 +98,7 @@ public abstract class Actor extends Entity {
         }
         return false;
     }
-
+	*/
     public boolean switcherCollision(Ellipse2D.Double body, int bodyColor) {
         if (switcher != null && switcher.collidesWith(body, bodyColor)) {
             switcher = null;
@@ -106,7 +106,7 @@ public abstract class Actor extends Entity {
         }
         return false;
     }
-	*/
+	
 	// Getters & Setters 
 	
 	public float getxMove() {
