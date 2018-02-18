@@ -104,4 +104,10 @@ public class Player extends Actor {
 		return bounds;
 	}
 
+	@Override
+	public boolean collidesWith(Double body, int color) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

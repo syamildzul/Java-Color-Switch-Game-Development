@@ -87,4 +87,10 @@ public class ScoreStar extends Actor {
 		
 	}
 
+	@Override
+	public boolean collidesWith(Double body, int color) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

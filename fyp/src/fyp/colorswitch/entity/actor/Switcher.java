@@ -2,6 +2,7 @@ package fyp.colorswitch.entity.actor;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.Ellipse2D.Double;
 import java.util.ArrayList;
 
 import fyp.colorswitch.Handler;
@@ -47,7 +48,7 @@ public class Switcher extends Actor {
 		
 	}
 	
-	public boolean collidesWith(Rectangle bounds, int color) {
+	public boolean collidesWith(Double body, int color) {
 		
 		return true;
 		
