@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.obstacle.frames.Arc;
+import game01.ColoredArc;
 
 public class Circle extends Obstacle {
 
@@ -66,8 +67,12 @@ public class Circle extends Obstacle {
 	}
 
 	public boolean collidesWith(Ellipse2D.Double player, int color) {
-		for (Arc a : lesArc) {
-		//	if(a.)
+		for(int i = 0; i < 4; i++) {
+			Arc currentArc = lesArc.get(i);
+            Area playerArea = new Area(player);
+            Area arcArea = new Area((Shape) currentArc);
+            //arcArea.subtract(new Area(new Ellipse2D.Double(arcX + thickness / 2, arcY + thickness / 2, diameter - thickness, diameter - thickness)));
+            playerArea.intersect(arcArea);
 		}
 		
 		return false;
