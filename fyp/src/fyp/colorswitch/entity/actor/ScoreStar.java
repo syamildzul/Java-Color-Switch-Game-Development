@@ -31,11 +31,11 @@ public class ScoreStar extends Actor {
 	    for (int i = 0; i < edges; i++) {
 	    	double angle = 90 + 360.0 / edges * i; //starts vertical, shifts 36 everytime
 	        if (i % 2 == 0) {
-	        	xList[i] = (int) (midPos + size * Math.cos(Math.toRadians(angle)));
-	            yList[i] = (int) (midPos + size * Math.sin(Math.toRadians(angle)));
+	        	xList[i] = (int) (yPosition + size * Math.cos(Math.toRadians(angle)));
+	            yList[i] = (int) (yPosition + size * Math.sin(Math.toRadians(angle)));
 	        } else {
-	       	 	xList[i] = (int) (midPos + 0.5 * size * Math.cos(Math.toRadians(angle)));
-	            yList[i] = (int) (midPos + 0.5 * size * Math.sin(Math.toRadians(angle)));
+	       	 	xList[i] = (int) (yPosition + 0.5 * size * Math.cos(Math.toRadians(angle)));
+	            yList[i] = (int) (yPosition + 0.5 * size * Math.sin(Math.toRadians(angle)));
 	        }
 	    }
 	    star = new Polygon(xList, yList, edges);
@@ -69,11 +69,11 @@ public class ScoreStar extends Actor {
             double angle = temp + 360.0 / edges * i; //starts vertical, shifts 36 everytime
             //code to define vertices of star
             if (i % 2 == 0) {
-                xList[i] = (int) (midPos + size * Math.cos(Math.toRadians(angle)));
-                yList[i] = (int) (midPos - handler.getGameCamera().getyOffset() + size * Math.sin(Math.toRadians(angle)));
+                xList[i] = (int) (yPosition + size * Math.cos(Math.toRadians(angle)));
+                yList[i] = (int) (yPosition - handler.getGameCamera().getyOffset() + size * Math.sin(Math.toRadians(angle)));
             } else {
-                xList[i] = (int) (midPos + 0.5 * size * Math.cos(Math.toRadians(angle)));
-                yList[i] = (int) (midPos - handler.getGameCamera().getyOffset() + 0.5 * size * Math.sin(Math.toRadians(angle)));
+                xList[i] = (int) (yPosition + 0.5 * size * Math.cos(Math.toRadians(angle)));
+                yList[i] = (int) (yPosition - handler.getGameCamera().getyOffset() + 0.5 * size * Math.sin(Math.toRadians(angle)));
             }
         }
         star = new Polygon(xList, yList, edges);

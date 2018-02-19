@@ -21,10 +21,10 @@ public class Switcher extends Actor {
 	}
 	
 	public void init() {
-		a1 = new Arc(handler, yPosition, DEFAULT_DIAMETER, 0, 0);
-		a2 = new Arc(handler, yPosition, DEFAULT_DIAMETER, 90, 1);
-		a3 = new Arc(handler, yPosition, DEFAULT_DIAMETER, 180, 2);
-		a4 = new Arc(handler, yPosition, DEFAULT_DIAMETER, 360, 3);
+		a1 = new Arc(handler, yPosition, DEFAULT_DIAMETER, 0, 0, 1);
+		a2 = new Arc(handler, yPosition, DEFAULT_DIAMETER, 90, 1, 1);
+		a3 = new Arc(handler, yPosition, DEFAULT_DIAMETER, 180, 2, 1);
+		a4 = new Arc(handler, yPosition, DEFAULT_DIAMETER, 360, 3, 1);
 		lesArc = new ArrayList<Arc>();
 		lesArc.add(a1);
 		lesArc.add(a2);
@@ -39,13 +39,23 @@ public class Switcher extends Actor {
 
 	@Override
 	public void render(Graphics2D g) {
-		
+		init();
 		int xPos = (int) midPos - DEFAULT_DIAMETER/2;
 		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset() + 100); // test
-		for (Arc a : lesArc) {
+		
+		g.setColor(Entity.colors[0]);
+		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 0, 90);
+		g.setColor(Entity.colors[1]);
+		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 90, 90);
+		g.setColor(Entity.colors[2]);
+		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 180, 90);
+		g.setColor(Entity.colors[3]);
+		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 270, 90);
+		
+		/*for (Arc a : lesArc) {
 			a.render(g);
 		}
-		
+		*/
 	}
 	
 	public boolean collidesWith(Double body, int color) {

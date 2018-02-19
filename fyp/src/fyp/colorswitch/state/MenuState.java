@@ -33,7 +33,7 @@ public class MenuState extends State {
 		e.addEntity(new Circle(handler, midHeight, 200, 3));
 		e.addEntity(new Circle(handler, midHeight, 150, 1));
 		e.addEntity(new Circle(handler, midHeight, 100, 2));
-		e.addEntity(new Arc(handler, midHeight, 200, 0, 1));
+		//e.addEntity(new Arc(handler, midHeight, 200, 0, 1));
 		
 		ui.addObject(new UITitle(handler, 70, 300, 150, Assets.title));
 		

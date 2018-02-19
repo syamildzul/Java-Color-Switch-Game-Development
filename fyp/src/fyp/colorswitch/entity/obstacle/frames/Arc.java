@@ -16,14 +16,16 @@ public class Arc extends Obstacle {
 	private int diameter, colorType;
 	private double currentAngle;
 	private Arc2D arc;
+	private int type = 0; // type 0 for drawArc | type 1 for fillArc
 	
-	public Arc (Handler handler, float yPosition, int diameter, double currentAngle, int color) {
+	public Arc (Handler handler, float yPosition, int diameter, double currentAngle, int color, int type) {
 		super(handler, yPosition);
 		this.diameter = diameter;
 		this.currentAngle = currentAngle;
 		this.colorType = color;
 		x = midPos - diameter / 2;
 		arc = new Arc2D.Double(x, yPosition, diameter, diameter, (int) currentAngle, 90, 0);
+		this.type = type;
 	}
 
 	@Override
@@ -38,7 +40,10 @@ public class Arc extends Obstacle {
 		arc.setArc(xPos, yPos, diameter, diameter, currentAngle, 90, 0);
 		g.setStroke(new BasicStroke(20));
 		g.setColor(Entity.colors[colorType]);
-		g.draw(arc);
+		if(type == 0)
+			g.draw(arc);
+		if(type == 1)
+			g.fill(arc);
 	}
 	
 	

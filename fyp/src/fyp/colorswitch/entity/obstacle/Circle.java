@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.obstacle.frames.Arc;
-import game01.ColoredArc;
 
 public class Circle extends Obstacle {
 
@@ -38,10 +37,10 @@ public class Circle extends Obstacle {
 	}
 	
 	public void init() {
-		a1 = new Arc(handler, yPosition, diameter, currentAngle, 0);
-		a2 = new Arc(handler, yPosition, diameter, currentAngle + 90, 1);
-		a3 = new Arc(handler, yPosition, diameter, currentAngle + 180, 2);
-		a4 = new Arc(handler, yPosition, diameter, currentAngle + 270, 3);
+		a1 = new Arc(handler, yPosition, diameter, currentAngle, 0, 0);
+		a2 = new Arc(handler, yPosition, diameter, currentAngle + 90, 1, 0);
+		a3 = new Arc(handler, yPosition, diameter, currentAngle + 180, 2, 0);
+		a4 = new Arc(handler, yPosition, diameter, currentAngle + 270, 3, 0);
 		lesArc = new ArrayList<Arc>();
 		lesArc.add(a1);
 		lesArc.add(a2);
