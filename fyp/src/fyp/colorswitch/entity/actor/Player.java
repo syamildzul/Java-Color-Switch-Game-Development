@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Stroke;
+import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Ellipse2D.Double;
 import java.awt.geom.Rectangle2D;
@@ -61,7 +62,7 @@ public class Player extends Actor {
 		getInput();
 		move();
 		fall();
-		handler.getGameCamera().updateView(this);
+		handler.getGameCamera().updatePlayerView(this);
 	}
 	
 	@Override
@@ -79,7 +80,7 @@ public class Player extends Actor {
 		//g.fillRect((int) (xPos + bounds.x),
 		//		(int) (yPosition + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
 		bounds.setBounds(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER);
-		g.fill(bounds);
+		//g.fill(bounds);
 		if(!start) {
 			g.setColor(Color.WHITE);
 			//g.setFont(Font.ROMAN_BASELINE);
@@ -106,8 +107,12 @@ public class Player extends Actor {
 
 	@Override
 	public boolean collidesWith(Double body, int color) {
-		// TODO Auto-generated method stub
-		return false;
+		Area playerArea = new Area(bounds);
+		Area bodyArea = new Area(body);
+		if(bodyArea.intersects(bounds))
+			return true;
+		else
+			return false;
 	}
 
 }

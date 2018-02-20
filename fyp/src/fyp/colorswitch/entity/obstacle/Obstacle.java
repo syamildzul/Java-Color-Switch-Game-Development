@@ -2,6 +2,7 @@ package fyp.colorswitch.entity.obstacle;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.geom.Ellipse2D;
 
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
@@ -23,6 +24,8 @@ public abstract class Obstacle extends Entity {
 	public void translate(double move) {
 		
 	}
+	
+	public abstract boolean collidesWith(Ellipse2D.Double body, int bodycolor);
 	
 	
 	// GETTERS & SETTERS

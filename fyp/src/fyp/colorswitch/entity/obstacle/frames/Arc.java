@@ -57,4 +57,10 @@ public class Arc extends Obstacle {
 		this.colorType = colorType;
 	}
 
+	@Override
+	public boolean collidesWith(Double body, int bodycolor) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
