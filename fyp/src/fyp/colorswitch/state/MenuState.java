@@ -20,14 +20,12 @@ public class MenuState extends State {
 
 	private EntityManager e;
 	private UIManager ui;
-	private GameState gameState;
 	
 	public MenuState(Handler handler) {
 		super(handler);
 		e = new EntityManager(handler);
 		ui = new UIManager(handler);
 		handler.getMouseManager().setUIManager(ui);
-		
 		
 		// add entities
 		e.addEntity(new Circle(handler, midHeight, 200, 3));
@@ -42,8 +40,7 @@ public class MenuState extends State {
 			@Override
 			public void onClick() {
 				handler.getMouseManager().setUIManager(null);
-				gameState = new GameState(handler);
-				State.setState(gameState);
+				State.setState(handler.getGame().gameState);
 			}
 			
 		}));

@@ -30,7 +30,7 @@ public class World {
 		
 		// add entities
 		//em.addEntity(new Circle(handler, midHeight, 200, 3));
-		//em.addEntity(new Circle(handler, midHeight, 100, 2));
+		em.addEntity(new Circle(handler, midHeight, 100, 2));
 		//em.addEntity(new Rectangle(handler, 300));
 		//em.addEntity(new Cross(handler, 350));
 		em.addEntity(new Bar(handler, 300));
@@ -50,7 +50,7 @@ public class World {
 	public void tick() {
 		em.tick();	
 		if(isGameOver()) {
-			State.setState(handler.getGame().menuState);
+			//State.setState(handler.getGame().menuState);
 		}	
 	}
 	
@@ -67,6 +67,9 @@ public class World {
 			return false;
 	}
 	
-	
+	public boolean checkCollisions() {
+		em.getPlayer().collidesWith(em.getEntities().get(0), Entity.colors[0]);
+		return false;
+	}
 	
 }

@@ -11,6 +11,7 @@ import java.awt.geom.Ellipse2D.Double;
 import java.util.ArrayList;
 
 import fyp.colorswitch.Handler;
+import fyp.colorswitch.entity.Entity;
 import fyp.colorswitch.entity.obstacle.frames.Arc;
 
 public class Circle extends Obstacle {
@@ -65,13 +66,16 @@ public class Circle extends Obstacle {
 		}
 	}
 
-	public boolean collidesWith(Ellipse2D.Double player, int color) {
+	public boolean collidesWith(Entity player, int color) {
 		for(int i = 0; i < 4; i++) {
 			Arc currentArc = lesArc.get(i);
-            Area playerArea = new Area(player);
+            Area playerArea = new Area((Shape) player);
             Area arcArea = new Area((Shape) currentArc);
             //arcArea.subtract(new Area(new Ellipse2D.Double(arcX + thickness / 2, arcY + thickness / 2, diameter - thickness, diameter - thickness)));
-            playerArea.intersect(arcArea);
+            if (!(playerArea.isEmpty() || currentArc.getColorType() == color)) {
+            	System.out.println("there's a collision");
+                return true;
+            } 	
 		}
 		
 		return false;
@@ -98,6 +102,12 @@ public class Circle extends Obstacle {
 
 	public void setCurrentAngle(double currentAngle) {
 		this.currentAngle = currentAngle;
+	}
+
+	@Override
+	public boolean collidesWith(Double body, int bodycolor) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	/*

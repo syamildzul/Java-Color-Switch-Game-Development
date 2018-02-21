@@ -29,7 +29,6 @@ public class GameState extends State {
 		super(handler);
 		score = new Score(handler, 50);
 		world = new World(handler);
-		handler.getMouseManager().setUIManager(null);
 	}
 	
 	@Override

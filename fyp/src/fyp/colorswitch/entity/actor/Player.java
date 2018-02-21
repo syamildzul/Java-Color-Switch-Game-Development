@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
@@ -105,14 +106,19 @@ public class Player extends Actor {
 		return bounds;
 	}
 
-	@Override
-	public boolean collidesWith(Double body, int color) {
+	public boolean collidesWith(Entity entity, Color colors) {
 		Area playerArea = new Area(bounds);
-		Area bodyArea = new Area(body);
+		Area bodyArea = new Area((Shape) entity);
 		if(bodyArea.intersects(bounds))
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public boolean collidesWith(Double body, int color) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
