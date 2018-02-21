@@ -52,6 +52,8 @@ public class World {
 		if(isGameOver()) {
 			//State.setState(handler.getGame().menuState);
 		}	
+		if(checkCollisions())
+			System.out.println("there's a collision");
 	}
 	
 	public void render(Graphics2D g) {
@@ -68,8 +70,11 @@ public class World {
 	}
 	
 	public boolean checkCollisions() {
-		em.getPlayer().collidesWith(em.getEntities().get(0), Entity.colors[0]);
-		return false;
+		Player player = (Player) em.getEntities().get(4);
+		if(player.collidesWithObstacle(em.getEntities().get(0), Entity.colors[0]))
+			return true;
+		else
+			return false;
 	}
 	
 }

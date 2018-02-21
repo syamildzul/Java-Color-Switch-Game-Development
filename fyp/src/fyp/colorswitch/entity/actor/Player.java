@@ -106,13 +106,13 @@ public class Player extends Actor {
 		return bounds;
 	}
 
-	public boolean collidesWith(Entity entity, Color colors) {
+	public boolean collidesWithObstacle(Entity entity, Color colors) {
 		Area playerArea = new Area(bounds);
-		Area bodyArea = new Area((Shape) entity);
-		if(bodyArea.intersects(bounds))
+		//Area bodyArea = new Area((Shape) entity);
+		//if(bodyArea.intersects(bounds))
 			return true;
-		else
-			return false;
+		//else
+		//	return false;
 	}
 
 	@Override
