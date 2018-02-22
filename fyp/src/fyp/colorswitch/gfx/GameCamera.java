@@ -28,7 +28,7 @@ public class GameCamera {
 		*/
 	}
 	
-	public void updateObsracleView(Entity e) {
+	public void updateObstacleView(Entity e) {
 		obsyOffset = yOffset;
 	}
 	

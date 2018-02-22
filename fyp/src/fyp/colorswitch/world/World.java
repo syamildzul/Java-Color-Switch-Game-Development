@@ -71,9 +71,9 @@ public class World {
 	
 	public boolean checkCollisions() {
 		Player player = (Player) em.getEntities().get(4);
-		if(player.collidesWithObstacle(em.getEntities().get(0), Entity.colors[0]))
+		/*if(player.collidesWithObstacle(em.getEntities().get(0), Entity.colors[0]))
 			return true;
-		else
+		else*/
 			return false;
 	}
 	

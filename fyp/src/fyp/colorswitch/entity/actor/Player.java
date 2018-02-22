@@ -63,7 +63,8 @@ public class Player extends Actor {
 		getInput();
 		move();
 		fall();
-		handler.getGameCamera().updatePlayerView(this);
+		if( !((start) && (yMove == 0) && !handler.getMouseManager().leftPressed) )
+			handler.getGameCamera().updatePlayerView(this);
 	}
 	
 	@Override
@@ -93,7 +94,7 @@ public class Player extends Actor {
 	}
 	
 	public boolean stopObstacleTranslation() {
-		if(p.getY() >= handler.getHeight() / 2)
+		if(p.getY() <= handler.getHeight() / 2)
 			return true;
 		return false;
 	}
@@ -106,7 +107,7 @@ public class Player extends Actor {
 		return bounds;
 	}
 
-	public boolean collidesWithObstacle(Entity entity, Color colors) {
+	public boolean collidesWithObstacle(Ellipse2D.Double entity, Color colors) {
 		Area playerArea = new Area(bounds);
 		//Area bodyArea = new Area((Shape) entity);
 		//if(bodyArea.intersects(bounds))
