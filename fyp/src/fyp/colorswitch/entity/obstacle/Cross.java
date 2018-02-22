@@ -2,6 +2,7 @@ package fyp.colorswitch.entity.obstacle;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.geom.Ellipse2D.Double;
@@ -77,7 +78,7 @@ public class Cross extends Obstacle {
 	}
 
 	@Override
-	public boolean collidesWith(Double body, int bodycolor) {
+	public boolean collidesWith(Shape body, int bodycolor) {
 		// TODO Auto-generated method stub
 		return false;
 	}

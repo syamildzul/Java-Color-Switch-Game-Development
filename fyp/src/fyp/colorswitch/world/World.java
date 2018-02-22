@@ -70,7 +70,8 @@ public class World {
 	}
 	
 	public boolean checkCollisions() {
-		Player player = (Player) em.getEntities().get(4);
+		int size = em.getEntities().size();
+		Player player = (Player) em.getEntities().get(size - 1) ;
 		/*if(player.collidesWithObstacle(em.getEntities().get(0), Entity.colors[0]))
 			return true;
 		else*/

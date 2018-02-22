@@ -2,6 +2,7 @@ package fyp.colorswitch.entity.obstacle;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D.Double;
 import java.awt.geom.Line2D;
@@ -73,7 +74,7 @@ public class Rectangle extends Obstacle {
 	}
 
 	@Override
-	public boolean collidesWith(Double body, int bodycolor) {
+	public boolean collidesWith(Shape body, int bodycolor) {
 		// TODO Auto-generated method stub
 		return false;
 	}

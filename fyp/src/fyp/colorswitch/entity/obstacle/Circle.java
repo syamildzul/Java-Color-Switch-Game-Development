@@ -66,14 +66,15 @@ public class Circle extends Obstacle {
 		}
 	}
 
-	public boolean collidesWith(Entity player, int color) {
+	@Override
+	public boolean collidesWith(Shape body, int color) {
 		for(int i = 0; i < 4; i++) {
 			Arc currentArc = lesArc.get(i);
-            Area playerArea = new Area((Shape) player);
+            Area playerArea = new Area((Shape) body);
             Area arcArea = new Area((Shape) currentArc);
-            //arcArea.subtract(new Area(new Ellipse2D.Double(arcX + thickness / 2, arcY + thickness / 2, diameter - thickness, diameter - thickness)));
+            arcArea.subtract(new Area(new Ellipse2D.Double(x + thickness / 2, yPosition + thickness / 2, diameter - thickness, diameter - thickness)));
             if (!(playerArea.isEmpty() || currentArc.getColorType() == color)) {
-            	//System.out.println("there's a collision");
+            	System.out.println("there's a collision");
                 return true;
             } 	
 		}
@@ -104,11 +105,7 @@ public class Circle extends Obstacle {
 		this.currentAngle = currentAngle;
 	}
 
-	@Override
-	public boolean collidesWith(Double body, int bodycolor) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 	
 	/*
 	 * int xPos = (int) x;

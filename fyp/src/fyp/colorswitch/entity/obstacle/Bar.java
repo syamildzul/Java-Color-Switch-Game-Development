@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.Rectangle;
+import java.awt.Shape;
+
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
 import fyp.colorswitch.entity.obstacle.frames.Line;
@@ -133,7 +135,7 @@ public class Bar extends Obstacle {
 	}
 
 	@Override
-	public boolean collidesWith(Double body, int bodycolor) {
+	public boolean collidesWith(Shape body, int bodycolor) {
 		// TODO Auto-generated method stub
 		return false;
 	}
