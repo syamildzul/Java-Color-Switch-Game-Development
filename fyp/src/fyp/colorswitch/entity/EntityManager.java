@@ -53,9 +53,7 @@ public class EntityManager {
 	
 	public void updateyPosition() {
 		for(int i = 0; i < entities.size(); i++) {
-			
-				continue;
-			//e.setyPosition(e.getyPosition() + handler.getGameCamera().getyOffset());
+			continue;
 		}
 			
 	}

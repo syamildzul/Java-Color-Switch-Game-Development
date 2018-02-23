@@ -63,7 +63,7 @@ public class Player extends Actor {
 		getInput();
 		move();
 		fall();
-		if( !((start) && (yMove == 0) && !handler.getMouseManager().leftPressed) )
+		//if( !((start) && (yMove == 0) && !handler.getMouseManager().leftPressed) )
 			handler.getGameCamera().updatePlayerView(this);
 	}
 	

@@ -3,6 +3,7 @@ package fyp.colorswitch;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import java.util.Random;
 
 import fyp.colorswitch.display.Display;
 import fyp.colorswitch.gfx.Assets;
@@ -171,6 +172,12 @@ public class Game implements Runnable{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public int randomInt() {
+		Random ran = new Random();
+		int x = ran.nextInt(4);
+		return x;
 	}
 	
 }
