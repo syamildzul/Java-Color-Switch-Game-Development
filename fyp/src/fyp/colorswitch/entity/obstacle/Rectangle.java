@@ -75,7 +75,7 @@ public class Rectangle extends Obstacle {
 	}
 
 	@Override
-	public boolean collidesWith(Shape body, int bodycolor) {
+	public boolean collidesWith(Double body, int bodycolor) {
 		// TODO Auto-generated method stub
 		return false;
 	}

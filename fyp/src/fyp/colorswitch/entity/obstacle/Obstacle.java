@@ -26,8 +26,6 @@ public abstract class Obstacle extends Entity {
 		
 	}
 	
-	public abstract boolean collidesWith(Shape body, int bodycolor);
-	
 	
 	// GETTERS & SETTERS
 	

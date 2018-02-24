@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Ellipse2D.Double;
 
@@ -58,12 +59,6 @@ public void rotateLine(Graphics2D g) {
 		rotateLine(g);
 	}
 
-	public boolean collidesWith(Double body, int bodyColor) {
-		
-		return false;
-	}
-
-
 	public int getColor() {
 		return color;
 	}
@@ -115,7 +110,7 @@ public void rotateLine(Graphics2D g) {
 
 
 	@Override
-	public boolean collidesWith(Shape body, int bodycolor) {
+	public boolean collidesWith(Ellipse2D.Double body, int bodycolor) {
 		// TODO Auto-generated method stub
 		return false;
 	}

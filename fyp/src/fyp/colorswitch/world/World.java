@@ -34,10 +34,10 @@ public class World {
 		em = new EntityManager(handler);
 		
 		// add entities
-		//em.addEntity(new Circle(handler, midHeight, 200, 3));
-		//em.addEntity(new Circle(handler, midHeight, 100, 2));
+		em.addEntity(new Circle(handler, midHeight, 200, 3));
+		em.addEntity(new Circle(handler, midHeight, 100, 2));
 		//em.addEntity(new Rectangle(handler, 300));
-		em.addEntity(new Cross(handler, 350));
+		//em.addEntity(new Cross(handler, 350));
 		//em.addEntity(new Bar(handler, 300));
 		// test 
 		//em.addEntity(new ScoreStar(handler, midHeight - 100, 10, 20));
@@ -58,8 +58,8 @@ public class World {
 		if(isGameOver()) {
 			//State.setState(handler.getGame().menuState);
 		}	
-		//if(checkCollisions())
-		//	System.out.println("there's a collision");
+		if(checkCollisions())
+			System.out.println("there's a collision");
 		if(player.getyPosition()%200 == 0)
 			randomSpawn();
 		System.out.println(player.getyPosition());
@@ -78,12 +78,16 @@ public class World {
 	}
 	
 	public boolean checkCollisions() {
-		int size = em.getEntities().size();
-		//Player player = (Player) em.getEntities().get(size - 1) ;
-		/*if(player.collidesWithObstacle(em.getEntities().get(0), Entity.colors[0]))
-			return true;
-		else*/
-			return false;
+		for(int i=0; i<em.getEntities().size() ; i++) {
+			Entity currentEntity = em.getEntities().get(i);
+			if(currentEntity == player)
+				continue;
+			if(currentEntity.collidesWith(player.getP(), player.getColorType()))
+				return true;
+			else
+				continue;
+		}
+		return false;
 	}
 	
 	public void randomSpawn() {

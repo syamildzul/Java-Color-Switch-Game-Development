@@ -35,23 +35,27 @@ public class Circle extends Obstacle {
 		this.thickness = DEFAULT_CIRCLE_THICKNESS;
 		this.currentAngle = 0;
 		this.angularSpeed = angularSpeed;
-	}
-	
-	public void init() {
-		a1 = new Arc(handler, yPosition, diameter, currentAngle, 0, 0);
-		a2 = new Arc(handler, yPosition, diameter, currentAngle + 90, 1, 0);
-		a3 = new Arc(handler, yPosition, diameter, currentAngle + 180, 2, 0);
-		a4 = new Arc(handler, yPosition, diameter, currentAngle + 270, 3, 0);
+		
 		lesArc = new ArrayList<Arc>();
-		lesArc.add(a1);
-		lesArc.add(a2);
-		lesArc.add(a3);
-		lesArc.add(a4);
+		
+		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle, 0, 0));
+		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 90, 1, 0));
+		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 180, 2, 0));
+		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 270, 3, 0));
+		System.out.println(lesArc.get(1).getAngleStart());
+		
+		try {
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void updateAngle() {
 		currentAngle = (currentAngle + angularSpeed) % 360;
-	}
+	}	
 
 	@Override
 	public void tick() {
@@ -60,19 +64,25 @@ public class Circle extends Obstacle {
 	
 	@Override
 	public void render(Graphics2D g) {
-		init();
-		for (Arc a : lesArc) {
-			a.render(g);
+		
+		lesArc.get(0).setAngleStart(currentAngle);
+		lesArc.get(1).setAngleStart(currentAngle + 90);
+		lesArc.get(2).setAngleStart(currentAngle + 180);
+		lesArc.get(3).setAngleStart(currentAngle + 270);
+		
+		for (int i = 0; i < lesArc.size(); i++) {
+			lesArc.get(i).render(g);
 		}
 	}
 
 	@Override
-	public boolean collidesWith(Shape body, int color) {
-		for(int i = 0; i < 4; i++) {
+	public boolean collidesWith(Ellipse2D.Double body, int color) {
+		for (int i = 0; i < 4; i++) {
 			Arc currentArc = lesArc.get(i);
-            Area playerArea = new Area((Shape) body);
+            Area playerArea = new Area(body);
             Area arcArea = new Area((Shape) currentArc);
             arcArea.subtract(new Area(new Ellipse2D.Double(x + thickness / 2, yPosition + thickness / 2, diameter - thickness, diameter - thickness)));
+            playerArea.intersect(arcArea);
             if (!(playerArea.isEmpty() || currentArc.getColorType() == color)) {
             	System.out.println("there's a collision");
                 return true;

@@ -118,4 +118,20 @@ public class Player extends Actor {
 			return false;
 	}
 
+	public int getColorType() {
+		return color;
+	}
+
+	public void setColor(int color) {
+		this.color = color;
+	}
+
+	public Ellipse2D.Double getP() {
+		return p;
+	}
+
+	public void setP(Ellipse2D.Double p) {
+		this.p = p;
+	}
+
 }

@@ -31,6 +31,7 @@ public abstract class Entity {
 	
 	public abstract void tick();
 	public abstract void render(Graphics2D g);
+	public abstract boolean collidesWith(Ellipse2D.Double body, int bodycolor);
 
 	// Getters & Setters
 	
