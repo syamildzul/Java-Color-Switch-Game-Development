@@ -69,7 +69,7 @@ public class Arc extends Arc2D {
 	@Override
 	public double getAngleExtent() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 90;
 	}
 
 	@Override

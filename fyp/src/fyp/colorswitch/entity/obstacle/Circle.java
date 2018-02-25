@@ -42,14 +42,6 @@ public class Circle extends Obstacle {
 		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 90, 1, 0));
 		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 180, 2, 0));
 		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 270, 3, 0));
-		System.out.println(lesArc.get(1).getAngleStart());
-		
-		try {
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 	}
 	
