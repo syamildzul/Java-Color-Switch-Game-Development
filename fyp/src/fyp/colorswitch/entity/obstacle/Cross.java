@@ -9,6 +9,7 @@ import java.awt.geom.Ellipse2D.Double;
 
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
+import fyp.colorswitch.entity.obstacle.frames.Line;
 
 public class Cross extends Obstacle {
 
@@ -16,14 +17,17 @@ public class Cross extends Obstacle {
 	private int ha1, ha2, ha3, ha4;
 	private int hb1, hb2, hb3, hb4;
 	
+	private Line l;
+	
 	public Cross(Handler handler, float yPosition) {
 		super(handler, yPosition);
-		
 		
 		ha1 = 200; hb1 = 350;
 		ha2 = 350; hb2 = 350;
 		ha3 = 350; hb3 = 500;
 		ha4 = 350; hb4 = 350;
+		
+		l = new Line(handler, yPosition, 250, 200, 250, 350, 0);
 	}
 
 	@Override
@@ -65,8 +69,8 @@ public class Cross extends Obstacle {
 	public void render(Graphics2D g) {
 		
 		g.setStroke(new BasicStroke((float) 20)); 		
-		
-		rotateLine(g);
+		l.render(g);
+		//rotateLine(g);
 	}
 	
 	public boolean collides(Line2D.Float body, int color) {

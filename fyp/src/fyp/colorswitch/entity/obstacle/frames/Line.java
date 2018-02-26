@@ -1,10 +1,14 @@
 package fyp.colorswitch.entity.obstacle.frames;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Line2D;
 import java.awt.geom.Ellipse2D.Double;
 
 import fyp.colorswitch.Handler;
+import fyp.colorswitch.entity.Entity;
 import fyp.colorswitch.entity.obstacle.Obstacle;
 
 public class Line extends Obstacle{
@@ -15,6 +19,8 @@ public class Line extends Obstacle{
 	
 	private int ha1, ha2, ha3, ha4;
 	private int hb1, hb2, hb3, hb4;
+	
+	private Line2D line;
 	
 	public Line(Handler handler, float yPosition, float xStart, float yStart, float xEnd, float yEnd, int color) {
 		super(handler, yPosition);
@@ -30,13 +36,26 @@ public class Line extends Obstacle{
 		ha4 = 350; hb4 = 350;
 	}
 
-	
+public void rotateLine(Graphics2D g) {
+		
+		line = new Line2D.Double(xStart, yStart - handler.getGameCamera().getyOffset(), xEnd, yEnd - handler.getGameCamera().getyOffset());
+		
+	    AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(i), 
+	    		line.getX2(), line.getY2());
+
+	    // Draw the rotated line
+	    g.setColor(Entity.colors[color]);
+	    g.draw(at.createTransformedShape(line));
+	   
+	    i++;
+	}
 	public void tick() {
 		
 	}
 
 	public void render(Graphics2D g) {
-		
+		g.setStroke(new BasicStroke(20));
+		rotateLine(g);
 	}
 
 	public boolean collidesWith(Double body, int bodyColor) {
