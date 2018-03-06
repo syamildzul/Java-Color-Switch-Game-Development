@@ -37,7 +37,7 @@ public class World {
 		//em.addEntity(new Circle(handler, midHeight, 200, 3));
 		//em.addEntity(new Circle(handler, midHeight, 100, 2));
 		//em.addEntity(new Rectangle(handler, 300));
-		//em.addEntity(new Cross(handler, 350));
+		em.addEntity(new Cross(handler, 350));
 		//em.addEntity(new Bar(handler, 300));
 		// test 
 		//em.addEntity(new ScoreStar(handler, midHeight - 100, 10, 20));

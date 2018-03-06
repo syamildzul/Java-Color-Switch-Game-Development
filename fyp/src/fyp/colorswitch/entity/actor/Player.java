@@ -106,20 +106,16 @@ public class Player extends Actor {
 	public Rectangle2D getBounds() {
 		return bounds;
 	}
-
-	public boolean collidesWithObstacle(Ellipse2D.Double entity, Color colors) {
-		Area playerArea = new Area(bounds);
-		//Area bodyArea = new Area((Shape) entity);
-		//if(bodyArea.intersects(bounds))
-			return true;
-		//else
-		//	return false;
-	}
-
+	
 	@Override
-	public boolean collidesWith(Double body, int color) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean collidesWith(Ellipse2D.Double entity, int colors) {
+		Area playerArea = new Area(p);
+		Area bodyArea = new Area(entity);
+		playerArea.intersect(bodyArea);
+		if(bodyArea.isEmpty() && color==colors)
+			return true;
+		else
+			return false;
 	}
 
 }

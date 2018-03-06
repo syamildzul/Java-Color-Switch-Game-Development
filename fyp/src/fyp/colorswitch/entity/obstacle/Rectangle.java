@@ -24,11 +24,12 @@ public class Rectangle extends Obstacle {
 		ha2 = 100; hb2 = 250;
 		ha3 = 250; hb3 = 250;
 		ha4 = 100; hb4 = 250;
-		
+		/*
 		line = new Line(150, ha1, 300, hb1, 0);
 		line2 = new Line(150, ha2, 300, hb2, 1);
 		line3 = new Line(150, ha3, 300, hb3, 2);
 		line4 = new Line(150, ha4, 300, hb4, 3);
+		*/
 	}
 
 	@Override
