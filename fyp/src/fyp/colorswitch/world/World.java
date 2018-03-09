@@ -20,10 +20,8 @@ public class World {
 	
 	private Handler handler;
 	private EntityManager em;
-	private Util utils;
 	
 	private Player player;
-	private Circle c1;
 	
 	private float midHeight, midWidth;
 	
