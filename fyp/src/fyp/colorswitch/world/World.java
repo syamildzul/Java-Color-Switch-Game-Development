@@ -78,8 +78,9 @@ public class World {
 	}
 	
 	public boolean checkCollisions() {
-		for(int i=0; i<em.getEntities().size() ; i++) {
+		for(int i = 0; i < em.getEntities().size() ; i++) {
 			Entity currentEntity = em.getEntities().get(i);
+			
 			System.out.println(em.getEntities().size());
 			if(currentEntity == player)
 				continue;
