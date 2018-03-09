@@ -41,7 +41,7 @@ public class World {
 		//em.addEntity(new Bar(handler, 300));
 		// test 
 		//em.addEntity(new ScoreStar(handler, midHeight - 100, 10, 20));
-		//em.addEntity(new Switcher(handler, midWidth));
+		em.addEntity(new Switcher(handler, midWidth));
 				
 		// add player last to render it in front of other entities
 		player = new Player(handler, handler.getHeight() - 100, 0);
