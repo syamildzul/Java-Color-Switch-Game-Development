@@ -22,6 +22,7 @@ public class World {
 	private EntityManager em;
 	
 	private Player player;
+	private Switcher switcher;
 	
 	private float midHeight, midWidth;
 	
@@ -39,8 +40,9 @@ public class World {
 		//em.addEntity(new Bar(handler, 300));
 		// test 
 		//em.addEntity(new ScoreStar(handler, midHeight - 100, 10, 20));
-		em.addEntity(new Switcher(handler, midWidth));
-				
+		switcher = new Switcher(handler, midHeight);
+		em.addEntity(switcher);
+		
 		// add player last to render it in front of other entities
 		player = new Player(handler, handler.getHeight() - 100, 0);
 		em.addEntity(player);
@@ -81,8 +83,11 @@ public class World {
 			System.out.println(em.getEntities().size());
 			if(currentEntity == player)
 				continue;
-			if(currentEntity.collidesWith(player.getP(), player.getColorType()))
+			if(currentEntity.collidesWith(player.getP(), player.getColorType())) {
+				if(currentEntity == switcher)
+					player.setColor(player.randomInt());
 				return true;
+			}	
 			else
 				continue;
 		}
