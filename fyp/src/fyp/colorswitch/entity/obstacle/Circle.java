@@ -26,7 +26,6 @@ public class Circle extends Obstacle {
 	private double currentAngle;
 	
 	private ArrayList<Arc> lesArc;
-	private Arc a1, a2, a3, a4;
 	
 	public Circle(Handler handler, float y, int diameter, int angularSpeed) {
 		super(handler, y - diameter / 2);
