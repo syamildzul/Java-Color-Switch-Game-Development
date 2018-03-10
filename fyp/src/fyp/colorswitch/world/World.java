@@ -79,19 +79,25 @@ public class World {
 	
 	public boolean checkCollisions() {
 		for(int i = 0; i < em.getEntities().size() ; i++) {
+			
 			Entity currentEntity = em.getEntities().get(i);
 			
-			System.out.println(em.getEntities().size());
 			if(currentEntity == player)
 				continue;
+			
 			if(currentEntity.collidesWith(player.getP(), player.getColorType())) {
-				if(currentEntity == switcher)
+				if(currentEntity == switcher) {
 					player.setColor(player.randomInt());
+					em.getEntities().remove(switcher);
+					switcher = null;
+				}
+					
 				return true;
 			}	
 			else
 				continue;
 		}
+		
 		return false;
 	}
 	

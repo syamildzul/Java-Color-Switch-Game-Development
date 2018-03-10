@@ -54,7 +54,7 @@ public class Switcher extends Actor {
 		Area playerArea = new Area(body);
 		Area switcherArea = new Area(switcherBody);
 		switcherArea.intersect(playerArea);
-		if(switcherArea.isEmpty())
+		if(!switcherArea.isEmpty())
 			return true;
 		else 
 			return false;

@@ -96,10 +96,6 @@ public class Player extends Actor {
 		return start;
 	}
 
-	public Rectangle2D getBounds() {
-		return bounds;
-	}
-	
 	@Override
 	public boolean collidesWith(Ellipse2D.Double entity, int colors) {
 		Area playerArea = new Area(p);
