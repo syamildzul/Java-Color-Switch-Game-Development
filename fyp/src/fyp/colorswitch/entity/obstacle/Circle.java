@@ -71,11 +71,11 @@ public class Circle extends Obstacle {
 		for (int i = 0; i < 4; i++) {
 			Arc currentArc = lesArc.get(i);
             Area playerArea = new Area(body);
-            Area arcArea = new Area((Shape) currentArc);
+            Area arcArea = new Area(currentArc);
             arcArea.subtract(new Area(new Ellipse2D.Double(x + thickness / 2, yPosition + thickness / 2, diameter - thickness, diameter - thickness)));
             playerArea.intersect(arcArea);
-            if (!(playerArea.isEmpty() || currentArc.getColorType() == color)) {
-            	System.out.println("there's a collision");
+            if (!playerArea.isEmpty() && currentArc.getColorType() != color) {
+            	//System.out.println("there's a collision");
                 return true;
             } 	
 		}

@@ -86,13 +86,15 @@ public class World {
 				continue;
 			
 			if(currentEntity.collidesWith(player.getP(), player.getColorType())) {
+				
+				// case switcher
 				if(currentEntity == switcher) {
 					player.setColor(player.randomInt());
 					em.getEntities().remove(switcher);
 					switcher = null;
+					return true;
 				}
 					
-				return true;
 			}	
 			else
 				continue;
