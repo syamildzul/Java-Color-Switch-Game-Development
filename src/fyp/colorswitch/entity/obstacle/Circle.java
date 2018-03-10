@@ -24,6 +24,7 @@ public class Circle extends Obstacle {
 	private int angularSpeed = DEFAULT_CIRCLE_ANGULARSPEED;
 	private int thickness;
 	private double currentAngle;
+	private Ellipse2D.Double innerCircle;
 	
 	private ArrayList<Arc> lesArc;
 	
@@ -42,6 +43,7 @@ public class Circle extends Obstacle {
 		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 180, 2, 0));
 		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 270, 3, 0));
 		
+		innerCircle = new Ellipse2D.Double(x + thickness, yPosition + thickness, diameter - thickness*2, diameter - thickness*2);	
 	}
 	
 	public void updateAngle() {
@@ -61,31 +63,43 @@ public class Circle extends Obstacle {
 		lesArc.get(2).setAngleStart(currentAngle + 180);
 		lesArc.get(3).setAngleStart(currentAngle + 270);
 		
+		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
+		innerCircle.setFrame(x + thickness, yPos + thickness, diameter - thickness*2, diameter - thickness*2);
+		
 		for (int i = 0; i < lesArc.size(); i++) {
 			lesArc.get(i).render(g);
 		}
+		
+		g.setColor(Color.WHITE);
+		g.draw(innerCircle);
 	}
 
 	@Override
 	public boolean collidesWith(Ellipse2D.Double body, int color) {
-		for (int i = 0; i < 4; i++) {
+		Area circleArea = new Area(lesArc.get(0));
+		Area playerArea = new Area(body);
+		
+		circleArea.intersect(playerArea);
+		if(!circleArea.isEmpty()) 
+			return true;
+		else
+		/*
+		for (int i = 0; i < lesArc.size(); i++) {
 			Arc currentArc = lesArc.get(i);
             Area playerArea = new Area(body);
             Area arcArea = new Area(currentArc);
-            arcArea.subtract(new Area(new Ellipse2D.Double(x + thickness / 2, yPosition + thickness / 2, diameter - thickness, diameter - thickness)));
-            playerArea.intersect(arcArea);
-            if (!playerArea.isEmpty() && currentArc.getColorType() != color) {
-            	//System.out.println("there's a collision");
+            //arcArea.subtract(new Area(new Ellipse2D.Double(x + thickness / 2, yPosition + thickness / 2, diameter - thickness, diameter - thickness)));
+            arcArea.intersect(playerArea);
+            if (!arcArea.isEmpty() && currentArc.getColorType() != color) {
+            	System.out.println("there's a collision");
                 return true;
-            } 	
+            }
+            else 
+            	return false;
 		}
-		
+		*/
 		return false;
-	}
-	
-	
-	
-	
+	}	
 	
 	
 	// Getters and Setters
@@ -105,31 +119,5 @@ public class Circle extends Obstacle {
 	public void setCurrentAngle(double currentAngle) {
 		this.currentAngle = currentAngle;
 	}
-
-	
-	
-	/*
-	 * int xPos = (int) x;
-		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
-		g.setStroke(new BasicStroke((float) thickness));
-		
-		g.setColor(Obstacle.colors[0]);
-		a1 = new Arc2D.Double(xPos, yPos, diameter, diameter , (int) currentAngle, 90, 0);
-		g.draw(a1);
-		
-		g.setColor(Obstacle.colors[1]);
-		a2 = new Arc2D.Double(xPos, yPos, diameter, diameter , (int) currentAngle + 90, 90, 0);
-		g.draw(a2);
-		
-		g.setColor(Obstacle.colors[2]);
-		a3 = new Arc2D.Double(xPos, yPos, diameter, diameter , (int) currentAngle + 180, 90, 0);
-		g.draw(a3);
-		
-		g.setColor(Obstacle.colors[3]);
-		a4 = new Arc2D.Double(xPos, yPos, diameter, diameter , (int) currentAngle + 270, 90, 0);
-		g.draw(a4);
-		
-		g.setStroke(new BasicStroke(1));
-		*/
 	 
 }

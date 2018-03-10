@@ -44,7 +44,7 @@ public class Switcher extends Actor {
 		g.fillArc(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER, 270, 90);
 		
 		switcherBody.setFrame(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER);
-		g.setColor(Color.white);
+		//g.setColor(Color.white);
 		//g.fill(switcherBody);
 		
 	}

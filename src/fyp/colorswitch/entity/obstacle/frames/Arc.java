@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Arc2D;
+import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Ellipse2D.Double;
 import java.awt.geom.Rectangle2D;
@@ -21,6 +22,7 @@ public class Arc extends Arc2D {
 	private int type = 0; // type 0 for drawArc | type 1 for fillArc
 	private float x, yPosition;
 	private Handler handler;
+	private float thickness;
 	
 	public Arc (Handler handler, float yPosition, int diameter, double currentAngle, int color, int type) {
 		this.handler = handler;
@@ -31,6 +33,7 @@ public class Arc extends Arc2D {
 		this.colorType = color;
 		this.angularSpeed = 1;
 		this.type = type;
+		this.thickness = 20;
 		arc = new Arc2D.Double(x, yPosition, diameter, diameter, (int) currentAngle, 90, type);
 	}
 
@@ -41,15 +44,15 @@ public class Arc extends Arc2D {
 	public void render(Graphics2D g) {
 		int xPos = (int) x;
 		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
+		
 		arc.setArc(xPos, yPos, diameter, diameter, currentAngle, 90, 0);
-		g.setStroke(new BasicStroke(20));
+		g.setStroke(new BasicStroke(thickness));
 		g.setColor(Entity.colors[colorType]);
 		if(type == 0)
 			g.draw(arc);
 		if(type == 1)
 			g.fill(arc);
 	}
-	
 	
 	// Getters and Setters
 	
@@ -59,11 +62,6 @@ public class Arc extends Arc2D {
 
 	public void setColorType(int colorType) {
 		this.colorType = colorType;
-	}
-
-	public boolean collidesWith(Double body, int bodycolor) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override

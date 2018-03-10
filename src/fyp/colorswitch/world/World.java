@@ -34,13 +34,11 @@ public class World {
 		
 		// add entities
 		em.addEntity(new Circle(handler, midHeight, 200, 3));
-		em.addEntity(new Circle(handler, midHeight, 100, 2));
 		//em.addEntity(new Rectangle(handler, 300));
 		//em.addEntity(new Cross(handler, 350));
 		//em.addEntity(new Bar(handler, 300));
-		// test 
 		//em.addEntity(new ScoreStar(handler, midHeight - 100, 10, 20));
-		switcher = new Switcher(handler, midHeight);
+		switcher = new Switcher(handler, 400);
 		em.addEntity(switcher);
 		
 		// add player last to render it in front of other entities
@@ -60,8 +58,8 @@ public class World {
 		}	
 		if(checkCollisions())
 			System.out.println("there's a collision");
-		if(player.getyPosition()%200 == 0)
-			randomSpawn();
+		/*if(player.getyPosition()%200 == 0)
+			randomSpawn(); */
 		System.out.println(player.getyPosition());
 	}
 	
@@ -90,11 +88,10 @@ public class World {
 				// case switcher
 				if(currentEntity == switcher) {
 					player.setColor(player.randomInt());
-					em.getEntities().remove(switcher);
-					switcher = null;
-					return true;
+					switcher.setyPosition(switcher.getyPosition() - 300);					
 				}
-					
+				
+				return true;
 			}	
 			else
 				continue;
@@ -103,6 +100,7 @@ public class World {
 		return false;
 	}
 	
+	/*
 	public void randomSpawn() {
 		int distanceBetweenObstacle = 200;
 		int spawnHeight = (int) (distanceBetweenObstacle + player.getyPosition());
@@ -114,5 +112,5 @@ public class World {
 		}
 	}
 	
-	
+	*/
 }
