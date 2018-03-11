@@ -58,7 +58,7 @@ public class Player extends Actor {
 	public void tick() {
 		getInput();
 		move();
-		fall();
+		//fall();
 		//if( !((start) && (yMove == 0) && !handler.getMouseManager().leftPressed) )
 			handler.getGameCamera().updatePlayerView(this);
 	}
