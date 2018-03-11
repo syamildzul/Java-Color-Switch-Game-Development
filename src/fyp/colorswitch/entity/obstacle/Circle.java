@@ -70,8 +70,8 @@ public class Circle extends Obstacle {
 			lesArc.get(i).render(g);
 		}
 		
-		g.setColor(Color.WHITE);
-		g.draw(innerCircle);
+		//g.setColor(Color.WHITE);
+		//g.draw(innerCircle);
 	}
 
 	@Override
@@ -80,10 +80,10 @@ public class Circle extends Obstacle {
 		for (int i = 0; i < lesArc.size(); i++) {
 			Area playerArea = new Area(body);
 	        Area arcArea = new Area(lesArc.get(i).getArc());
-	        //arcArea.subtract(new Area(new Ellipse2D.Double(x + thickness / 2, yPosition + thickness / 2, diameter - thickness, diameter - thickness)));
-	        playerArea.intersect(arcArea); // !playerArea.isEmpty() // colorType == color
+	        
+	        playerArea.intersect(arcArea); 
 	        if (!playerArea.isEmpty()) {
-	        	if(color == lesArc.get(i).getColorType())
+	        	if(color != lesArc.get(i).getColorType())
 	        		return true;
 	        }
 	        else 

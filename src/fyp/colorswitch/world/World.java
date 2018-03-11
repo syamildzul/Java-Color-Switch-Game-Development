@@ -68,7 +68,10 @@ public class World {
 	}
 	
 	public boolean isGameOver() {
-		// to add : bodycollisions with colors
+
+		if(checkCollisions())
+			return true;
+		
 		if(player.getyPosition() >= 680)
 			return true;
 		else 
