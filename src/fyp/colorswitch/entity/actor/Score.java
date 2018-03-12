@@ -35,4 +35,12 @@ public class Score extends Actor {
 		return false;
 	}
 
+	public String getPlayerScore() {
+		return playerScore;
+	}
+
+	public void setPlayerScore(String playerScore) {
+		this.playerScore = playerScore;
+	}
+	
 }

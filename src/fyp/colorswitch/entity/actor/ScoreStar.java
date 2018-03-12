@@ -89,8 +89,13 @@ public class ScoreStar extends Actor {
 
 	@Override
 	public boolean collidesWith(Double body, int color) {
-		// TODO Auto-generated method stub
-		return false;
+		Area playerArea = new Area(body);
+		Area scorestarArea = new Area(star);
+		playerArea.intersect(scorestarArea);
+		if(!playerArea.isEmpty())
+			return true;
+		else
+			return false;
 	}
 
 }

@@ -24,6 +24,7 @@ public class World {
 	
 	private Player player;
 	private Switcher switcher;
+	private ScoreStar scoreStar;
 	
 	private Score score;
 	
@@ -44,7 +45,9 @@ public class World {
 		//em.addEntity(new Rectangle(handler, 300));
 		//em.addEntity(new Cross(handler, 350));
 		//em.addEntity(new Bar(handler, 300));
-		//em.addEntity(new ScoreStar(handler, midHeight - 100, 10, 20));
+		scoreStar = new ScoreStar(handler, midHeight - 100, 10, 20);
+		em.addEntity(scoreStar);
+		
 		switcher = new Switcher(handler, 400);
 		em.addEntity(switcher);
 		
@@ -109,7 +112,7 @@ public class World {
 	}
 		
 	public void randomSpawn() {
-		int size = em.getLength() - 3; // - 3 because the last entity is player and the second last is switcher
+		int size = em.getLength() - 4; // - 4 because ( n:player, n-1:switcher, n-2:scoreStar)
 		int distanceBetweenObstacle = 0;
 		int spawnHeight = (int) (distanceBetweenObstacle + em.getEntities().get(size).getyPosition());
 		System.out.println(spawnHeight);
