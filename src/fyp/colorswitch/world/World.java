@@ -7,6 +7,7 @@ import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
 import fyp.colorswitch.entity.EntityManager;
 import fyp.colorswitch.entity.actor.Player;
+import fyp.colorswitch.entity.actor.Score;
 import fyp.colorswitch.entity.actor.ScoreStar;
 import fyp.colorswitch.entity.actor.Switcher;
 import fyp.colorswitch.entity.obstacle.Bar;
@@ -24,12 +25,18 @@ public class World {
 	private Player player;
 	private Switcher switcher;
 	
+	private Score score;
+	
 	private float midHeight, midWidth;
+	private float deadlinePosition = 0;
 	
 	public World(Handler handler) {
 		this.handler = handler;
 		this.midWidth = handler.getWidth() / 2;
 		this.midHeight = handler.getHeight() / 2;
+		this.deadlinePosition = handler.getHeight();
+		score = new Score(handler, 50);
+		
 		em = new EntityManager(handler);
 		
 		// add entities
@@ -57,22 +64,20 @@ public class World {
 			//State.setState(handler.getGame().menuState);
 		}	
 		if(checkCollisions())
-			System.out.println("there's a collision");
-		/*if(player.getyPosition()%200 == 0)
-			randomSpawn(); */
+			System.out.println("there's a collision"); // to see if the collision detection works 
+		
+		randomSpawn(); 
 		System.out.println(player.getyPosition());
 	}
 	
 	public void render(Graphics2D g) {
 		em.render(g);
+		score.render(g);
 	}
 	
 	public boolean isGameOver() {
-
-		if(checkCollisions())
-			return true;
 		
-		if(player.getyPosition() >= 680)
+		if(player.getyPosition() >= deadlinePosition || checkCollisions())
 			return true;
 		else 
 			return false;
@@ -102,18 +107,28 @@ public class World {
 		
 		return false;
 	}
-	
-	/*
+		
 	public void randomSpawn() {
-		int distanceBetweenObstacle = 200;
-		int spawnHeight = (int) (distanceBetweenObstacle + player.getyPosition());
+		int size = em.getLength() - 3; // - 3 because the last entity is player and the second last is switcher
+		int distanceBetweenObstacle = 0;
+		int spawnHeight = (int) (distanceBetweenObstacle + em.getEntities().get(size).getyPosition());
+		System.out.println(spawnHeight);
 		int x = 0;
 		x = handler.getGame().randomInt();
 		switch(x) {
-			case 0 : em.addEntity(new Circle(handler, spawnHeight, 200, 3));
-			case 1 : em.addEntity(new Bar(handler, spawnHeight));
+			//case 0 : em.addEntity(new Circle(handler, spawnHeight, 200, 3));
+			//case 1 : em.addEntity(new Bar(handler, spawnHeight));
 		}
 	}
 	
-	*/
+	public boolean canAddEntity() {
+		boolean thereIsAnObstacle = false;
+		//if(player.getyPosition() + 200 )
+		return thereIsAnObstacle;
+	}
+	
+	public void updateDeadline() {
+		//this.deadlinePosition;
+	}
+	
 }

@@ -77,9 +77,10 @@ public class Player extends Actor {
 		g.setColor(Color.white);
 	
 		if(!start) {
+			Font newFont = new Font("Arial", Font.BOLD, 20);
 			g.setColor(Color.WHITE);
 			//g.setFont(Font.ROMAN_BASELINE);
-			g.setStroke(new BasicStroke((float) 100));
+			g.setFont(newFont);
 			g.drawString("Click to start", (int) (x - DEFAULT_DIAMETER / 2 - 25), handler.getHeight() - 50);
 		}
 		

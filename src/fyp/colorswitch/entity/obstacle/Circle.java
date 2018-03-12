@@ -90,32 +90,6 @@ public class Circle extends Obstacle {
 	        	continue;
 		}
 		
-		/*
-		
-		Area circleArea = new Area(lesArc.get(0));
-		Area playerArea = new Area(body);
-		
-		circleArea.intersect(playerArea);
-		if(!circleArea.isEmpty()) 
-			return true;
-		else
-		
-		//
-		 * 
-		for (int i = 0; i < lesArc.size(); i++) {
-			Arc currentArc = lesArc.get(i);
-            Area playerArea = new Area(body);
-            Area arcArea = new Area(currentArc);
-            //arcArea.subtract(new Area(new Ellipse2D.Double(x + thickness / 2, yPosition + thickness / 2, diameter - thickness, diameter - thickness)));
-            arcArea.intersect(playerArea);
-            if (!arcArea.isEmpty() && currentArc.getColorType() != color) {
-            	System.out.println("there's a collision");
-                return true;
-            }
-            else 
-            	return false;
-		}
-		*/
 		return false;
 	}	
 	

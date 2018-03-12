@@ -16,7 +16,6 @@ import fyp.colorswitch.world.World;
 
 public class GameState extends State {
 	
-	private Score score;
 	private int playerScore;
 	
 	private float midPos = handler.getWidth() / 2;
@@ -27,7 +26,6 @@ public class GameState extends State {
 	
 	public GameState(Handler handler) {
 		super(handler);
-		score = new Score(handler, 50);
 		world = new World(handler);
 	}
 	
@@ -43,7 +41,6 @@ public class GameState extends State {
 		//	System.out.println("i'm in the upper section");
 		
 		world.render(g);
-		score.render(g);
 	}
 
 }
