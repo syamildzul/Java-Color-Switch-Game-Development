@@ -22,6 +22,7 @@ public class ScoreStar extends Actor {
 	
 	public ScoreStar(Handler handler, float yPosition, int edges, double size) {
 		super(handler, yPosition);
+		x = midPos;
 		this.edges = edges;
 		xList = new int[edges];
 	    yList = new int[edges];
@@ -31,10 +32,10 @@ public class ScoreStar extends Actor {
 	    for (int i = 0; i < edges; i++) {
 	    	double angle = 90 + 360.0 / edges * i; //starts vertical, shifts 36 everytime
 	        if (i % 2 == 0) {
-	        	xList[i] = (int) (yPosition + size * Math.cos(Math.toRadians(angle)));
+	        	xList[i] = (int) (x + size * Math.cos(Math.toRadians(angle)));
 	            yList[i] = (int) (yPosition + size * Math.sin(Math.toRadians(angle)));
 	        } else {
-	       	 	xList[i] = (int) (yPosition + 0.5 * size * Math.cos(Math.toRadians(angle)));
+	       	 	xList[i] = (int) (x + 0.5 * size * Math.cos(Math.toRadians(angle)));
 	            yList[i] = (int) (yPosition + 0.5 * size * Math.sin(Math.toRadians(angle)));
 	        }
 	    }
@@ -69,10 +70,10 @@ public class ScoreStar extends Actor {
             double angle = temp + 360.0 / edges * i; //starts vertical, shifts 36 everytime
             //code to define vertices of star
             if (i % 2 == 0) {
-                xList[i] = (int) (yPosition + size * Math.cos(Math.toRadians(angle)));
+                xList[i] = (int) (x + size * Math.cos(Math.toRadians(angle)));
                 yList[i] = (int) (yPosition - handler.getGameCamera().getyOffset() + size * Math.sin(Math.toRadians(angle)));
             } else {
-                xList[i] = (int) (yPosition + 0.5 * size * Math.cos(Math.toRadians(angle)));
+                xList[i] = (int) (x + 0.5 * size * Math.cos(Math.toRadians(angle)));
                 yList[i] = (int) (yPosition - handler.getGameCamera().getyOffset() + 0.5 * size * Math.sin(Math.toRadians(angle)));
             }
         }

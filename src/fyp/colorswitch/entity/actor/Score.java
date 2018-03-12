@@ -39,8 +39,8 @@ public class Score extends Actor {
 		return playerScore;
 	}
 
-	public void setPlayerScore(String playerScore) {
-		this.playerScore = playerScore;
+	public void setPlayerScore(int playerScore) {
+		this.playerScore = String.valueOf(playerScore);
 	}
 	
 }
