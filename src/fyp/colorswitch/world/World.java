@@ -27,6 +27,7 @@ public class World {
 	private ScoreStar scoreStar;
 	
 	private Score score;
+	private int playerscore;
 	
 	private float midHeight, midWidth;
 	private float deadlinePosition = 0;
@@ -36,6 +37,7 @@ public class World {
 		this.midWidth = handler.getWidth() / 2;
 		this.midHeight = handler.getHeight() / 2;
 		this.deadlinePosition = handler.getHeight();
+		this.playerscore = 0;
 		score = new Score(handler, 50);
 		
 		em = new EntityManager(handler);
@@ -70,12 +72,13 @@ public class World {
 			System.out.println("there's a collision"); // to see if the collision detection works 
 		
 		randomSpawn(); 
-		System.out.println(player.getyPosition());
+		//System.out.println(player.getyPosition());
 	}
 	
 	public void render(Graphics2D g) {
 		em.render(g);
 		score.render(g);
+		//g.drawString(Integer.toString(playerscore), 300, 100);
 	}
 	
 	public boolean isGameOver() {
@@ -101,11 +104,12 @@ public class World {
 					player.setColor(player.randomInt());
 					switcher.setyPosition(switcher.getyPosition() - 300);					
 				}
-				System.out.println(score.getPlayerScore());
+				
 				// case scorestar
 				if(currentEntity == scoreStar) {
-					score.setPlayerScore(Integer.parseInt(score.getPlayerScore()) + 1);
 					scoreStar.setyPosition(scoreStar.getyPosition() - 300);
+					playerscore++;
+					score.setPlayerScore(playerscore);
 				}
 				
 				return true;
@@ -121,7 +125,6 @@ public class World {
 		int size = em.getLength() - 4; // - 4 because ( n:player, n-1:switcher, n-2:scoreStar)
 		int distanceBetweenObstacle = 0;
 		int spawnHeight = (int) (distanceBetweenObstacle + em.getEntities().get(size).getyPosition());
-		System.out.println(spawnHeight);
 		int x = 0;
 		x = handler.getGame().randomInt();
 		switch(x) {

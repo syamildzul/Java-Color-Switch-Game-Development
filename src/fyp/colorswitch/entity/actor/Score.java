@@ -9,12 +9,12 @@ import fyp.colorswitch.Handler;
 
 public class Score extends Actor {
 
-	public String playerScore;
+	public int playerScore;
 	
 	public Score(Handler handler, float yPosition) {
 		super(handler, yPosition);
 		x = 20;
-		this.playerScore = "0";
+		this.playerScore = 0;;
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class Score extends Actor {
 	public void render(Graphics2D g) {
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Arial", Font.BOLD, 20));
-		g.drawString(playerScore, x, yPosition);
+		g.drawString(String.valueOf(playerScore), x, yPosition);
 	}
 
 	@Override
@@ -35,12 +35,12 @@ public class Score extends Actor {
 		return false;
 	}
 
-	public String getPlayerScore() {
+	public int getPlayerScore() {
 		return playerScore;
 	}
 
 	public void setPlayerScore(int playerScore) {
-		this.playerScore = String.valueOf(playerScore);
+		this.playerScore = playerScore/2;
 	}
 	
 }
