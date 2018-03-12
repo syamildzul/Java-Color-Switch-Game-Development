@@ -45,7 +45,7 @@ public class World {
 		//em.addEntity(new Rectangle(handler, 300));
 		//em.addEntity(new Cross(handler, 350));
 		//em.addEntity(new Bar(handler, 300));
-		scoreStar = new ScoreStar(handler, midWidth - 100, 10, 20);
+		scoreStar = new ScoreStar(handler, midHeight - 200, 10, 20);
 		em.addEntity(scoreStar);
 		
 		switcher = new Switcher(handler, 400);
@@ -101,11 +101,11 @@ public class World {
 					player.setColor(player.randomInt());
 					switcher.setyPosition(switcher.getyPosition() - 300);					
 				}
-				
+				System.out.println(score.getPlayerScore());
 				// case scorestar
 				if(currentEntity == scoreStar) {
-					//score.setPlayerScore(score.getPlayerScore());
-					System.out.println(score.getPlayerScore());
+					score.setPlayerScore(Integer.parseInt(score.getPlayerScore()) + 1);
+					scoreStar.setyPosition(scoreStar.getyPosition() - 300);
 				}
 				
 				return true;

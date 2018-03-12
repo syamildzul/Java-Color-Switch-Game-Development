@@ -44,7 +44,7 @@ public class ScoreStar extends Actor {
 
 	@Override
 	public void tick() {
-		//updateyPosition();
+		
 	}
 
 	@Override
@@ -78,13 +78,9 @@ public class ScoreStar extends Actor {
             }
         }
         star = new Polygon(xList, yList, edges);
-		/*
-		int xPoints[] = {55, 67, 109, 73, 83, 55, 27, 37, 1, 43};
-		int yPoints[] = {0, 36, 36, 54, 96, 72, 96, 54, 36, 36};
-		*/
+		
 		g.setColor(Color.WHITE);
 		g.fill(star);
-		//g.fillPolygon(xList, yList, edges);
 		
 	}
 
