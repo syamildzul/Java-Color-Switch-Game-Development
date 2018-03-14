@@ -22,13 +22,13 @@ public class Rectangle extends Obstacle {
 	
 	public Rectangle(Handler handler, float yPosition) {
 		super(handler, yPosition);
-		this.leftX = handler.getWidth() - 75;
-		this.rightX = handler.getWidth() + 75;
+		this.leftX = handler.getWidth() / 2 - 75;
+		this.rightX = handler.getWidth() / 2 + 75;
 		this.upY = yPosition - 75;
 		this.downY = yPosition + 75;		
 		
 		lesLines = new ArrayList<Line>();
-		// handler.getGameCamera().getyOffset()
+		// 
 		lesLines.add(new Line(handler, yPosition, leftX, upY, rightX, upY, 0));
 		lesLines.add(new Line(handler, yPosition, rightX, upY, rightX, downY, 1));
 		lesLines.add(new Line(handler, yPosition, leftX, downY, rightX, downY, 2));
@@ -43,7 +43,19 @@ public class Rectangle extends Obstacle {
 
 	@Override
 	public void render(Graphics2D g) {
-
+		
+		lesLines.get(0).setyStart(upY - handler.getGameCamera().getyOffset());
+		lesLines.get(0).setyEnd(upY - handler.getGameCamera().getyOffset());
+		
+		lesLines.get(1).setyStart(upY - handler.getGameCamera().getyOffset());
+		lesLines.get(1).setyEnd(downY - handler.getGameCamera().getyOffset());
+		
+		lesLines.get(2).setyStart(downY - handler.getGameCamera().getyOffset());
+		lesLines.get(2).setyEnd(downY - handler.getGameCamera().getyOffset());
+		
+		lesLines.get(3).setyStart(upY - handler.getGameCamera().getyOffset());
+		lesLines.get(3).setyEnd(downY - handler.getGameCamera().getyOffset());
+		
 		g.setStroke(new BasicStroke((float) 20)); // midW 250 midH 350
 		
 		for (Line l : lesLines) {

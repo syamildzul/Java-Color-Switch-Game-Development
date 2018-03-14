@@ -2,20 +2,12 @@ package fyp.colorswitch.entity.obstacle.frames;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
-import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.Ellipse2D.Double;
-import java.util.ArrayList;
-import java.awt.Rectangle;
 
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
-import fyp.colorswitch.entity.obstacle.Obstacle;
 
 public class Line extends Line2D{
 	
@@ -49,13 +41,10 @@ public class Line extends Line2D{
 		g2d.setStroke(new BasicStroke(20));
 		g2d.setColor(Entity.colors[color]);
 		
-		AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(theta), 
-	    		handler.getWidth()/2, yPosition);
 		g2d.rotate(Math.toRadians(theta), handler.getWidth()/2, yPosition);
 		g2d.draw(line);
 		g2d.dispose();
 		theta++;
-		
 
 	}
 
