@@ -44,7 +44,7 @@ public class World {
 		
 		// add entities
 		em.addEntity(new Circle(handler, midHeight, 200, 3));
-		//em.addEntity(new Rectangle(handler, 300));
+		em.addEntity(new Rectangle(handler, 300));
 		//em.addEntity(new Cross(handler, 350));
 		//em.addEntity(new Bar(handler, 300));
 		scoreStar = new ScoreStar(handler, midHeight - 200, 10, 20);
@@ -71,7 +71,7 @@ public class World {
 		if(checkCollisions())
 			System.out.println("there's a collision"); // to see if the collision detection works 
 		
-		randomSpawn(); 
+		//randomSpawn(); 
 		//System.out.println(player.getyPosition());
 	}
 	
@@ -101,7 +101,7 @@ public class World {
 				
 				// case switcher
 				if(currentEntity == switcher) {
-					player.setColor(player.randomInt());
+					player.setColor(handler.getGame().randomInt(4));
 					switcher.setyPosition(switcher.getyPosition() - 300);					
 				}
 				
@@ -124,13 +124,24 @@ public class World {
 	public void randomSpawn() {
 		int size = em.getLength() - 4; // - 4 because ( n:player, n-1:switcher, n-2:scoreStar)
 		int distanceBetweenObstacle = 0;
-		int spawnHeight = (int) (distanceBetweenObstacle + em.getEntities().get(size).getyPosition());
 		int x = 0;
-		x = handler.getGame().randomInt();
-		switch(x) {
-			//case 0 : em.addEntity(new Circle(handler, spawnHeight, 200, 3));
-			//case 1 : em.addEntity(new Bar(handler, spawnHeight));
-		}
+		x = handler.getGame().randomInt(2); // for now only 2 obstacles are finished
+		// 0 : circle : default diameter is 200
+		// 1 : bar : default height is ?
+		int spawnHeight = (int) (distanceBetweenObstacle - em.getEntities().get(size).getyPosition() + 100);
+		
+		System.out.println(spawnHeight);
+		
+		float maxymove = 0;
+		maxymove += player.getyMove();
+		System.out.println(maxymove);
+		if(player.getyPosition() < spawnHeight && player.getyMove() != 0) {
+			switch(x) {
+				case 0 : em.addEntity(new Circle(handler, spawnHeight, 200, 3));
+				case 1 : em.addEntity(new Bar(handler, spawnHeight));
+			}
+		} 
+		
 	}
 	
 	public boolean canAddEntity() {

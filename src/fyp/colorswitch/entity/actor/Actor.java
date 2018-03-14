@@ -61,26 +61,6 @@ public abstract class Actor extends Entity {
         }
     }
 	
-	public void switchColor(Graphics2D g) {
-		int x = randomInt();
-		setColor(g, x);
-	}
-	
-	public void setColor(Graphics2D g, int c) {
-		switch(c) {
-			case 1 : g.setColor(Entity.colors[0]); break;
-			case 2 : g.setColor(Entity.colors[1]); break;
-			case 3 : g.setColor(Entity.colors[2]); break;
-			case 4 : g.setColor(Entity.colors[3]); break;
-		}
-	}
-	
-	public int randomInt() {
-		Random ran = new Random();
-		int x = ran.nextInt(4);
-		return x;
-	}
-	
 	public void update(double moveDownDistance) {
         position += moveDownDistance;
         if (star != null) {

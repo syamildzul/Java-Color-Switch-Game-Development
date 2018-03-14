@@ -174,9 +174,9 @@ public class Game implements Runnable{
 		}
 	}
 	
-	public int randomInt() {
+	public int randomInt(int range) {
 		Random ran = new Random();
-		int x = ran.nextInt(4);
+		int x = ran.nextInt(range);
 		return x;
 	}
 	
