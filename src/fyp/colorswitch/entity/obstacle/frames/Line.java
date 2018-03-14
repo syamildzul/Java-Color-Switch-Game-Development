@@ -6,57 +6,57 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
+import java.awt.geom.Path2D;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.Ellipse2D.Double;
+import java.util.ArrayList;
+import java.awt.Rectangle;
 
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
 import fyp.colorswitch.entity.obstacle.Obstacle;
 
-public class Line extends Obstacle{
+public class Line extends Line2D{
 	
 	private int color;
-	private float xStart, xEnd, yStart, yEnd;
-	private int i = 0;
+	private float xStart, xEnd, yStart, yEnd, yPosition;
 	
-	private int ha1, ha2, ha3, ha4;
-	private int hb1, hb2, hb3, hb4;
-	
+	private Handler handler;
 	private Line2D line;
 	
 	public Line(Handler handler, float yPosition, float xStart, float yStart, float xEnd, float yEnd, int color) {
-		super(handler, yPosition);
+		this.handler = handler;
+		this.yPosition = yPosition; // y coordinate of the center of rotation
 		this.xStart = xStart;
 		this.yStart = yStart;
 		this.xEnd = xEnd;
 		this.yEnd = yEnd;
 		this.color = color;
 		
-		ha1 = 200; hb1 = 350;
-		ha2 = 350; hb2 = 350;
-		ha3 = 350; hb3 = 500;
-		ha4 = 350; hb4 = 350;
+		line = new Line2D.Double(xStart, yStart, xEnd, yEnd);
 	}
 
-public void rotateLine(Graphics2D g) {
-		
-		line = new Line2D.Double(xStart, yStart - handler.getGameCamera().getyOffset(), xEnd, yEnd - handler.getGameCamera().getyOffset());
-		
-	    AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(i), 
-	    		line.getX2(), line.getY2());
-
-	    // Draw the rotated line
-	    g.setColor(Entity.colors[color]);
-	    g.draw(at.createTransformedShape(line));
-	   
-	    i++;
-	}
 	public void tick() {
 		
 	}
-
+	
+	int theta = 0;
 	public void render(Graphics2D g) {
-		g.setStroke(new BasicStroke(20));
-		rotateLine(g);
+		//int xPos = (int) x;
+		//int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
+		Graphics2D g2d = (Graphics2D) g.create();
+		g2d.setStroke(new BasicStroke(20));
+		g2d.setColor(Entity.colors[color]);
+		
+		AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(theta), 
+	    		handler.getWidth()/2, yPosition);
+		g2d.rotate(Math.toRadians(theta), handler.getWidth()/2, yPosition);
+		g2d.draw(line);
+		g2d.dispose();
+		theta++;
+		
+
 	}
 
 	public int getColor() {
@@ -108,11 +108,52 @@ public void rotateLine(Graphics2D g) {
 		this.yEnd = yEnd;
 	}
 
+	@Override
+	public Rectangle2D getBounds2D() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
-	public boolean collidesWith(Ellipse2D.Double body, int bodycolor) {
+	public Point2D getP1() {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
+	}
+
+	@Override
+	public Point2D getP2() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double getX1() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getX2() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getY1() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getY2() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setLine(double x1, double y1, double x2, double y2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
