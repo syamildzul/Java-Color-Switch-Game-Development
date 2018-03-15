@@ -36,12 +36,13 @@ public class Line extends Line2D{
 	int theta = 0;
 	public void render(Graphics2D g) {
 		//int xPos = (int) x;
-		//int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
+		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
 		Graphics2D g2d = (Graphics2D) g.create();
 		g2d.setStroke(new BasicStroke(20));
 		g2d.setColor(Entity.colors[color]);
 		
 		g2d.rotate(Math.toRadians(theta), handler.getWidth()/2, yPosition);
+		//g2d.translate(0, yPos);
 		g2d.draw(line);
 		g2d.dispose();
 		theta++;

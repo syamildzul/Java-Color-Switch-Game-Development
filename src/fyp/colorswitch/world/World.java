@@ -44,7 +44,7 @@ public class World {
 		
 		// add entities
 		em.addEntity(new Circle(handler, midHeight, 200, 3));
-		em.addEntity(new Rectangle(handler, 300));
+		em.addEntity(new Rectangle(handler, 150));
 		//em.addEntity(new Cross(handler, 350));
 		//em.addEntity(new Bar(handler, 300));
 		scoreStar = new ScoreStar(handler, midHeight - 200, 10, 20);
@@ -66,7 +66,7 @@ public class World {
 		int timer = 0;
 		em.tick();	
 		if(isGameOver()) {
-			//State.setState(handler.getGame().menuState);
+			//State.setState(handler.getGame().gameOverState);
 		}	
 		if(checkCollisions())
 			System.out.println("there's a collision"); // to see if the collision detection works 
@@ -102,7 +102,8 @@ public class World {
 				// case switcher
 				if(currentEntity == switcher) {
 					player.setColor(handler.getGame().randomInt(4));
-					switcher.setyPosition(switcher.getyPosition() - 300);					
+					switcher.setyPosition(switcher.getyPosition() - 300);	
+					return false;
 				}
 				
 				// case scorestar
@@ -110,6 +111,7 @@ public class World {
 					scoreStar.setyPosition(scoreStar.getyPosition() - 300);
 					playerscore++;
 					score.setPlayerScore(playerscore);
+					return false;
 				}
 				
 				return true;
