@@ -17,7 +17,9 @@ public class GameCamera {
 	}
 
 	public void updatePlayerView(Entity e) {
+		
 		yOffset = e.getyPosition() - handler.getHeight() / 2;
+		
 		/*
 		if(e.getyPosition() >= handler.getHeight() / 2) {
 			yOffset = e.getyPosition() - handler.getHeight() / 2;

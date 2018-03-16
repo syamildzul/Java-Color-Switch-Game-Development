@@ -12,15 +12,16 @@ public abstract class Entity {
 	protected Handler handler;
 	protected float x, yPosition;
 	protected float midPos;
-	protected float position;
+	protected int width;
 	
 	// Turquoise, Vivid Yellow, Electric Violet, Bright Pink
     public static final Color colors[] = {new Color(50, 226, 241),
         new Color(244, 222, 14), new Color(140, 18, 251), new Color(255, 0, 128)};
 	
-	public Entity(Handler handler, float yPosition) {
+	public Entity(Handler handler, float yPosition, int width) {
 		this.handler = handler;
 		this.yPosition = yPosition;
+		this.width = width;
 		this.midPos = handler.getWidth() / 2;
 		this.x = midPos;
 	}
@@ -63,14 +64,6 @@ public abstract class Entity {
 
 	public void setMidPos(float midPos) {
 		this.midPos = midPos;
-	}
-
-	public float getPosition() {
-		return position;
-	}
-
-	public void setPosition(float position) {
-		this.position = position;
 	}
 
 	public static Color[] getColors() {

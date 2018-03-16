@@ -21,8 +21,8 @@ public abstract class Actor extends Entity {
 	protected Switcher switcher = null;
 	protected double position;
 
-	public Actor(Handler handler, float yPosition) {
-		super(handler, yPosition);
+	public Actor(Handler handler, float yPosition, int diameter) {
+		super(handler, yPosition, diameter);
 		speed = DEFAULT_SPEED;
 		xMove = 0;
 		yMove = 0;
@@ -32,10 +32,6 @@ public abstract class Actor extends Entity {
 		if(handler.getMouseManager().leftPressed)
 			moveY();
 		fall();
-	}
-	
-	public void moveX() {
-		
 	}
 	
 	public void moveY() {

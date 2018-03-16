@@ -17,17 +17,31 @@ public class Cross extends Obstacle {
 	private int ha1, ha2, ha3, ha4;
 	private int hb1, hb2, hb3, hb4;
 	
+	private float leftX, rightX;
+	private float upY, downY;
+	
+	private int side;
+	
 	private Line l;
 	
-	public Cross(Handler handler, float yPosition) {
-		super(handler, yPosition);
+	public Cross(Handler handler, float yPosition, int side) {
+		super(handler, yPosition, 0);
+		this.leftX = handler.getWidth() / 2 - 85;
+		this.rightX = handler.getWidth() / 2 + 85;
+		this.upY = yPosition - 85;
+		this.downY = yPosition + 85;
+		this.side = side;
 		
 		ha1 = 200; hb1 = 350;
 		ha2 = 350; hb2 = 350;
 		ha3 = 350; hb3 = 500;
 		ha4 = 350; hb4 = 350;
 		
-		l = new Line(handler, yPosition, 250, 200, 250, 350, 0);
+		line = new Line2D.Double(250, ha1, 250, hb1);
+		line2 = new Line2D.Double(250, ha2, 400, hb2);
+		line3 = new Line2D.Double(250, ha3, 250, hb3);
+		line4 = new Line2D.Double(100, ha4, 250, hb4);
+		
 	}
 
 	@Override
@@ -36,13 +50,7 @@ public class Cross extends Obstacle {
 	}
 	
 	int i = 0;
-	public void rotateLine(Graphics2D g) {
-		
-		line = new Line2D.Double(250, ha1 - handler.getGameCamera().getyOffset(), 250, hb1 - handler.getGameCamera().getyOffset());
-		line2 = new Line2D.Double(250, ha2 - handler.getGameCamera().getyOffset(), 400, hb2 - handler.getGameCamera().getyOffset());
-		line3 = new Line2D.Double(250, ha3 - handler.getGameCamera().getyOffset(), 250, hb3 - handler.getGameCamera().getyOffset());
-		line4 = new Line2D.Double(100, ha4 - handler.getGameCamera().getyOffset(), 250, hb4 - handler.getGameCamera().getyOffset());
-		
+	public void rotateLine(Graphics2D g) {		
 		
 	    AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(i), 
 	    		line.getX2(), line.getY2());
@@ -67,10 +75,13 @@ public class Cross extends Obstacle {
 	
 	@Override
 	public void render(Graphics2D g) {
-		
+		line.setLine(250, ha1 - handler.getGameCamera().getyOffset(), 250, hb1 - handler.getGameCamera().getyOffset());
+		line2.setLine(250, ha2 - handler.getGameCamera().getyOffset(), 400, hb2 - handler.getGameCamera().getyOffset());
+		line3.setLine(250, ha3 - handler.getGameCamera().getyOffset(), 250, hb3 - handler.getGameCamera().getyOffset());
+		line4.setLine(100, ha4 - handler.getGameCamera().getyOffset(), 250, hb4 - handler.getGameCamera().getyOffset());
 		g.setStroke(new BasicStroke((float) 20)); 		
-		l.render(g);
-		//rotateLine(g);
+		//l.render(g);
+		rotateLine(g);
 	}
 	
 	public boolean collides(Line2D.Float body, int color) {
@@ -83,7 +94,8 @@ public class Cross extends Obstacle {
 
 	@Override
 	public boolean collidesWith(Double body, int bodycolor) {
-		// TODO Auto-generated method stub
+		
+		
 		return false;
 	}
 

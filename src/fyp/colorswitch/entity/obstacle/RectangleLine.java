@@ -16,27 +16,31 @@ import java.util.ArrayList;
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
 import fyp.colorswitch.entity.obstacle.frames.Line;
+import fyp.colorswitch.entity.obstacle.frames.RectLine;
 
-public class Rectangle extends Obstacle {
+public class RectangleLine extends Obstacle {
 	
 	private float leftX, rightX;
 	private float upY, downY;
-	private ArrayList<Line> lesLines;
+	private ArrayList<RectLine> lesLines;
 	
-	public Rectangle(Handler handler, float yPosition, int width) {
-		super(handler, yPosition, width);
+	private Rectangle r1, r2, r3, r4;
+	
+	public RectangleLine(Handler handler, float yPosition, int length) {
+		super(handler, yPosition, length);
 		this.leftX = handler.getWidth() / 2 - 85;
 		this.rightX = handler.getWidth() / 2 + 85;
 		this.upY = yPosition - 85;
 		this.downY = yPosition + 85;		
 		
-		lesLines = new ArrayList<Line>();
+		lesLines = new ArrayList<RectLine>();
 		// 
-		lesLines.add(new Line(handler, yPosition, leftX, upY, rightX, upY, 0));
-		lesLines.add(new Line(handler, yPosition, rightX, upY, rightX, downY, 1));
-		lesLines.add(new Line(handler, yPosition, leftX, downY, rightX, downY, 2));
-		lesLines.add(new Line(handler, yPosition, leftX, upY, leftX, downY, 3));
-		
+		lesLines.add(new RectLine(handler, yPosition, leftX, upY, length, 5, 0));
+		lesLines.add(new RectLine(handler, yPosition, rightX, upY, 5, length, 1));
+		lesLines.add(new RectLine(handler, yPosition, leftX, downY, length, 5, 2));
+		lesLines.add(new RectLine(handler, yPosition, leftX, upY, 5, length, 3));
+	
+		//r1 = new Rectangle();
 	}
 
 	@Override
@@ -51,13 +55,11 @@ public class Rectangle extends Obstacle {
 		
 		g2d.setStroke(new BasicStroke((float) 20)); // midW 250 midH 350
 		//g2d.translate(0, yPosition - handler.getGameCamera().getyOffset());
-		for (Line l : lesLines) {
+		for (RectLine l : lesLines) {
 			l.render(g2d);
 		}
-		Line2D currentLine = lesLines.get(0).getLine(0);
-		g.setColor(Color.WHITE);
-		g.draw(currentLine.getBounds());
 		g2d.dispose();
+		
 		
 		
 	}
@@ -66,16 +68,20 @@ public class Rectangle extends Obstacle {
 	public boolean collidesWith(Ellipse2D.Double body, int bodycolor) {		
 		
 		for (int i = 0; i < lesLines.size(); i++) {
-			Line2D currentLine = lesLines.get(i).getLine(i);
+			Rectangle2D currentLine = lesLines.get(i).getRectLine();
 			Area playerArea = new Area(body);
 			Area lineArea = new Area(currentLine);
+			
 			playerArea.intersect(lineArea);
-			//System.out.println(playerArea);
 			if(!playerArea.isEmpty()) {
-				System.out.println("collision YEEEEEEEEEEEEEEEEEE");
-				return true;
+				if(lesLines.get(i).getColor() != bodycolor)
+					return true;
+				//System.out.println("collision YEEEEEEEEEEEEEEEEEE");
 			}
-				body.intersects(currentLine.getBounds2D());
+			
+			if(body.intersects(currentLine.getBounds2D()))
+				return true;
+			
 			playerArea.intersect(lineArea);
 			if(!playerArea.isEmpty()) {
 				//if(lesLines.get(i).getColor() != bodycolor)

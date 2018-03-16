@@ -19,7 +19,7 @@ public class Switcher extends Actor {
 	private Ellipse2D.Double switcherBody;
 	
 	public Switcher(Handler handler, float yPosition) {
-		super(handler, yPosition);
+		super(handler, yPosition, DEFAULT_DIAMETER);
 		
 		switcherBody = new Ellipse2D.Double(x - DEFAULT_DIAMETER / 2, yPosition, DEFAULT_DIAMETER, DEFAULT_DIAMETER);
 	}

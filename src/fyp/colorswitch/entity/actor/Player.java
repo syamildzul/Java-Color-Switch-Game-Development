@@ -21,37 +21,18 @@ public class Player extends Actor {
 	private static final int DEFAULT_WIDTH = 20, DEFAULT_HEIGHT = 20;
 	private static final int DEFAULT_DIAMETER = 20;
 	
-	private boolean start = false;
+	private boolean start = false, isMoving = false, isGameOver = false;
 	private int i = 0, color, distance = 0;
+	private int midLine, lowerLine;
 	
 	private Ellipse2D.Double p;
 	
 	public Player(Handler handler, float yPosition, int color) {
-		super(handler, yPosition);
+		super(handler, yPosition, DEFAULT_WIDTH);
 		this.color = color;
+		midLine = handler.getHeight() / 2;
+		lowerLine = handler.getHeight();
 		p = new Ellipse2D.Double(x - DEFAULT_DIAMETER / 2, yPosition , DEFAULT_DIAMETER, DEFAULT_DIAMETER);
-	}
-
-	public void getInput() {
-		xMove = 0;
-		yMove = 0;
-		
-		if(handler.getKeyManager().jump)
-			yMove = -speed;
-		if(handler.getMouseManager().leftPressed)
-			yMove = -speed;
-	}
-	
-	public void fall() {
-		if(yPosition <= 680) {
-			if(handler.getMouseManager().leftPressed) {
-				start = true;
-				i++;
-			}
-			if(i>1)
-				if((start) && (yMove == 0) && !handler.getMouseManager().leftPressed)
-					yPosition += speed * 0.15f;
-		}
 	}
 	
 	@Override
@@ -59,7 +40,16 @@ public class Player extends Actor {
 		getInput();
 		move();
 		fall();
-		//if( !((start) && (yMove == 0) && !handler.getMouseManager().leftPressed) )
+		
+		updateLines();
+		System.out.println("lowerline : " + lowerLine + " , midLine : " + midLine );
+		
+		if(p.getY() == lowerLine) {
+			isGameOver = true;
+			System.out.println("game over!");
+		}
+			
+		//if(  )
 			handler.getGameCamera().updatePlayerView(this);
 	}
 	
@@ -87,10 +77,44 @@ public class Player extends Actor {
 		distance = yPos;
 	}
 	
-	public boolean stopObstacleTranslation() {
-		if(p.getY() <= handler.getHeight() / 2)
-			return true;
-		return false;
+	public void getInput() {
+		xMove = 0;
+		yMove = 0;
+		
+		if(handler.getKeyManager().jump)
+			yMove = -speed;
+		if(handler.getMouseManager().leftPressed)
+			yMove = -speed;
+		
+		if(yMove != 0)
+			isMoving = true;
+	}
+	
+	public void fall() {
+		if(yPosition <= 680) {
+			if(handler.getMouseManager().leftPressed) {
+				start = true;
+				i++;
+			}
+			if(i>1)
+				if((start) && (yMove == 0) && !handler.getMouseManager().leftPressed) {
+					yPosition += speed * 0.15f;
+					isMoving = false;
+				}	
+		}
+	}
+	
+	public boolean isMoving() {
+		return isMoving;
+	}
+	
+	public void updateLines() {
+		if(p.getY() <= midLine) {
+			lowerLine += yMove;
+			midLine += yMove;
+		}
+		System.out.println("player position is " + p.getY());
+			
 	}
 	
 	public boolean isStarted() {
@@ -106,6 +130,14 @@ public class Player extends Actor {
 			return true;
 		else
 			return false;
+	}
+
+	public boolean isGameOver() {
+		return isGameOver;
+	}
+
+	public void setGameOver(boolean isGameOver) {
+		this.isGameOver = isGameOver;
 	}
 
 	public int getColorType() {

@@ -1,7 +1,10 @@
 package fyp.colorswitch.entity.obstacle.frames;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -9,13 +12,14 @@ import java.awt.geom.Rectangle2D;
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
 
-public class Line extends Line2D{
+public class Line extends Line2D {
 	
 	private int color;
 	private float xStart, xEnd, yStart, yEnd, yPosition;
 	
 	private Handler handler;
 	private Line2D line;
+	private Rectangle bounds;
 	
 	public Line(Handler handler, float yPosition, float xStart, float yStart, float xEnd, float yEnd, int color) {
 		this.handler = handler;
@@ -25,7 +29,11 @@ public class Line extends Line2D{
 		this.xEnd = xEnd;
 		this.yEnd = yEnd;
 		this.color = color;
-		
+		bounds = new Rectangle(0, 0, 0, 0);
+		bounds.x = (int) xStart;
+		bounds.y = (int) yStart;
+		bounds.width = 180;
+		bounds.height = 15;
 		line = new Line2D.Double(xStart, yStart, xEnd, yEnd);
 	}
 
@@ -35,22 +43,29 @@ public class Line extends Line2D{
 	
 	int theta = 0;
 	public void render(Graphics2D g) {
-		//int xPos = (int) x;
-		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
+		
 		Graphics2D g2d = (Graphics2D) g.create();
 		g2d.setStroke(new BasicStroke(20));
 		g2d.setColor(Entity.colors[color]);
 		
-		g2d.rotate(Math.toRadians(theta), handler.getWidth()/2, yPosition);
-		//g2d.translate(0, yPos);
-		g2d.draw(line);
+		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
+		AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(theta), handler.getWidth() / 2, yPosition);
+		g2d.translate(0, yPos);
+		g2d.draw(at.createTransformedShape(line));
+	
 		g2d.dispose();
-		theta++;
+		theta += 2;
 
+		
+		
 	}
 
+	public Line2D getLine(int i) {
+		return this.line;
+	}
+	
 	public int getColor() {
-		return color;
+		return this.color;
 	}
 
 
@@ -107,43 +122,42 @@ public class Line extends Line2D{
 	@Override
 	public Point2D getP1() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Point2D.Double(xStart, yStart);
 	}
 
 	@Override
 	public Point2D getP2() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Point2D.Double(xEnd, yEnd);
 	}
 
 	@Override
 	public double getX1() {
 		// TODO Auto-generated method stub
-		return 0;
+		return xStart;
 	}
 
 	@Override
 	public double getX2() {
 		// TODO Auto-generated method stub
-		return 0;
+		return xEnd;
 	}
 
 	@Override
 	public double getY1() {
 		// TODO Auto-generated method stub
-		return 0;
+		return yStart;
 	}
 
 	@Override
 	public double getY2() {
 		// TODO Auto-generated method stub
-		return 0;
+		return yEnd;
 	}
 
 	@Override
 	public void setLine(double x1, double y1, double x2, double y2) {
-		// TODO Auto-generated method stub
-		
+		line.setLine(x1, y1, x2, y2);
 	}
 
 }

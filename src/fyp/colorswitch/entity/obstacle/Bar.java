@@ -23,7 +23,7 @@ public class Bar extends Obstacle {
 	private float y;
 
 	public Bar(Handler handler, float yPosition) {
-		super(handler, yPosition);
+		super(handler, yPosition, 0); //
 		// initialisation of the first bar
 		xsline = 1;
 		xeline = 125;
