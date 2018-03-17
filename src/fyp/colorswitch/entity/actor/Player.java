@@ -42,36 +42,25 @@ public class Player extends Actor {
 		fall();
 		
 		updateLines();
-		System.out.println("lowerline : " + lowerLine + " , midLine : " + midLine );
 		
-		if(p.getY() == lowerLine) {
-			isGameOver = true;
-			System.out.println("game over!");
-		}
-			
-		//if(  )
-			handler.getGameCamera().updatePlayerView(this);
+		handler.getGameCamera().updatePlayerView(this);
 	}
 	
 	@Override
 	public void render(Graphics2D g) { 
-		//if(this.collidesWith(switcher, color))
-		//switchColor(g);
+		
 		int xPos = (int) (x - DEFAULT_DIAMETER / 2);
 		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
 		
 		g.setColor(Entity.colors[color]);
-		// switchColor(g);
 		p.setFrame(xPos, yPos, DEFAULT_DIAMETER, DEFAULT_DIAMETER);
 		g.fill(p);
-		g.setColor(Color.white);
 	
 		if(!start) {
 			Font newFont = new Font("Arial", Font.BOLD, 20);
 			g.setColor(Color.WHITE);
-			//g.setFont(Font.ROMAN_BASELINE);
 			g.setFont(newFont);
-			g.drawString("Click to start", (int) (x - DEFAULT_DIAMETER / 2 - 25), handler.getHeight() - 50);
+			g.drawString("Click to start", handler.getWidth() / 2 - 50, handler.getHeight() - 50);
 		}
 		
 		distance = yPos;

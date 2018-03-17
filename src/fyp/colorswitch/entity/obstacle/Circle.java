@@ -1,17 +1,11 @@
 package fyp.colorswitch.entity.obstacle;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Ellipse2D.Double;
 import java.util.ArrayList;
 
 import fyp.colorswitch.Handler;
-import fyp.colorswitch.entity.Entity;
 import fyp.colorswitch.entity.obstacle.frames.Arc;
 
 public class Circle extends Obstacle {
@@ -24,7 +18,6 @@ public class Circle extends Obstacle {
 	private int angularSpeed = DEFAULT_CIRCLE_ANGULARSPEED;
 	private int thickness;
 	private double currentAngle;
-	private Ellipse2D.Double innerCircle;
 	
 	private ArrayList<Arc> lesArc;
 	
@@ -43,7 +36,6 @@ public class Circle extends Obstacle {
 		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 180, 2, 0));
 		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 270, 3, 0));
 		
-		innerCircle = new Ellipse2D.Double(x + thickness, yPosition + thickness, diameter - thickness*2, diameter - thickness*2);	
 	}
 	
 	public void updateAngle() {
@@ -63,27 +55,25 @@ public class Circle extends Obstacle {
 		lesArc.get(2).setAngleStart(currentAngle + 180);
 		lesArc.get(3).setAngleStart(currentAngle + 270);
 		
-		int yPos = (int) (yPosition - handler.getGameCamera().getyOffset());
-		innerCircle.setFrame(x + thickness, yPos + thickness, diameter - thickness*2, diameter - thickness*2);
-		
 		for (int i = 0; i < lesArc.size(); i++) {
-			lesArc.get(i).render(g);
+			lesArc.get(i).render(g); // affichage de tous les arcs
 		}
-		
-		//g.setColor(Color.WHITE);
-		//g.draw(innerCircle);
+
 	}
 
 	@Override
 	public boolean collidesWith(Ellipse2D.Double body, int color) {
 		
-		for (int i = 0; i < lesArc.size(); i++) {
+		for (int i = 0; i < lesArc.size(); i++) { // on va parcourir tous les arcs
 			Area playerArea = new Area(body);
 	        Area arcArea = new Area(lesArc.get(i).getArc());
 	        
-	        playerArea.intersect(arcArea); 
-	        if (!playerArea.isEmpty()) {
-	        	if(color != lesArc.get(i).getColorType())
+	        playerArea.intersect(arcArea); // ceci donne l'aire de l'intersection 
+	        							   //des deux aires
+	        
+	        if (!playerArea.isEmpty()) { // si l'aire n'est pas vide alors, il y a collision 
+	        	
+	        	if(color != lesArc.get(i).getColorType()) // check la couleur
 	        		return true;
 	        }
 	        else 

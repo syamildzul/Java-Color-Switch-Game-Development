@@ -14,7 +14,7 @@ import fyp.colorswitch.gfx.Assets;
 import fyp.colorswitch.ui.ClickListener;
 import fyp.colorswitch.ui.UIImageButton;
 import fyp.colorswitch.ui.UIManager;
-import fyp.colorswitch.ui.UITitle;
+import fyp.colorswitch.ui.UIImage;
 
 public class MenuState extends State {
 
@@ -32,7 +32,7 @@ public class MenuState extends State {
 		e.addEntity(new Circle(handler, midHeight, 150, 1));
 		e.addEntity(new Circle(handler, midHeight, 100, 2));
 		
-		ui.addObject(new UITitle(handler, 70, 300, 150, Assets.title));
+		ui.addObject(new UIImage(handler, 70, 300, 150, Assets.title));
 		
 		ui.addObject(new UIImageButton(handler, midHeight - 35, 70, 70, Assets.btn_start, new ClickListener() {
 
@@ -56,10 +56,10 @@ public class MenuState extends State {
 	public void render(Graphics2D g) {
 		e.render(g);
 		g.setStroke(new BasicStroke(20));
-		//g.setColor(Color.white);
-		//g.draw(new Ellipse2D.Double(100, 100, 300, 300));
+		
 		Graphics gd = (Graphics) g;
 		ui.render(gd);
+		
 	}
 	
 }

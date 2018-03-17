@@ -54,19 +54,6 @@ public class Arc extends Arc2D {
 			g.fill(arc);
 	}
 	
-	public boolean collidesWith(Ellipse2D.Double body, int color) {
-		Area playerArea = new Area(body);
-        Area arcArea = new Area(arc);
-        //arcArea.subtract(new Area(new Ellipse2D.Double(x + thickness / 2, yPosition + thickness / 2, diameter - thickness, diameter - thickness)));
-        playerArea.intersect(arcArea); // !playerArea.isEmpty() // colorType == color
-        if (!playerArea.isEmpty()) {
-        	System.out.println("there's a collision");
-            return true;
-        }
-        else 
-        	return false;
-	}
-	
 	// Getters and Setters
 	
 	public Arc2D getArc() {

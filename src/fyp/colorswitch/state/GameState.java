@@ -3,7 +3,6 @@ package fyp.colorswitch.state;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
 
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
@@ -18,11 +17,7 @@ import fyp.colorswitch.entity.obstacle.Cross;
 import fyp.colorswitch.entity.obstacle.Rectangle;
 
 public class GameState extends State {
-	
-//	private float midPos = handler.getWidth() / 2;
-//	private float obsXspawn = midPos - midPos/2,
-//			obsYspawn = midPos;
-	
+		
 	private Handler handler;
 	private EntityManager em;
 	
@@ -31,12 +26,10 @@ public class GameState extends State {
 	private ScoreStar scoreStar;
 	private Score score;
 	
-	private int playerscore;
+	private static int playerscore;
 	
 	private float midHeight, midWidth;
 	private float deadlinePosition = 0;
-	
-	private Rectangle2D bounds;
 	
 	//private World world;
 	
@@ -49,20 +42,16 @@ public class GameState extends State {
 		this.deadlinePosition = handler.getHeight();
 		this.playerscore = 0;
 		
-		bounds = new Rectangle2D.Double(midWidth, (handler.getHeight()-100), 20, 20);
 		score = new Score(handler, 50);
 		
 		em = new EntityManager(handler);
-		// add entities
-		//em.addEntity(new Circle(handler, 400, 200, 2));
-		//em.addEntity(new Rectangle(handler, 0, 170));
-		//em.addEntity(new RectangleLine(handler, 200, 170));
-		//em.addEntity(new Cross(handler, 200, 100, 1));
-		//em.addEntity(new Bar(handler, 300));
+		
+		// add entities 
+		// the obstacles will be added randomly later
 		scoreStar = new ScoreStar(handler, midHeight - 200, 10, 20);
 		em.addEntity(scoreStar);
 		
-		switcher = new Switcher(handler, 400);
+		switcher = new Switcher(handler, 450);
 		em.addEntity(switcher);
 		
 		// add player last to render it in front of other entities
@@ -80,12 +69,7 @@ public class GameState extends State {
 			State gameOverState = new GameOverState(handler);
 			State.setState(gameOverState);
 		}	
-		if(checkCollisions())
-			System.out.println("there's a collision"); // to see if the collision detection works 
 		
-		if(player.isMoving())
-			totalymove += player.getyMove() / 2;
-		//System.out.println(totalymove);
 		if(player.getyPosition() < em.getEntities().get(em.getEntities().size()-1).getyPosition()+200) 
 			randomSpawn();
 	}
@@ -95,18 +79,14 @@ public class GameState extends State {
 		
 		em.render(g);
 		score.render(g);
-		//g.drawString(Integer.toString(playerscore), 300, 100);
 		//g.drawImage(Assets.firefist[0], (handler.getWidth()/2)-50, (int) (handler.getHeight()-100 + totalymove), 100, 100, null);
 		g.setColor(Color.white);
 		//g.fill3DRect((int) (bounds.getX() - bounds.getWidth() / 2), (int) (handler.getHeight()-90 + totalymove), (int) bounds.getWidth(), (int) bounds.getHeight(), false);
 
-		
-		//world.render(g);
 	}
 
 	public boolean isGameOver() {
-		//player.getP().intersects(firefist);
-		if(player.isGameOver() || checkCollisions())
+		if(checkCollisions())
 			return true;
 		else 
 			return false;
@@ -125,7 +105,7 @@ public class GameState extends State {
 				// case switcher
 				if(currentEntity == switcher) {
 					player.setColor(handler.getGame().randomInt(4));
-					switcher.setyPosition(switcher.getyPosition() - 300);	
+					switcher.setyPosition(switcher.getyPosition() - 650);	
 					return false;
 				}
 				
@@ -154,20 +134,10 @@ public class GameState extends State {
 		int spawnHeight = (int) (em.getEntities().get(em.getEntities().size()-1).getyPosition() - distanceBetweenObstacle);
 		
 		switch(x) {
-			case 0 : em.addEntity(new Circle(handler, spawnHeight, 200, 3)); break;
+			case 0 : em.addEntity(new Circle(handler, spawnHeight -100 , 200, 2)); break;
 			case 1 : em.addEntity(new Bar(handler, spawnHeight)); break;
 		}
 		
-	}
-	
-	public boolean canAddEntity() {
-		boolean thereIsAnObstacle = false;
-		//if(player.getyPosition() + 200 )
-		return thereIsAnObstacle;
-	}
-	
-	public void updateDeadline() {
-		//this.deadlinePosition;
 	}
 	
 	public EntityManager getEntityManager() {

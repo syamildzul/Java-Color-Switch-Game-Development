@@ -48,7 +48,7 @@ public class Handler implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		State.setState(getGame().gameState);
+		//State.setState(getGame().gameState);
 	}
 
 }

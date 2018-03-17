@@ -5,11 +5,11 @@ import java.awt.image.BufferedImage;
 
 import fyp.colorswitch.Handler;
 
-public class UITitle extends UIObject {
+public class UIImage extends UIObject {
 
-	private BufferedImage[] images;
+	private BufferedImage images;
 	
-	public UITitle(Handler handler, float y, int width, int height, BufferedImage[] images) {
+	public UIImage(Handler handler, float y, int width, int height, BufferedImage images) {
 		super(handler, y, width, height);
 		this.images = images;
 	}
@@ -21,7 +21,7 @@ public class UITitle extends UIObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(images[0], (int) x, (int) y, width, height, null);
+		g.drawImage(images, (int) x, (int) y, width, height, null); 
 	}
 
 	@Override
