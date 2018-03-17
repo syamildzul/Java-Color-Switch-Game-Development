@@ -19,8 +19,7 @@ public class GameOverState extends State {
 		super(handler);
 		e = new EntityManager(handler);
 		ui = new UIManager(handler);
-		//if(handler.getMouseManager() == null)
-			//handler.getMouseManager().setUIManager(ui);
+		handler.getMouseManager().setUIManager(ui);
 		
 		ui.addObject(new UIImageButton(handler, midHeight - 35, 70, 70, Assets.replay, new ClickListener() {
 

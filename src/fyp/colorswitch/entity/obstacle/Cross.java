@@ -17,30 +17,42 @@ public class Cross extends Obstacle {
 	private int ha1, ha2, ha3, ha4;
 	private int hb1, hb2, hb3, hb4;
 	
-	private float leftX, rightX;
-	private float upY, downY;
+	private float leftX, midX, rightX;
+	private float upY, midY, downY;
 	
-	private int side;
+	private int side; // le côté gauche ou droit
 	
 	private Line l;
 	
-	public Cross(Handler handler, float yPosition, int side) {
-		super(handler, yPosition, 0);
-		this.leftX = handler.getWidth() / 2 - 85;
-		this.rightX = handler.getWidth() / 2 + 85;
-		this.upY = yPosition - 85;
-		this.downY = yPosition + 85;
-		this.side = side;
+	public Cross(Handler handler, float yPosition, int length, int side) {
+		super(handler, yPosition, length);
+		this.side = side; // 0 pour le côté gauche et 1 pour le côté droit 	
+		x = 0;
+		if(side == 0) {
+			
+			this.midX = handler.getWidth() / 2 - length;
+			this.leftX = midX - length;			
+			this.rightX = midX + length;
+			this.midY = yPosition;
+			this.upY = midY - length;
+			this.downY = midY + length;
+			
+		} else if(side == 1) {
+			
+			this.midX = handler.getWidth() / 2 + length;
+			this.leftX = midX - length;			
+			this.rightX = midX + length;
+			this.midY = yPosition;
+			this.upY = midY - length;
+			this.downY = midY + length;
+			
+		}
 		
-		ha1 = 200; hb1 = 350;
-		ha2 = 350; hb2 = 350;
-		ha3 = 350; hb3 = 500;
-		ha4 = 350; hb4 = 350;
+		line = new Line2D.Double(midX, upY, 5, length);
+		line2 = new Line2D.Double(midX, midY, length, 5);
+		line3 = new Line2D.Double(midX, downY, 5, length);
+		line4 = new Line2D.Double(leftX, midY, length, 5);
 		
-		line = new Line2D.Double(250, ha1, 250, hb1);
-		line2 = new Line2D.Double(250, ha2, 400, hb2);
-		line3 = new Line2D.Double(250, ha3, 250, hb3);
-		line4 = new Line2D.Double(100, ha4, 250, hb4);
 		
 	}
 
@@ -75,21 +87,20 @@ public class Cross extends Obstacle {
 	
 	@Override
 	public void render(Graphics2D g) {
-		line.setLine(250, ha1 - handler.getGameCamera().getyOffset(), 250, hb1 - handler.getGameCamera().getyOffset());
-		line2.setLine(250, ha2 - handler.getGameCamera().getyOffset(), 400, hb2 - handler.getGameCamera().getyOffset());
-		line3.setLine(250, ha3 - handler.getGameCamera().getyOffset(), 250, hb3 - handler.getGameCamera().getyOffset());
-		line4.setLine(100, ha4 - handler.getGameCamera().getyOffset(), 250, hb4 - handler.getGameCamera().getyOffset());
+		line.setLine(midX, upY - handler.getGameCamera().getyOffset(), 5, width  - handler.getGameCamera().getyOffset());
+		line2.setLine(midX, midY  - handler.getGameCamera().getyOffset(), width, 5  - handler.getGameCamera().getyOffset());
+		line3.setLine(midX, downY  - handler.getGameCamera().getyOffset(), 5, width  - handler.getGameCamera().getyOffset());
+		line4.setLine(leftX, midY  - handler.getGameCamera().getyOffset(), width, 5  - handler.getGameCamera().getyOffset());
 		g.setStroke(new BasicStroke((float) 20)); 		
 		//l.render(g);
 		rotateLine(g);
 	}
 	
-	public boolean collides(Line2D.Float body, int color) {
+	public boolean collides(Line2D.Double body, int color) {
 		if(body.intersectsLine(line)  )
 			return true;
 		else
 			return false;
-		
 	}
 
 	@Override

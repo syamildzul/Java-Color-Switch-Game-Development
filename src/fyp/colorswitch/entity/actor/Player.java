@@ -113,8 +113,7 @@ public class Player extends Actor {
 			lowerLine += yMove;
 			midLine += yMove;
 		}
-		System.out.println("player position is " + p.getY());
-			
+		System.out.println("player position is " + p.getY());		
 	}
 	
 	public boolean isStarted() {
