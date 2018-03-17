@@ -3,18 +3,12 @@ package fyp.colorswitch.entity.obstacle;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Ellipse2D.Double;
 import java.awt.geom.Line2D;
-import java.awt.geom.Path2D;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import fyp.colorswitch.Handler;
-import fyp.colorswitch.entity.Entity;
 import fyp.colorswitch.entity.obstacle.frames.Line;
 
 public class Rectangle extends Obstacle {
@@ -49,7 +43,7 @@ public class Rectangle extends Obstacle {
 		//lesLines.get(0)
 		Graphics2D g2d = (Graphics2D) g.create();
 		
-		g2d.setStroke(new BasicStroke((float) 20)); // midW 250 midH 350
+		g2d.setStroke(new BasicStroke(20)); // midW 250 midH 350
 		//g2d.translate(0, yPosition - handler.getGameCamera().getyOffset());
 		for (Line l : lesLines) {
 			l.render(g2d);

@@ -1,33 +1,13 @@
 package fyp.colorswitch.entity;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D.Double;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 import fyp.colorswitch.Handler;
-import fyp.colorswitch.entity.actor.Player;
 
 public class EntityManager {
 	
 	private Handler handler;
-	private Player player;
 	private ArrayList<Entity> entities;
-	
-	/*
-	private Comparator<Entity> renderSorter = new Comparator<Entity>() {
-
-		@Override
-		public int compare(Entity e1, Entity e2) { /*
-			if(e1.getY() + e1.getHeight() < e2.getY() + e2.getHeight())
-				return -1; 
-			return 1;
-		}
-		
-	};
-	*/
 	
 	public EntityManager(Handler handler) {
 		this.handler = handler;
@@ -50,13 +30,6 @@ public class EntityManager {
 	public void addEntity(Entity e) {
 		entities.add(e);
 	}
-	
-	public void updateyPosition() {
-		for(int i = 0; i < entities.size(); i++) {
-			continue;
-		}
-			
-	}
 
 	// Getters & Setters
 	
@@ -74,14 +47,6 @@ public class EntityManager {
 
 	public void setHandler(Handler handler) {
 		this.handler = handler;
-	}
-
-	public Player getPlayer() {
-		return player;
-	}
-
-	public void setPlayer(Player player) {
-		this.player = player;
 	}
 	
 	public float getyPosition(Entity e) {

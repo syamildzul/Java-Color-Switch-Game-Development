@@ -2,7 +2,7 @@ package fyp.colorswitch.gfx;
 
 import java.awt.image.BufferedImage;
 
-public class Assets {
+public class Assets { // cette classe est pour stocker tous les images (même les animations)
 	
 	private static final int widthBtn = 64, heightBtn = 64;
 

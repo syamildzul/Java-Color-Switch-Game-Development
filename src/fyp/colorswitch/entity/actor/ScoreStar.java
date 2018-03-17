@@ -3,12 +3,10 @@ package fyp.colorswitch.entity.actor;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
-import java.awt.Rectangle;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D.Double;
 
 import fyp.colorswitch.Handler;
-import fyp.colorswitch.entity.Entity;
 
 public class ScoreStar extends Actor {
 	

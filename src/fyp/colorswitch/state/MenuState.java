@@ -1,15 +1,11 @@
 package fyp.colorswitch.state;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
-
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.EntityManager;
 import fyp.colorswitch.entity.obstacle.Circle;
-import fyp.colorswitch.entity.obstacle.frames.Arc;
 import fyp.colorswitch.gfx.Assets;
 import fyp.colorswitch.ui.ClickListener;
 import fyp.colorswitch.ui.UIImageButton;
@@ -57,7 +53,7 @@ public class MenuState extends State {
 		e.render(g);
 		g.setStroke(new BasicStroke(20));
 		
-		Graphics gd = (Graphics) g;
+		Graphics gd = g;
 		ui.render(gd);
 		
 	}

@@ -2,7 +2,6 @@ package fyp.colorswitch.entity;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 
 import fyp.colorswitch.Handler;
@@ -56,14 +55,6 @@ public abstract class Entity {
 
 	public void setyPosition(float yPosition) {
 		this.yPosition = yPosition;
-	}
-
-	public float getMidPos() {
-		return midPos;
-	}
-
-	public void setMidPos(float midPos) {
-		this.midPos = midPos;
 	}
 
 	public static Color[] getColors() {

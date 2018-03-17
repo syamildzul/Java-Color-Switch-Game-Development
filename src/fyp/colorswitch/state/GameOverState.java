@@ -5,16 +5,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.EntityManager;
-import fyp.colorswitch.entity.obstacle.Bar;
 import fyp.colorswitch.gfx.Assets;
 import fyp.colorswitch.ui.ClickListener;
-import fyp.colorswitch.ui.UIImage;
 import fyp.colorswitch.ui.UIImageButton;
 import fyp.colorswitch.ui.UIManager;
 
@@ -31,8 +27,8 @@ public class GameOverState extends State {
 		ui = new UIManager(handler);
 		handler.getMouseManager().setUIManager(ui);
 		
-		e.addEntity(new Bar(handler, midHeight - 50));
-		e.addEntity(new Bar(handler, midHeight + 90));
+		//e.addEntity(new BarMovingLeftToRight(handler, midHeight - 50));
+		//e.addEntity(new BarMovingRightToLeft(handler, midHeight + 90));
 		
 		ui.addObject(new UIImageButton(handler, midHeight - 35, 70, 70, Assets.replay, new ClickListener() {
 
@@ -65,10 +61,10 @@ public class GameOverState extends State {
 	@Override
 	public void render(Graphics2D g) {
 		
-		//e.getEntities().get(0).set
+		//e.getEntities().get(0)
 		
 		e.render(g);
-		Graphics gd = (Graphics) g;
+		Graphics gd = g;
 		ui.render(gd);
 		g.drawImage(Assets.gameover, (int) (midWidth - 150), 80, 300, 150, null);
 		g.drawImage(Assets.highscore, 100, 500, 300, 80, null);

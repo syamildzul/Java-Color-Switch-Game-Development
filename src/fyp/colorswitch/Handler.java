@@ -3,12 +3,9 @@ package fyp.colorswitch;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import fyp.colorswitch.entity.obstacle.Circle;
-import fyp.colorswitch.entity.obstacle.Obstacle;
 import fyp.colorswitch.gfx.GameCamera;
 import fyp.colorswitch.input.KeyManager;
 import fyp.colorswitch.input.MouseManager;
-import fyp.colorswitch.state.State;
 
 public class Handler implements ActionListener {
 

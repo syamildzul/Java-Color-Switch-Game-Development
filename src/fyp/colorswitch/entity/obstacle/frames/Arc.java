@@ -2,17 +2,11 @@ package fyp.colorswitch.entity.obstacle.frames;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.awt.geom.Arc2D;
-import java.awt.geom.Area;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Ellipse2D.Double;
 import java.awt.geom.Rectangle2D;
 
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
-import fyp.colorswitch.entity.actor.Player;
-import fyp.colorswitch.entity.obstacle.Obstacle;
 
 public class Arc extends Arc2D {
 	
@@ -60,6 +54,7 @@ public class Arc extends Arc2D {
 		return arc;
 	}
 	
+	@Override
 	public void setArc(Arc2D arc) {
 		this.arc = arc;
 	}

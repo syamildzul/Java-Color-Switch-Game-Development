@@ -1,18 +1,10 @@
 package fyp.colorswitch.entity.actor;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.Stroke;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Ellipse2D.Double;
-import java.awt.geom.Rectangle2D;
-
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
 
@@ -79,6 +71,7 @@ public class Player extends Actor {
 			isMoving = true;
 	}
 	
+	@Override
 	public void fall() {
 		if(yPosition <= 680) {
 			if(handler.getMouseManager().leftPressed) {

@@ -1,7 +1,6 @@
 package fyp.colorswitch.state;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import fyp.colorswitch.Handler;
@@ -11,10 +10,11 @@ import fyp.colorswitch.entity.actor.Player;
 import fyp.colorswitch.entity.actor.Score;
 import fyp.colorswitch.entity.actor.ScoreStar;
 import fyp.colorswitch.entity.actor.Switcher;
-import fyp.colorswitch.entity.obstacle.Bar;
+import fyp.colorswitch.entity.obstacle.BarMovingLeftToRight;
+import fyp.colorswitch.entity.obstacle.BarMovingRightToLeft;
 import fyp.colorswitch.entity.obstacle.Circle;
-import fyp.colorswitch.entity.obstacle.Cross;
-import fyp.colorswitch.entity.obstacle.Rectangle;
+import fyp.colorswitch.entity.obstacle.DoubleBar;
+import fyp.colorswitch.entity.obstacle.obsrectangle;
 
 public class GameState extends State {
 		
@@ -26,7 +26,7 @@ public class GameState extends State {
 	private ScoreStar scoreStar;
 	private Score score;
 	
-	private static int playerscore;
+	private int playerscore;
 	
 	private float midHeight, midWidth;
 	private float deadlinePosition = 0;
@@ -36,7 +36,6 @@ public class GameState extends State {
 	public GameState(Handler handler) {
 		super(handler);
 		this.handler = handler;
-		//world = new World(handler);
 		this.midWidth = handler.getWidth() / 2;
 		this.midHeight = handler.getHeight() / 2;
 		this.deadlinePosition = handler.getHeight();
@@ -51,7 +50,7 @@ public class GameState extends State {
 		scoreStar = new ScoreStar(handler, midHeight - 200, 10, 20);
 		em.addEntity(scoreStar);
 		
-		switcher = new Switcher(handler, 450);
+		switcher = new Switcher(handler, 400);
 		em.addEntity(switcher);
 		
 		// add player last to render it in front of other entities
@@ -79,10 +78,8 @@ public class GameState extends State {
 		
 		em.render(g);
 		score.render(g);
-		//g.drawImage(Assets.firefist[0], (handler.getWidth()/2)-50, (int) (handler.getHeight()-100 + totalymove), 100, 100, null);
 		g.setColor(Color.white);
-		//g.fill3DRect((int) (bounds.getX() - bounds.getWidth() / 2), (int) (handler.getHeight()-90 + totalymove), (int) bounds.getWidth(), (int) bounds.getHeight(), false);
-
+		
 	}
 
 	public boolean isGameOver() {
@@ -103,9 +100,9 @@ public class GameState extends State {
 			if(currentEntity.collidesWith(player.getP(), player.getColorType())) {
 				
 				// case switcher
-				if(currentEntity == switcher) {
+				if(currentEntity.getClass() == switcher.getClass()) {
+					em.getEntities().remove(currentEntity); // the switcher will be removed
 					player.setColor(handler.getGame().randomInt(4));
-					switcher.setyPosition(switcher.getyPosition() - 650);	
 					return false;
 				}
 				
@@ -126,18 +123,25 @@ public class GameState extends State {
 		return false;
 	}
 		
+	int counter = 0;
+
 	public void randomSpawn() {
-		
-		int distanceBetweenObstacle = 300;
-		int x = 0;
-		x = handler.getGame().randomInt(2);
+
+		int distanceBetweenObstacle = 400;
+		int x = handler.getGame().randomInt(7);
+		int y = handler.getGame().randomInt(2)+1;
 		int spawnHeight = (int) (em.getEntities().get(em.getEntities().size()-1).getyPosition() - distanceBetweenObstacle);
-		
 		switch(x) {
-			case 0 : em.addEntity(new Circle(handler, spawnHeight -100 , 200, 2)); break;
-			case 1 : em.addEntity(new Bar(handler, spawnHeight)); break;
+			case 0 : em.addEntity(new Circle(handler, spawnHeight, 200, y)); break;
+			case 1 : em.addEntity(new BarMovingLeftToRight(handler, spawnHeight)); break;
+			//case 2 : em.addEntity(new obscross(handler, spawnHeight)); break; 
+			//GOD MODE
+			case 3 : em.addEntity(new obsrectangle(handler,spawnHeight)); break;
+			case 4 : em.addEntity(new BarMovingRightToLeft(handler, spawnHeight)); break;
+			case 5 : em.addEntity(new DoubleBar(handler, spawnHeight)); break;
+			case 6 : em.addEntity(new Switcher(handler,spawnHeight)); break;
 		}
-		
+
 	}
 	
 	public EntityManager getEntityManager() {

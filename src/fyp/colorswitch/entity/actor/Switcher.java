@@ -1,16 +1,11 @@
 package fyp.colorswitch.entity.actor;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Ellipse2D.Double;
-import java.util.ArrayList;
-
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
-import fyp.colorswitch.entity.obstacle.frames.Arc;
 
 public class Switcher extends Actor {
 	

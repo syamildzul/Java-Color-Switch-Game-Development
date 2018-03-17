@@ -1,13 +1,7 @@
 package fyp.colorswitch.entity.actor;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Ellipse2D.Double;
-import java.util.Random;
-
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
 
@@ -82,6 +76,7 @@ public abstract class Actor extends Entity {
         }
         return false;
     }
+	@Override
 	public abstract boolean collidesWith(Ellipse2D.Double body, int color);
     
 	// Getters & Setters 

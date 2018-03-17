@@ -5,8 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import fyp.colorswitch.display.Display;
@@ -14,8 +12,6 @@ import fyp.colorswitch.gfx.Assets;
 import fyp.colorswitch.gfx.GameCamera;
 import fyp.colorswitch.input.KeyManager;
 import fyp.colorswitch.input.MouseManager;
-import fyp.colorswitch.state.GameOverState;
-import fyp.colorswitch.state.GameState;
 import fyp.colorswitch.state.MenuState;
 import fyp.colorswitch.state.State;
 

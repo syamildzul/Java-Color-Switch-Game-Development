@@ -2,7 +2,6 @@ package fyp.colorswitch.entity.obstacle;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.geom.Ellipse2D.Double;
@@ -91,7 +90,7 @@ public class Cross extends Obstacle {
 		line2.setLine(midX, midY  - handler.getGameCamera().getyOffset(), width, 5  - handler.getGameCamera().getyOffset());
 		line3.setLine(midX, downY  - handler.getGameCamera().getyOffset(), 5, width  - handler.getGameCamera().getyOffset());
 		line4.setLine(leftX, midY  - handler.getGameCamera().getyOffset(), width, 5  - handler.getGameCamera().getyOffset());
-		g.setStroke(new BasicStroke((float) 20)); 		
+		g.setStroke(new BasicStroke(20)); 		
 		//l.render(g);
 		rotateLine(g);
 	}

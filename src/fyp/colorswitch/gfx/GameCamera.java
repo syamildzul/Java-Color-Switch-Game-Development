@@ -6,7 +6,7 @@ import fyp.colorswitch.entity.Entity;
 public class GameCamera {
 	
 	private Handler handler;
-	private float yOffset;
+	private float yOffset; 
 	private float lowerLine, midLine;
 	
 	public GameCamera(Handler handler, float yOffset) {
