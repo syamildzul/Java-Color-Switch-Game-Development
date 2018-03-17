@@ -3,6 +3,10 @@ package fyp.colorswitch.state;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.EntityManager;
 import fyp.colorswitch.gfx.Assets;
@@ -15,6 +19,8 @@ public class GameOverState extends State {
 	private EntityManager e;
 	private UIManager ui;
 	
+	private JButton replay;
+	
 	public GameOverState(Handler handler) {
 		super(handler);
 		e = new EntityManager(handler);
@@ -26,11 +32,21 @@ public class GameOverState extends State {
 			@Override
 			public void onClick() {
 				handler.getMouseManager().setUIManager(null);
-				State.setState(handler.getGame().gameState);
+				State gameState = new GameState(handler);
+				State.setState(gameState);
 			}
 			
 		}));
 		
+		
+		Icon replayIdle = new ImageIcon(getClass().getResource("/textures/replay1.png"));
+		Icon replayHovered = new ImageIcon(getClass().getResource("/textures/replay2.png"));
+		
+		replay = new JButton("Replay", replayIdle);
+		replay.setRolloverIcon(replayHovered);
+		
+		handler.getGame().getDisplay().getFrame().add(replay);
+		replay.addActionListener(handler);
 	}
 
 	@Override

@@ -5,6 +5,10 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 import fyp.colorswitch.display.Display;
 import fyp.colorswitch.gfx.Assets;
 import fyp.colorswitch.gfx.GameCamera;
@@ -17,12 +21,13 @@ import fyp.colorswitch.state.State;
 
 public class Game implements Runnable{
 	
-	private Display display;
 	private Thread thread;
 	public String title;
 	protected int width, height;
 	public boolean running = false;
 	
+	// Required for display
+	private Display display;
 	private BufferStrategy bs;
 	private Graphics2D g;
 	
@@ -41,6 +46,12 @@ public class Game implements Runnable{
 	// Camera 
 	private GameCamera gameCamera;
 	
+	// Some components for user interface
+	private JButton replay;
+	
+	// Highest score of the game
+	private int highScore;
+
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -59,12 +70,13 @@ public class Game implements Runnable{
 		Assets.init(); // for images
 		
 		handler = new Handler(this);
-		gameCamera = new GameCamera(handler, 0); // Camera not funtional yet
+		gameCamera = new GameCamera(handler, 0); 
 		
 		menuState = new MenuState(handler);
 		gameState = new GameState(handler);
 		gameOverState = new GameOverState(handler);
 		State.setState(menuState);
+		
 	}
 	
 	public void tick() {
@@ -73,6 +85,7 @@ public class Game implements Runnable{
 		if(State.getState() != null) {
 			State.getState().tick();
 		}
+		
 	}
 	
 	public void render() {
@@ -98,9 +111,6 @@ public class Game implements Runnable{
 		bs.show();
 		g.dispose();
 	}
-	
-		
-	
 	
 	@Override
 	public void run() {
@@ -157,6 +167,10 @@ public class Game implements Runnable{
 		return gameCamera;
 	}
 	
+	public Display getDisplay() {
+		return display;
+	}
+	
 	public synchronized void start() {
 		if(running)
 			return;
@@ -180,6 +194,14 @@ public class Game implements Runnable{
 		Random ran = new Random();
 		int x = ran.nextInt(range);
 		return x;
+	}
+	
+	public int getHighScore() {
+		return highScore;
+	}
+
+	public void setHighScore(int highScore) {
+		this.highScore = highScore;
 	}
 	
 }

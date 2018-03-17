@@ -16,7 +16,6 @@ import fyp.colorswitch.entity.obstacle.Bar;
 import fyp.colorswitch.entity.obstacle.Circle;
 import fyp.colorswitch.entity.obstacle.Cross;
 import fyp.colorswitch.entity.obstacle.Rectangle;
-import fyp.colorswitch.world.World;
 
 public class GameState extends State {
 	
@@ -73,14 +72,13 @@ public class GameState extends State {
 	
 	float totalymove = 0;
 	@Override
-	public void tick() {
-		//world.tick();	
+	public void tick() {	
 		
 		em.tick();	
 		if(isGameOver()) {
 			handler.getGame().getMouseManager().setUIManager(null);
-			//State.getState().setUIManager(uimanager);
-			State.setState(handler.getGame().gameOverState);
+			State gameOverState = new GameOverState(handler);
+			State.setState(gameOverState);
 		}	
 		if(checkCollisions())
 			System.out.println("there's a collision"); // to see if the collision detection works 

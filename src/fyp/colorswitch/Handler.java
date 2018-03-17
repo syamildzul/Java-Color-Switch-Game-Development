@@ -1,16 +1,18 @@
 package fyp.colorswitch;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import fyp.colorswitch.entity.obstacle.Circle;
 import fyp.colorswitch.entity.obstacle.Obstacle;
 import fyp.colorswitch.gfx.GameCamera;
 import fyp.colorswitch.input.KeyManager;
 import fyp.colorswitch.input.MouseManager;
-import fyp.colorswitch.world.World;
+import fyp.colorswitch.state.State;
 
-public class Handler {
+public class Handler implements ActionListener {
 
 	private Game game;
-	private World world;
 	
 	public Handler(Game game) {
 		this.game = game;
@@ -44,12 +46,9 @@ public class Handler {
 		return game.getGameCamera();
 	}
 
-	public World getWorld() {
-		return world;
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		State.setState(getGame().gameState);
 	}
 
-	public void setWorld(World world) {
-		this.world = world;
-	}
-	
 }
