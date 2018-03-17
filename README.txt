@@ -1,5 +1,10 @@
-Git bash : (update)
+PROJET L3 INFORMATIQUE
+GROUPE 3
 
-1. git pull (remotename) master // auto fast forward and update local repo
-2. git push origin // update on github
+WARDI Mohammad Zulfiqar
+DZULKAFTAH Muhd Syamil
+MOULAWI Kamilia
+
+Le code source est disponible en ligne : https://drive.google.com/open?id=15oIyvVzbFx4Fzws65yWUBzOUsqwSv_dX
+https://github.com/syamildzdev/Color-Switch
 
