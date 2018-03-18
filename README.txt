@@ -1,10 +1,6 @@
-PROJET L3 INFORMATIQUE
-GROUPE 3
+Projet L3 Informatique for Université d'Orléans
 
-WARDI Mohammad Zulfiqar
-DZULKAFTAH Muhd Syamil
-MOULAWI Kamilia
+Sujet : 
+Un jeu d’arcade façon Color Switch
 
-Le code source est disponible en ligne : https://drive.google.com/open?id=15oIyvVzbFx4Fzws65yWUBzOUsqwSv_dX
-https://github.com/syamildzdev/Color-Switch
 
