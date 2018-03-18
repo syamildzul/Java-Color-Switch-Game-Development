@@ -1,9 +1,10 @@
 package fyp.colorswitch.entity.actor;
 
 import java.awt.Color;
-import java.awt.geom.Ellipse2D;
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
+
+// La classe Actor est pour les entités qui vont changer quelque chôse dans le jeu 
 
 public abstract class Actor extends Entity {
 
@@ -11,8 +12,6 @@ public abstract class Actor extends Entity {
 	
 	protected float xMove, yMove, speed, fall;
 	protected int color = 1;
-	protected ScoreStar star = null;
-	protected Switcher switcher = null;
 	protected double position;
 
 	public Actor(Handler handler, float yPosition, int diameter) {
@@ -22,6 +21,7 @@ public abstract class Actor extends Entity {
 		yMove = 0;
 	}
 
+	// méthode pour le déplacement
 	public void move() {
 		if(handler.getMouseManager().leftPressed)
 			moveY();
@@ -50,34 +50,6 @@ public abstract class Actor extends Entity {
                 return Color.WHITE;
         }
     }
-	
-	public void update(double moveDownDistance) {
-        position += moveDownDistance;
-        if (star != null) {
-            star.update(moveDownDistance);
-        }
-        if (switcher != null) {
-            switcher.update(moveDownDistance);
-        }
-    }
-	/*
-	public boolean starCollision(Ellipse2D.Double body, int bodyColor) {
-        if (star != null && star.collidesWith(body, bodyColor)) {
-            star = null;
-            return true;
-        }
-        return false;
-    }
-	*/
-    public boolean switcherCollision(Ellipse2D.Double body, int bodyColor) {
-        if (switcher != null && switcher.collidesWith(body, bodyColor)) {
-            switcher = null;
-            return true;
-        }
-        return false;
-    }
-	@Override
-	public abstract boolean collidesWith(Ellipse2D.Double body, int color);
     
 	// Getters & Setters 
 	

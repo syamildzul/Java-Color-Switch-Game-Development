@@ -28,7 +28,7 @@ public abstract class UIObject {
 	
 	public void onMouseMove(MouseEvent e) {
 		if(bounds.contains(e.getX(), e.getY()))
-			hovering = true;
+			hovering = true; // boolean flottant est vrai 
 		else 
 			hovering = false;
 	}

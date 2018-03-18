@@ -1,6 +1,5 @@
 package fyp.colorswitch.state;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 
 import fyp.colorswitch.Handler;
@@ -12,6 +11,7 @@ import fyp.colorswitch.entity.actor.ScoreStar;
 import fyp.colorswitch.entity.actor.Switcher;
 import fyp.colorswitch.entity.obstacle.BarMovingLeftToRight;
 import fyp.colorswitch.entity.obstacle.BarMovingRightToLeft;
+import fyp.colorswitch.entity.obstacle.BarStare;
 import fyp.colorswitch.entity.obstacle.Circle;
 import fyp.colorswitch.entity.obstacle.DoubleBar;
 import fyp.colorswitch.entity.obstacle.obsrectangle;
@@ -64,11 +64,13 @@ public class GameState extends State {
 		
 		em.tick();	
 		if(isGameOver()) {
+			// il faut mettre UI Manager à null pour pouvoir l'initialiser à nouveau dans GameOverState.
 			handler.getGame().getMouseManager().setUIManager(null);
 			State gameOverState = new GameOverState(handler);
-			State.setState(gameOverState);
+			State.setState(gameOverState); // mettre l'état courant à game over state
 		}	
 		
+		//si la balle est plus haut que le dernier obstacle crée, donc, appeler la methode randomSpawn()
 		if(player.getyPosition() < em.getEntities().get(em.getEntities().size()-1).getyPosition()+200) 
 			randomSpawn();
 	}
@@ -76,12 +78,15 @@ public class GameState extends State {
 	@Override
 	public void render(Graphics2D g) {
 		
+		// afficher tous les entités dans le tableau d'entités dans l'entity manager em
 		em.render(g);
+		
+		// afficher le score
 		score.render(g);
-		g.setColor(Color.white);
 		
 	}
 
+	// vérification de fin de partie
 	public boolean isGameOver() {
 		if(checkCollisions())
 			return true;
@@ -89,6 +94,8 @@ public class GameState extends State {
 			return false;
 	}
 	
+	
+	// détection de collision entre les entités
 	public boolean checkCollisions() {
 		for(int i = 0; i < em.getEntities().size() ; i++) {
 			
@@ -101,6 +108,7 @@ public class GameState extends State {
 				
 				// case switcher
 				if(currentEntity.getClass() == switcher.getClass()) {
+					player.playSound("switch.wav");
 					em.getEntities().remove(currentEntity); // the switcher will be removed
 					player.setColor(handler.getGame().randomInt(4));
 					return false;
@@ -108,12 +116,14 @@ public class GameState extends State {
 				
 				// case scorestar
 				if(currentEntity == scoreStar) {
+					player.playSound("score.wav");
 					scoreStar.setyPosition(scoreStar.getyPosition() - 300);
 					playerscore++;
 					score.setPlayerScore(playerscore);
 					return false;
 				}
 				
+				player.playSound("explosion.wav");
 				return true;
 			}	
 			else
@@ -125,24 +135,39 @@ public class GameState extends State {
 		
 	int counter = 0;
 
-	public void randomSpawn() {
+	//afficher aléatoirement les obstacles sans se croiser entre eux
+		public void randomSpawn() {
 
-		int distanceBetweenObstacle = 400;
-		int x = handler.getGame().randomInt(7);
-		int y = handler.getGame().randomInt(2)+1;
-		int spawnHeight = (int) (em.getEntities().get(em.getEntities().size()-1).getyPosition() - distanceBetweenObstacle);
-		switch(x) {
-			case 0 : em.addEntity(new Circle(handler, spawnHeight, 200, y)); break;
-			case 1 : em.addEntity(new BarMovingLeftToRight(handler, spawnHeight)); break;
-			//case 2 : em.addEntity(new obscross(handler, spawnHeight)); break; 
-			//GOD MODE
-			case 3 : em.addEntity(new obsrectangle(handler,spawnHeight)); break;
-			case 4 : em.addEntity(new BarMovingRightToLeft(handler, spawnHeight)); break;
-			case 5 : em.addEntity(new DoubleBar(handler, spawnHeight)); break;
-			case 6 : em.addEntity(new Switcher(handler,spawnHeight)); break;
+			int distanceBetweenObstacle = 400; //distance minimale entre les obstacles
+			int x = handler.getGame().randomInt(7); //generer un nombre aléatoire entre 0-6
+			int y = handler.getGame().randomInt(2) + 1; //generer un nombre aléatoire entre 1-2
+
+			//prendre la taille de derniere obstacle créé et ajouter la distance minimale
+			int spawnHeight = (int) (em.getEntities().get(em.getEntities().size() - 1).getyPosition() - distanceBetweenObstacle);
+			switch (x) {
+			case 0: //afficher le cerle
+				em.addEntity(new Circle(handler, spawnHeight, 200, y));
+				break;
+			case 1: //afficher la barre
+				em.addEntity(new BarStare(handler, spawnHeight));
+				break;
+			// case 2 : em.addEntity(new obscross(handler, spawnHeight)); break;
+			// VERSION TRES DIFFICILE //decommenter si vous voulez jouer avec l'obstacle Croix
+			case 3: //afficher le rectangle
+				em.addEntity(new obsrectangle(handler, spawnHeight));
+				break;
+			case 4: //afficher la barre
+				em.addEntity(new BarMovingRightToLeft(handler, spawnHeight));
+				break;
+			case 5://afficher la barre
+				em.addEntity(new DoubleBar(handler, spawnHeight));
+				break;
+			case 6://afficher le Switcher (qui change la couleur de la balle aléatoriement)
+				em.addEntity(new Switcher(handler, spawnHeight));
+				break;
+			}
+
 		}
-
-	}
 	
 	public EntityManager getEntityManager() {
 		return this.em;

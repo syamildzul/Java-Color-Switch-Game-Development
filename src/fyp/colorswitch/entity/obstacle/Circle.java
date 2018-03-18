@@ -15,7 +15,7 @@ public class Circle extends Obstacle {
 	private static final int DEFAULT_CIRCLE_ANGULARSPEED = 1;
 	
 	private int diameter = DEFAULT_CIRCLE_DIAMETER;
-	private int angularSpeed = DEFAULT_CIRCLE_ANGULARSPEED;
+	private int angularSpeed = DEFAULT_CIRCLE_ANGULARSPEED; // le nombre à ajouter à l'angle courant de chaque tick
 	private int thickness;
 	private double currentAngle;
 	
@@ -29,22 +29,24 @@ public class Circle extends Obstacle {
 		this.currentAngle = 0;
 		this.angularSpeed = angularSpeed;
 		
+		// initialisation de tableau d'arcs
 		lesArc = new ArrayList<Arc>();
 		
-		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle, 0, 0));
-		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 90, 1, 0));
-		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 180, 2, 0));
-		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 270, 3, 0));
+		// ajouts des arcs dans le tableau d'arcs
+		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle, 0));
+		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 90, 1));
+		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 180, 2));
+		lesArc.add(new Arc(handler, yPosition, diameter, currentAngle + 270, 3));
 		
 	}
-	
+
 	public void updateAngle() {
 		currentAngle = (currentAngle + angularSpeed) % 360;
 	}	
 
 	@Override
 	public void tick() {
-		updateAngle();
+		updateAngle(); // màj de l'angle courant
 	}
 	
 	@Override

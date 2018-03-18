@@ -11,7 +11,9 @@ public class Switcher extends Actor {
 	
 	private static final int DEFAULT_DIAMETER = 20;
 	
-	private Ellipse2D.Double switcherBody;
+	private Ellipse2D.Double switcherBody; // le corps du switcher
+										   // par contre, on vas pas l'utiliser pour l'affichage de switcher
+										   // car le switcher a plusieur couleur
 	
 	public Switcher(Handler handler, float yPosition) {
 		super(handler, yPosition, DEFAULT_DIAMETER);
@@ -48,8 +50,8 @@ public class Switcher extends Actor {
 	public boolean collidesWith(Double body, int color) {
 		Area playerArea = new Area(body);
 		Area switcherArea = new Area(switcherBody);
-		switcherArea.intersect(playerArea);
-		if(!switcherArea.isEmpty())
+		switcherArea.intersect(playerArea); // donne l'aire de l'intersection
+		if(!switcherArea.isEmpty()) 
 			return true;
 		else 
 			return false;

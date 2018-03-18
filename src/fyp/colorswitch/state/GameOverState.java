@@ -5,8 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import javax.swing.JButton;
-
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.EntityManager;
 import fyp.colorswitch.gfx.Assets;
@@ -19,7 +17,8 @@ public class GameOverState extends State {
 	private EntityManager e;
 	private UIManager ui;
 	
-	private JButton replay;
+	// private BarMovingLeftToRight LtR;
+	// private BarMovingRightToLeft RtL;
 	
 	public GameOverState(Handler handler) {
 		super(handler);
@@ -27,8 +26,13 @@ public class GameOverState extends State {
 		ui = new UIManager(handler);
 		handler.getMouseManager().setUIManager(ui);
 		
-		//e.addEntity(new BarMovingLeftToRight(handler, midHeight - 50));
-		//e.addEntity(new BarMovingRightToLeft(handler, midHeight + 90));
+		// play the music
+		//getmusic();
+		// e.setEntities(null);
+		// LtR = new BarMovingLeftToRight(handler, midHeight -40);
+		// RtL = new BarMovingRightToLeft(handler, midHeight +90);
+		// e.addEntity(LtR);
+		// e.addEntity(RtL);
 		
 		ui.addObject(new UIImageButton(handler, midHeight - 35, 70, 70, Assets.replay, new ClickListener() {
 
@@ -37,11 +41,12 @@ public class GameOverState extends State {
 				handler.getMouseManager().setUIManager(null);
 				State gameState = new GameState(handler);
 				State.setState(gameState);
+				closemusic();
 			}
 			
 		}));
 		
-		
+		// le bouton n'est pas affiché
 //		Icon replayIdle = new ImageIcon(getClass().getResource("/textures/replay1.png"));
 //		Icon replayHovered = new ImageIcon(getClass().getResource("/textures/replay2.png"));
 //		
@@ -52,16 +57,21 @@ public class GameOverState extends State {
 //		replay.addActionListener(handler);
 	}
 
+	int i = 500;
+	
 	@Override
 	public void tick() {
+		if (i == 500) {
+			getmusic();
+			i = 0;
+		}
+		i++;
 		e.tick();
 		ui.tick();
 	}
 
 	@Override
 	public void render(Graphics2D g) {
-		
-		//e.getEntities().get(0)
 		
 		e.render(g);
 		Graphics gd = g;
@@ -71,7 +81,7 @@ public class GameOverState extends State {
 
 		g.setColor(Color.white);
 		g.setFont(new Font("Arial", Font.CENTER_BASELINE, 50));
-		g.drawString(String.valueOf(handler.getGame().getHighScore()), 250, 620);
+		g.drawString(String.valueOf(handler.getGame().getHighScore()), 250, 630);
 	}
 
 }

@@ -16,6 +16,7 @@ public class GameCamera {
 		midLine = lowerLine - handler.getHeight() / 2;
 	}
 
+	// cette méthode va mettre l'entité e (joueur) toujours en millieu
 	public void updatePlayerView(Entity e) {
 		yOffset = e.getyPosition() - handler.getHeight() / 2;
 		

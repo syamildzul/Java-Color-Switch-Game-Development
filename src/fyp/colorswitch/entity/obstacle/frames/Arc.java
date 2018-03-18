@@ -8,7 +8,8 @@ import java.awt.geom.Rectangle2D;
 import fyp.colorswitch.Handler;
 import fyp.colorswitch.entity.Entity;
 
-public class Arc extends Arc2D {
+public class Arc extends Arc2D { // extends Arc2D pour pouvoir appeler la méthode setAngleStart(angle) d'Arc2D 
+								// dans la classe Cercle
 	
 	private int diameter, colorType;
 	private double currentAngle, angularSpeed;
@@ -18,7 +19,7 @@ public class Arc extends Arc2D {
 	private Handler handler;
 	private float thickness;
 	
-	public Arc (Handler handler, float yPosition, int diameter, double currentAngle, int color, int type) {
+	public Arc (Handler handler, float yPosition, int diameter, double currentAngle, int color) {
 		this.handler = handler;
 		this.x = handler.getWidth() / 2 - diameter / 2;
 		this.yPosition = yPosition;
@@ -26,9 +27,10 @@ public class Arc extends Arc2D {
 		this.currentAngle = currentAngle;
 		this.colorType = color;
 		this.angularSpeed = 1;
-		this.type = type;
 		this.thickness = 20;
-		arc = new Arc2D.Double(x, yPosition, diameter, diameter, (int) currentAngle, 90, type);
+		
+		// initialisation d'arc
+		arc = new Arc2D.Double(x, yPosition, diameter, diameter, (int) currentAngle, 90, 0);
 	}
 
 	public void tick() {

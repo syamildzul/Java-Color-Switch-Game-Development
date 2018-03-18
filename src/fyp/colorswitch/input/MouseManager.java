@@ -6,26 +6,22 @@ import java.awt.event.MouseMotionListener;
 
 import fyp.colorswitch.ui.UIManager;
 
-
 public class MouseManager implements MouseListener, MouseMotionListener {
-	
-	private boolean[] keys;
-	public boolean jump;
+
 	public boolean leftPressed, rightPressed;
 	public boolean isClicked;
 	private int mouseX, mouseY;
 	private UIManager uiManager;
 
 	public MouseManager() {
-		keys = new boolean[256];
+		
 	}
 	
 	public void tick() {
-		if(leftPressed)
-			jump = true;
+		
 	}
 	
-	@Override
+	@Override // appel cette méthode si le bouton est cliqué
 	public void mousePressed(MouseEvent e) {
 		if(e.getButton() == MouseEvent.BUTTON1)
 			leftPressed = true;
@@ -33,7 +29,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 			rightPressed = true;
 	}
 
-	@Override
+	@Override // appel cette méthode si le bouton est relâché
 	public void mouseReleased(MouseEvent e) {
 		if(e.getButton() == MouseEvent.BUTTON1)
 			leftPressed = false;
@@ -63,24 +59,23 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 		
 	}
 	
-	public void setUIManager(UIManager uiManager) {
-		this.uiManager = uiManager;
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override // servira dans vérifier si le souris flotte sur le bouton
+	public void mouseMoved(MouseEvent e) {
+		mouseX = e.getX();
+		mouseY = e.getY();
+		
+		if(uiManager != null)
+			uiManager.onMouseMove(e);
 	}
 	
-	public boolean[] getKeys() {
-		return keys;
-	}
-
-	public void setKeys(boolean[] keys) {
-		this.keys = keys;
-	}
-
-	public boolean isJump() {
-		return jump;
-	}
-
-	public void setJump(boolean jump) {
-		this.jump = jump;
+	public void setUIManager(UIManager uiManager) {
+		this.uiManager = uiManager;
 	}
 
 	public boolean isLeftPressed() {
@@ -123,19 +118,6 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 		this.mouseY = mouseY;
 	}
 
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		mouseX = e.getX();
-		mouseY = e.getY();
-		
-		if(uiManager != null)
-			uiManager.onMouseMove(e);
-	}
+	
 	
 }

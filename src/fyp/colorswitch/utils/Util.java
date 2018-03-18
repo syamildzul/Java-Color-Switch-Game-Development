@@ -1,48 +1,17 @@
 package fyp.colorswitch.utils;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.util.Random;
-
-import fyp.colorswitch.entity.Entity;
-
 public class Util {
+
+	 /*
+	  * 
+	  * 
+	 
+	 Cette classe est réserver pour mettre les outils 
 	
-	private int color = 0;
+	 J'ai pensé à créer des méthodes qui peuvent ouvrir un fichier et écrire le high score pour le stocker
+	 comme alternative de l'utilisation de la base de données en Java
 	
-	protected Color getColor() {
-        switch (color) {
-            case 1:
-                return Entity.colors[0];
-            case 2:
-                return Entity.colors[1];
-            case 3:
-                return Entity.colors[2];
-            case 4:
-                return Entity.colors[3];
-            default:
-                return Color.WHITE;
-        }
-    }
-	
-	public void switchColor(Graphics2D g) {
-		int x = randomInt();
-		setColor(g, x);
-	}
-	
-	public void setColor(Graphics2D g, int c) {
-		switch(c) {
-			case 1 : g.setColor(Entity.colors[0]); break;
-			case 2 : g.setColor(Entity.colors[1]); break;
-			case 3 : g.setColor(Entity.colors[2]); break;
-			case 4 : g.setColor(Entity.colors[3]); break;
-		}
-	}
-	
-	public int randomInt() {
-		Random ran = new Random();
-		int x = ran.nextInt(4);
-		return x;
-	}
-	
+	*
+	*
+	*/
 }

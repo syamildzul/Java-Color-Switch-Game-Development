@@ -13,6 +13,7 @@ public abstract class Entity {
 	protected float midPos;
 	protected int width;
 	
+	// On a pris ces couleurs de l'internet
 	// Turquoise, Vivid Yellow, Electric Violet, Bright Pink
     public static final Color colors[] = {new Color(50, 226, 241),
         new Color(244, 222, 14), new Color(140, 18, 251), new Color(255, 0, 128)};
@@ -25,11 +26,11 @@ public abstract class Entity {
 		this.x = midPos;
 	}
 	
-	// Abstract functions
+	// Méthodes abstract pour les fils
 	
 	public abstract void tick();
 	public abstract void render(Graphics2D g);
-	public abstract boolean collidesWith(Ellipse2D.Double body, int bodycolor);
+	public abstract boolean collidesWith(Ellipse2D.Double body, int bodycolor); // sert pour la collision détection
 
 	// Getters & Setters
 	

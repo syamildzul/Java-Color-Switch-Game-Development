@@ -1,14 +1,12 @@
 package fyp.colorswitch;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import fyp.colorswitch.gfx.GameCamera;
-import fyp.colorswitch.input.KeyManager;
 import fyp.colorswitch.input.MouseManager;
 
-public class Handler implements ActionListener {
+//Cette classe sert à passer nos variables d'une façon plus pratique 
 
+public class Handler {
+	
 	private Game game;
 	
 	public Handler(Game game) {
@@ -31,21 +29,17 @@ public class Handler implements ActionListener {
 		this.game = game;
 	}
 	
+	/*
 	public KeyManager getKeyManager() {
 		return game.getKeyManager();
 	}
-
+	*/
 	public MouseManager getMouseManager() {
 		return game.getMouseManager();
 	}
 	
 	public GameCamera getGameCamera() {
 		return game.getGameCamera();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent event) {
-		//State.setState(getGame().gameState);
 	}
 
 }

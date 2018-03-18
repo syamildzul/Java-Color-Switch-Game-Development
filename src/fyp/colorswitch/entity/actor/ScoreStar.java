@@ -9,6 +9,7 @@ import java.awt.geom.Ellipse2D.Double;
 import fyp.colorswitch.Handler;
 
 public class ScoreStar extends Actor {
+	// j'ai pris ces codes de l'internet et l'adapter pour notre jeu
 	
 	private Polygon star;
 	private int[] xList, yList;

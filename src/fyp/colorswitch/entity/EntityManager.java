@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import fyp.colorswitch.Handler;
 
+// Cette classe est pour bien gérer tous les entités 
+
 public class EntityManager {
 	
 	private Handler handler;
@@ -15,6 +17,7 @@ public class EntityManager {
 	}
 	
 	public void tick() {
+		// update tous les entities
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.tick();
@@ -22,12 +25,14 @@ public class EntityManager {
 	}
 	
 	public void render(Graphics2D g) {
+		// afficher tous les entities
 		for(Entity e : entities) {
 			e.render(g);
 		}
 	}
 	
 	public void addEntity(Entity e) {
+		// ajout d'entity dans l'arraylist entities
 		entities.add(e);
 	}
 
