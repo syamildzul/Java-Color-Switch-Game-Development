@@ -41,7 +41,8 @@ public class Score extends Actor {
 
 	public void setPlayerScore(int playerScore) {
 		this.playerScore = playerScore;
-		handler.getGame().setHighScore(this.playerScore);
+		if(playerScore > handler.getGame().getHighScore())
+			handler.getGame().setHighScore(this.playerScore);
 	}
 	
 }

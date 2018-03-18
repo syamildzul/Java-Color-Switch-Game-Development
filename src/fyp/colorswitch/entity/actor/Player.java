@@ -94,8 +94,7 @@ public class Player extends Actor {
 		if(p.getY() <= midLine) {
 			lowerLine += yMove;
 			midLine += yMove;
-		}
-		System.out.println("player position is " + p.getY());		
+		}		
 	}
 	
 	public boolean isStarted() {
