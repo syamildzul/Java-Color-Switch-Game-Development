@@ -20,7 +20,7 @@ public class ScoreStar extends Actor {
     int temp = 270;
 	
 	public ScoreStar(Handler handler, float yPosition, int edges, double size) {
-		super(handler, yPosition, 0);
+		super(handler, yPosition);
 		x = midPos;
 		this.edges = edges;
 		xList = new int[edges];

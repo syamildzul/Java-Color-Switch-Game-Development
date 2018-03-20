@@ -10,62 +10,63 @@ import fyp.colorswitch.entity.Entity;
 import java.util.ArrayList;
 
 public class BarMovingRightToLeft extends Obstacle {
-	// The speed movement of the bar
-	private static final int speed = 1;
-	// First bar
-	private int xsline, xsline2, xsline3, xsline4; // xstart of each line
-	private int xeline, xeline2, xeline3, xeline4;// xend of each line
-	// second bar
-	private int Sxsline, Sxsline2, Sxsline3, Sxsline4;// xstart of each line
-	private int Sxeline, Sxeline2, Sxeline3, Sxeline4;// xend of each line
-	private float y;
-	// the width of the screen
-	private int width = 500;
+	// vitesse du mouvement de la bar
+	private final int speed;
 
+	// premiere bar // coordonées debut et fin de chaque ligne
+	private int xsline, xsline2, xsline3, xsline4;
+	private int xeline, xeline2, xeline3, xeline4;
+	// deuxieme bar
+	private int Sxsline, Sxsline2, Sxsline3, Sxsline4;
+	private int Sxeline, Sxeline2, Sxeline3, Sxeline4;
+
+	private float y;// position de la bar selon y
+	private static int width = 500;// largeur de game state
 	private Line2D line, line2, line3, line4, Sline, Sline2, Sline3, Sline4;
-	private ArrayList<Line2D> lines;
+	private ArrayList<Line2D> lines = new ArrayList<Line2D>();// liste qui contiendera l ensemble des lignes
 
-	public BarMovingRightToLeft(Handler handler, float yPosition) {
-		super(handler, yPosition,0);
-		y = yPosition - handler.getGameCamera().getyOffset();// widthposition of
-																// the bar on
-																// the screen
-		
+	public BarMovingRightToLeft(Handler handler, float yPosition, int speed) {
+		super(handler, yPosition);
+		this.speed = speed;
+		y = yPosition
+				- handler.getGameCamera().getyOffset();/*
+														 * pour que y aura tjr la meme position y=yposition defini
+														 * initialement - yoffset la hauteur deja parcouru par camera
+														 */
 		initialisation();
 
-		lines = new ArrayList<Line2D>();
+		// l ordre est important pour reconaitre la couleur
+		lines.add(line = new Line2D.Double());// instancier chaque line et l'ajouter dans la liste
+		lines.add(line2 = new Line2D.Double());
+		lines.add(line3 = new Line2D.Double());
+		lines.add(line4 = new Line2D.Double());
+		// les 4 lignes de la 2eme bar
+		lines.add(Sline = new Line2D.Double());
+		lines.add(Sline2 = new Line2D.Double());
+		lines.add(Sline3 = new Line2D.Double());
+		lines.add(Sline4 = new Line2D.Double());
 
-		lines.add(line = new Line2D.Double(xsline, y, xeline, y));// l ordre est important pour savoir la couleur de
-																	// chak ligne qu on pointe
-		lines.add(line2 = new Line2D.Double(xsline2, y, xeline2, y));
-		lines.add(line3 = new Line2D.Double(xsline3, y, xeline3, y));
-		lines.add(line4 = new Line2D.Double(xsline4, y, xeline4, y));
-
-		lines.add(Sline = new Line2D.Double(Sxsline, y, Sxeline, y));
-		lines.add(Sline2 = new Line2D.Double(Sxsline2, y, Sxeline2, y));
-		lines.add(Sline3 = new Line2D.Double(Sxsline3, y, Sxeline3, y));
-		lines.add(Sline4 = new Line2D.Double(Sxsline4, y, Sxeline4, y));
 	}
-	
-	private void initialisation() {
-		// initialisation of the first bar
-		xsline = 10;
-		xeline = 115; // on laisse 1 px entre chaque lines pour ne pas avoir le
-						// pixel de la premiere ligne en dessous dela deuxieme
-						// ligne
+
+	private void initialisation() {// affecter les valeur des coordonnées aux lignes dans gamestate
+		// 1er bar
+		xsline = 10; // 20 px laisser entre chaque ligne // 105 defini comme longueur de chaque ligne
+		xeline = 115;
+
 		xsline2 = 135;
 		xeline2 = 240;
-		
+
 		xsline3 = 260;
 		xeline3 = 365;
-		
+
 		xsline4 = 385;
 		xeline4 = 490;
 		/*
-		 * initialisation of the second bar each line takes minus line of the first bar
-		 * to have the second bar that appears directly after the disappears of each
-		 * pixel of the first bar
+		 * initialisation 2eme bar chaque line aura la position ds le sens negatif pour
+		 * avoir la bar qui apparait directement des qun pixel de la premiere bar
+		 * disparait
 		 */
+
 		Sxsline = xsline + width;
 		Sxeline = xeline + width;
 		Sxsline2 = xsline2 + width;
@@ -77,12 +78,11 @@ public class BarMovingRightToLeft extends Obstacle {
 
 	}
 
-
 	@Override
 	public void tick() {
 
-		// the sens is left to right
-		xsline -= speed;// vitesse du mouvement de 2
+		// le sens est right to left
+		xsline -= speed;// la vitesse c le speed passé en parametre au constructeur
 		xeline -= speed;
 		xsline2 -= speed;
 		xeline2 -= speed;
@@ -100,13 +100,13 @@ public class BarMovingRightToLeft extends Obstacle {
 		Sxsline4 -= speed;
 		Sxeline4 -= speed;
 
-		if (Sxeline4 == 490) {
+		if (Sxeline4 == 500) {// premiere bar est passé reinitialisation des deux bars
 			initialisation();
 		}
 	}
 
 	@Override
-	public void render(Graphics2D g) {
+	public void render(Graphics2D g) {// g objet quis ns permet d afficher (dessiner) nos lines
 
 		g.setStroke(new BasicStroke(20));// l'epaisseur de la bar
 		TranslateBar(g);
@@ -114,69 +114,70 @@ public class BarMovingRightToLeft extends Obstacle {
 	}
 
 	public void TranslateBar(Graphics2D g) {
-		y = yPosition - handler.getGameCamera().getyOffset();
+		y = yPosition- handler.getGameCamera().getyOffset(); /*
+														 * pour que y aura tjr la meme position y=yposition defini
+														 * initialement - yoffset la hauteur deja parcouru par camera
+														 */
 
-		lines.get(0).setLine(new Line2D.Double(xsline, y, xeline, y));
-		lines.get(1).setLine(new Line2D.Double(xsline2, y, xeline2, y));
-		lines.get(2).setLine(new Line2D.Double(xsline3, y, xeline3, y));
-		lines.get(3).setLine(new Line2D.Double(xsline4, y, xeline4, y));
+		lines.get(0).setLine(xsline, y, xeline, y);// recuperer chaque ligne de la liste et lui affecter ces coordonnées
+		lines.get(1).setLine(xsline2, y, xeline2, y);
+		lines.get(2).setLine(xsline3, y, xeline3, y);
+		lines.get(3).setLine(xsline4, y, xeline4, y);
 
-		lines.get(4).setLine(new Line2D.Double(Sxsline, y, Sxeline, y));
-		lines.get(5).setLine(new Line2D.Double(Sxsline2, y, Sxeline2, y));
-		lines.get(6).setLine(new Line2D.Double(Sxsline3, y, Sxeline3, y));
-		lines.get(7).setLine(new Line2D.Double(Sxsline4, y, Sxeline4, y));
+		lines.get(4).setLine(Sxsline, y, Sxeline, y);
+		lines.get(5).setLine(Sxsline2, y, Sxeline2, y);
+		lines.get(6).setLine(Sxsline3, y, Sxeline3, y);
+		lines.get(7).setLine(Sxsline4, y, Sxeline4, y);
 
-		// its for drawing the first bar that appears directly on the main
-		// screen
-		g.setColor(Entity.colors[0]);
-		g.draw(line);
+		// 1er bar
+		g.setColor(Entity.colors[0]);// affecter une couleur au graphique
+		g.draw(lines.get(0));// dessiner la line a l aide du graphique
 		g.setColor(Entity.colors[1]);
-		g.draw(line2);
+		g.draw(lines.get(1));
 		g.setColor(Entity.colors[2]);
-		g.draw(line3);
+		g.draw(lines.get(2));
 		g.setColor(Entity.colors[3]);
-		g.draw(line4);
+		g.draw(lines.get(3));
 
-		// its for drawing the second bar
+		// 2eme bar
 		g.setColor(Entity.colors[0]);
-		g.draw(Sline);
+		g.draw(lines.get(4));
 		g.setColor(Entity.colors[1]);
-		g.draw(Sline2);
+		g.draw(lines.get(5));
 		g.setColor(Entity.colors[2]);
-		g.draw(Sline3);
+		g.draw(lines.get(6));
 		g.setColor(Entity.colors[3]);
-		g.draw(Sline4);
-		
-		
-		tick();
+		g.draw(lines.get(7));
+
+		tick(); // pour bouger la ligne creer
 
 	}
 
 	@Override
-	public boolean collidesWith(Ellipse2D.Double body, int color) {
+	public boolean collidesWith(Ellipse2D.Double body, int color) {// balle et sa couleur
 
 		for (int i = 0; i < lines.size(); i++) {
-			Area playerArea = new Area(body);
-			Area lineArea = new Area(lines.get(i).getBounds());
-			// System.out.println(leslines.get(i).getBounds());
-			playerArea.intersect(lineArea);// playerarea recoit l intersection
-											// entre lui mm et l arcarea
+			Area playerArea = new Area(body);// recuperer l area de la balle avc ces coordonnées
+			Area lineArea = new Area(lines.get(i).getBounds());// recuperer l area des ligne avec leur limite
+																// (getbounds)
 
-			if (!playerArea.isEmpty()) { // si y a pas d intersection entre les
-											// 2 playerarea recoit null cad
-											// empty
+			playerArea.intersect(lineArea);// playerarea recoit l intersection entre lui meme et l linearea
+											// si y a pas d intersection entre les 2 , playerarea recoit null cad empty
 
-				if (color != getcolor(i))// si couleur balle diff couleur
-					// arc
+			if (!playerArea.isEmpty()) {
+				// cad il existe une intersection (collision)
+
+				if (color != getcolor(i))// si couleur balle diff couleur ligne
 					return true; // il existe collisions quitter la methode
 			} else
-				continue;
+				continue;// il existe pas d intersection
 		}
-		return false;
+		return false; // pas de collision line et balle sont disjoint
 	}
 
-	public int getcolor(int i) {
-		switch (i) {
+	public int getcolor(int i) { 
+
+		switch (i) {// retourner la couleur qui correspond a chaque ligne
 		case 4:
 			return 0;
 		case 5:
@@ -186,8 +187,12 @@ public class BarMovingRightToLeft extends Obstacle {
 		case 7:
 			return 3;
 		default:
-			return i;
+			return i; // pr les ligne 0,1,2,3 retourner la mm valeur
 		}
+
 	}
 
 }
+
+
+

@@ -31,7 +31,7 @@ public class obsrectangle extends Obstacle {
 	private int rangestate; //for collision
 	
 	public obsrectangle(Handler handler, float yPosition) {
-		super(handler, yPosition,0);
+		super(handler, yPosition);
 		yPosition = yPosition - handler.getGameCamera().getyOffset();
 		// TODO Auto-generated constructor stub
 		

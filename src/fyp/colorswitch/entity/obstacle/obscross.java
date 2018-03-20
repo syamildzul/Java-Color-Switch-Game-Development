@@ -32,7 +32,7 @@ public class obscross extends Obstacle {
 	private ArrayList<Line2D> lesCross;
 
 	public obscross(Handler handler, float yPosition) {
-		super(handler, yPosition,0);
+		super(handler, yPosition);
 		// TODO Auto-generated constructor stub
 		yPosition = yPosition - handler.getGameCamera().getyOffset();
 		

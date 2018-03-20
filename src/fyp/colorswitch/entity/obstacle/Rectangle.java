@@ -17,8 +17,8 @@ public class Rectangle extends Obstacle {
 	private float upY, downY;
 	private ArrayList<Line> lesLines;
 	
-	public Rectangle(Handler handler, float yPosition, int width) {
-		super(handler, yPosition, width);
+	public Rectangle(Handler handler, float yPosition) {
+		super(handler, yPosition);
 		this.leftX = handler.getWidth() / 2 - 85;
 		this.rightX = handler.getWidth() / 2 + 85;
 		this.upY = yPosition - 85;

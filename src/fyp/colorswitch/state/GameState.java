@@ -11,7 +11,7 @@ import fyp.colorswitch.entity.actor.ScoreStar;
 import fyp.colorswitch.entity.actor.Switcher;
 import fyp.colorswitch.entity.obstacle.BarMovingLeftToRight;
 import fyp.colorswitch.entity.obstacle.BarMovingRightToLeft;
-import fyp.colorswitch.entity.obstacle.BarStare;
+import fyp.colorswitch.entity.obstacle.BarWave;
 import fyp.colorswitch.entity.obstacle.Circle;
 import fyp.colorswitch.entity.obstacle.DoubleBar;
 import fyp.colorswitch.entity.obstacle.obsrectangle;
@@ -141,6 +141,7 @@ public class GameState extends State {
 			int distanceBetweenObstacle = 400; //distance minimale entre les obstacles
 			int x = handler.getGame().randomInt(7); //generer un nombre aléatoire entre 0-6
 			int y = handler.getGame().randomInt(2) + 1; //generer un nombre aléatoire entre 1-2
+			int z = handler.getGame().randomInt(2); // générer un nombre aléatoire 0-2 pour DoubleBar
 
 			//prendre la taille de derniere obstacle créé et ajouter la distance minimale
 			int spawnHeight = (int) (em.getEntities().get(em.getEntities().size() - 1).getyPosition() - distanceBetweenObstacle);
@@ -149,7 +150,7 @@ public class GameState extends State {
 				em.addEntity(new Circle(handler, spawnHeight, 200, y));
 				break;
 			case 1: //afficher la barre
-				em.addEntity(new BarStare(handler, spawnHeight));
+				em.addEntity(new BarWave(handler, spawnHeight, y));
 				break;
 			// case 2 : em.addEntity(new obscross(handler, spawnHeight)); break;
 			// VERSION TRES DIFFICILE //decommenter si vous voulez jouer avec l'obstacle Croix
@@ -157,13 +158,13 @@ public class GameState extends State {
 				em.addEntity(new obsrectangle(handler, spawnHeight));
 				break;
 			case 4: //afficher la barre
-				em.addEntity(new BarMovingRightToLeft(handler, spawnHeight));
+				em.addEntity(new BarMovingRightToLeft(handler, spawnHeight, y));
 				break;
 			case 5://afficher la barre
-				em.addEntity(new DoubleBar(handler, spawnHeight));
+				em.addEntity(new DoubleBar(handler, spawnHeight, y, z));
 				break;
 			case 6://afficher le Switcher (qui change la couleur de la balle aléatoriement)
-				em.addEntity(new Switcher(handler, spawnHeight));
+				em.addEntity(new Switcher(handler, spawnHeight + 200));
 				break;
 			}
 

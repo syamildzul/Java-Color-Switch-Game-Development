@@ -16,7 +16,7 @@ public class Switcher extends Actor {
 										   // car le switcher a plusieur couleur
 	
 	public Switcher(Handler handler, float yPosition) {
-		super(handler, yPosition, DEFAULT_DIAMETER);
+		super(handler, yPosition);
 		
 		switcherBody = new Ellipse2D.Double(x - DEFAULT_DIAMETER / 2, yPosition, DEFAULT_DIAMETER, DEFAULT_DIAMETER);
 	}

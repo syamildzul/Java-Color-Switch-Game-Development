@@ -25,7 +25,7 @@ public class Player extends Actor {
 	private Ellipse2D.Double p; // La balle est de type Ellipse2D
 	
 	public Player(Handler handler, float yPosition, int color) {
-		super(handler, yPosition, DEFAULT_WIDTH);
+		super(handler, yPosition);
 		this.color = color;
 		midLine = handler.getHeight() / 2;
 		lowerLine = handler.getHeight();

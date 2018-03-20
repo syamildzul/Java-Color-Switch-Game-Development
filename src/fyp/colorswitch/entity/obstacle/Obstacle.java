@@ -9,8 +9,8 @@ public abstract class Obstacle extends Entity {
 	
 	protected float xMove, yMove, speed;
 	
-	public Obstacle(Handler handler, float yPosition, int width) {
-		super(handler, yPosition, width);
+	public Obstacle(Handler handler, float yPosition) {
+		super(handler, yPosition);
 		xMove = 0;
 		yMove = 0;
 		speed = DEFAULT_SPEED;

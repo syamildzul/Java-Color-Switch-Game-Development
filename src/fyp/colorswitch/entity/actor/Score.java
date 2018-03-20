@@ -12,7 +12,7 @@ public class Score extends Actor {
 	public int playerScore;
 	
 	public Score(Handler handler, float yPosition) {
-		super(handler, yPosition, 0);
+		super(handler, yPosition);
 		x = 20;
 		this.playerScore = 0;;
 	}

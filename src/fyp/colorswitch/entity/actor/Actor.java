@@ -14,8 +14,8 @@ public abstract class Actor extends Entity {
 	protected int color = 1;
 	protected double position;
 
-	public Actor(Handler handler, float yPosition, int diameter) {
-		super(handler, yPosition, diameter);
+	public Actor(Handler handler, float yPosition) {
+		super(handler, yPosition);
 		speed = DEFAULT_SPEED;
 		xMove = 0;
 		yMove = 0;

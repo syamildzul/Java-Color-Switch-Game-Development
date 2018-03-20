@@ -18,10 +18,9 @@ public abstract class Entity {
     public static final Color colors[] = {new Color(50, 226, 241),
         new Color(244, 222, 14), new Color(140, 18, 251), new Color(255, 0, 128)};
 	
-	public Entity(Handler handler, float yPosition, int width) {
+	public Entity(Handler handler, float yPosition) {
 		this.handler = handler;
 		this.yPosition = yPosition;
-		this.width = width;
 		this.midPos = handler.getWidth() / 2;
 		this.x = midPos;
 	}

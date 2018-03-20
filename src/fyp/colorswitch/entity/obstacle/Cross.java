@@ -24,7 +24,7 @@ public class Cross extends Obstacle {
 	private Line l;
 	
 	public Cross(Handler handler, float yPosition, int length, int side) {
-		super(handler, yPosition, length);
+		super(handler, yPosition);
 		this.side = side; // 0 pour le côté gauche et 1 pour le côté droit 	
 		x = 0;
 		if(side == 0) {
